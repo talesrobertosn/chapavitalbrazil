@@ -9,7 +9,7 @@
 
 - **Nome**: Gestão Dr. Vital Brazil · chapa ao **Centro Acadêmico de Medicina da FAPI**.
 - **Instagram**: [@chapavitalbrazil](https://www.instagram.com/chapavitalbrazil/)
-- **Site**: `chapavitalbrazil.com.br` (domínio comprado; enquanto não estiver configurado, `talesrobertosn.github.io/chapavitalbrazil`).
+- **Site**: `chapavitalbrazil.com.br` (no ar; o endereço antigo do GitHub redireciona para ele).
 - **Slogan principal**: *Mais que uma gestão, um compromisso com a nossa formação.*
 - **Assinatura**: *Gestão Dr. Vital Brazil · CA Medicina FAPI*
 - **Lema de fechamento**: *De estudantes para estudantes.*

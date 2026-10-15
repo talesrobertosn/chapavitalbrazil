@@ -38,22 +38,20 @@ Edite os arquivos direto no GitHub (ícone de lápis ✏️) e faça o *commit*:
 1. No GitHub, abra o repositório → **Settings** → **Pages**.
 2. Em **Build and deployment** › **Source**, escolha **GitHub Actions**.
 3. Abra a aba **Actions**, entre em **"Publicar site (GitHub Pages)"** e clique em **Run workflow** (ou faça qualquer commit).
-4. Em 1–2 minutos o site fica no ar em: **https://talesrobertosn.github.io/chapavitalbrazil/**
+4. Em 1–2 minutos o site fica no ar em: **https://chapavitalbrazil.com.br/** (o endereço antigo, talesrobertosn.github.io/chapavitalbrazil, redireciona para ele).
 
 O workflow está em `.github/workflows/deploy.yml` e roda a cada envio para o branch `main` ou para o branch atual.
 
-## Domínio próprio (`chapavitalbrazil.com.br`)
+## Domínio próprio (`chapavitalbrazil.com.br`) · ativo
 
-Quando quiser ativar:
+O site está em **https://chapavitalbrazil.com.br**. Como está configurado:
 
-1. **No registro do domínio (Registro.br)**, em DNS, crie:
-   - 4 registros **A** para `@` apontando para `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - 1 registro **CNAME** para `www` apontando para `talesrobertosn.github.io`
-2. **No repositório**:
-   - crie o arquivo `public/CNAME` contendo só `chapavitalbrazil.com.br`;
-   - em `.github/workflows/deploy.yml`, troque `BASE_PATH: /` e `SITE_URL: https://chapavitalbrazil.com.br`;
-   - em `src/config/site.ts`, troque `url: 'https://chapavitalbrazil.com.br'`.
-3. **Settings → Pages → Custom domain**: digite `chapavitalbrazil.com.br`, salve e, depois que o DNS propagar, marque **Enforce HTTPS**.
+1. **Registro.br (DNS do Registro.br, modo avançado)**:
+   - 4 registros **A** no domínio raiz: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - 4 registros **AAAA** no domínio raiz: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
+   - 1 registro **CNAME** para `www` apontando para `talesrobertosn.github.io.`
+2. **Settings → Pages → Custom domain**: `chapavitalbrazil.com.br`, com **Enforce HTTPS** marcado.
+3. **Deploy**: o workflow lê o endereço salvo no GitHub Pages (`actions/configure-pages`) e monta o site para ele, sempre em https. Não há nada a trocar no código: se o domínio for removido no GitHub, o próximo deploy volta sozinho para `talesrobertosn.github.io/chapavitalbrazil/`.
 
 ## Google (Search Console)
 
@@ -61,7 +59,7 @@ O site já gera **sitemap.xml**, **robots.txt**, títulos e descrições por pá
 
 1. Acesse [search.google.com/search-console](https://search.google.com/search-console) e adicione a propriedade:
    - **com domínio próprio**: use o tipo **Domínio** e verifique pelo **registro TXT** no DNS (o mais robusto);
-   - **sem domínio**: use **Prefixo do URL** com `https://talesrobertosn.github.io/chapavitalbrazil/` e escolha o método **Tag HTML**. Copie só o código do `content="…"` e cole em `googleVerificacao` no `src/config/site.ts`. Faça o commit, espere publicar e clique em **Verificar**.
+   - **Prefixo do URL**: use `https://chapavitalbrazil.com.br/` e escolha o método **Tag HTML**. Copie só o código do `content="…"` e cole em `googleVerificacao` no `src/config/site.ts`. Faça o commit, espere publicar e clique em **Verificar**.
 2. Em **Sitemaps**, envie: `sitemap.xml` (endereço completo: `…/sitemap.xml`).
 3. Em **Inspeção de URL**, peça a indexação da página inicial, de `/programa/` e de `/diretoria/`.
 
