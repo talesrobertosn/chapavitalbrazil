@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="96" viewBox="0 0 420 96" fill="none" ><g stroke="#B08D57" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 40 H 12 l 14 18 l -14 18 H 70 z" fill="#12241C" opacity=".85"/>
+    <path d="M350 40 H 408 l -14 18 l 14 18 H 350 z" fill="#12241C" opacity=".85"/>
+    <path d="M70 76 l -12 -10 h 12 z" fill="#B08D57" opacity=".6"/><path d="M350 76 l 12 -10 h -12 z" fill="#B08D57" opacity=".6"/>
+    <path d="M58 24 H 362 v 42 H 58 z" fill="#12241C"/>
+    <path d="M66 32 H 354 v 26 H 66 z" opacity=".35" stroke-width="1"/>
+  </g>
+  <text x="210" y="59.480000000000004" text-anchor="middle" font-family="'IN',system-ui,sans-serif" font-weight="600" font-size="22" letter-spacing="5.720000000000001" fill="#B08D57">DR. VITAL BRAZIL</text></svg>

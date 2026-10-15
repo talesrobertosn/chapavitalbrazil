@@ -194,6 +194,11 @@ Assuntos que combinam: microscópio de latão, frascos de laboratório, serpente
 
 **Ritmo do feed**: alterne escuro e claro (xadrez).
 
+### Estilos criativos (mesma direção, outra forma)
+Além dos três templates-base, o kit tem estilos prontos que mantêm paleta, fontes e assinaturas mudando só a *forma*: **carta** (papel com borda dupla, caligrafia, lacre), **gazeta** (primeira página de jornal do séc. XIX), **prancha científica** (figuras numeradas com legendas), **número** gigante vazado, **linha do tempo**, **citação** com aspas monumentais, **convite** com data grande e carimbo, **checklist**, **dicionário** (verbete), **receituário** ("Rx"), **mosaico** de retratos, **foto com moldura** e **telegrama**. Lista, parâmetros e exemplos: `docs/MARKETING.md` § 11 e `marketing/assets/galeria-templates.png`.
+
+Regra de ouro para qualquer estilo novo: fundo noite ou papel, tipografia oficial, ouro só em fios/losangos/números/uma palavra, um ornamento de gravura (nunca sobre o texto) e o fecho padrão.
+
 ### Gerador pronto
 `src/lib/story.ts` desenha stories 1080×1920 com as fontes e os vetores oficiais (`frase`, `apoio`, `votar`, `proposta`, `membro`). Use-o como referência exata de proporções, ou gere imagens direto pela página `/compartilhar` do site.
 

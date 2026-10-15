@@ -102,7 +102,7 @@ export const losango = (t = 12, cor = COR.ouro) => `<span style="display:inline-
 
 /** Pincelada dourada (sublinhado orgânico). */
 export const pincelada = ({ w = 600, h = 28, cor = COR.ouro, estilo = '' } = {}) =>
-  `<svg width="${w}" height="${h}" viewBox="0 0 600 24" preserveAspectRatio="none" style="${estilo}"><path d="M4 16 C 120 8, 260 6, 420 9 S 560 13, 596 10" stroke="${cor}" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M40 20 C 180 15, 330 14, 520 17" stroke="${cor}" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".6"/></svg>`;
+  `<svg width="${w}" height="${h}" viewBox="0 0 600 24" preserveAspectRatio="none" style="display:block;${estilo}"><path d="M4 16 C 120 8, 260 6, 420 9 S 560 13, 596 10" stroke="${cor}" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M40 20 C 180 15, 330 14, 520 17" stroke="${cor}" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".6"/></svg>`;
 
 /** Ícone dentro de anel duplo. */
 export const anel = (svg, t = 120, cor = COR.ouro) =>

@@ -9,9 +9,9 @@ Cada post tem uma pasta em `marketing/instagram/NN-nome/` com:
 Peça um post em linguagem natural (`/post carrossel sobre o eixo Internato`) e o agente segue `.claude/skills/post/SKILL.md`: lê os guias, usa os dados oficiais, monta com os templates, revisa e publica.
 
 ## Templates e assets
-- `marketing/ferramentas/templates.mjs`: `capa`, `frase`, `proposta`, `pergunta`, `lista`, `pessoa`, `fecho`, `storyFrase`, `storyPessoa`, `montar()`, `montarStory()`; tons variáveis (`TONS`).
-- `marketing/ferramentas/assets.mjs`: ornamentos, botânica, ciência e logos em SVG. Catálogo: `node marketing/ferramentas/catalogo.mjs` → `marketing/assets/`.
-- `marketing/instagram/_modelo/`: exemplo completo para copiar.
+- `marketing/ferramentas/templates.mjs`: básicos (`capa`, `frase`, `proposta`, `pergunta`, `lista`, `pessoa`, `fecho`, `storyFrase`, `storyPessoa`) e criativos (`cartaCapa`, `carta`, `gazeta`, `prancha`, `numero`, `linhaDoTempo`, `citacao`, `convite`, `checklist`, `dicionario`, `prescricao`, `mosaico`, `fotoMoldura`, `telegrama`, `storyContagem`, `storyEnquete`, `storyQuiz`, `storyCarta`, `storyAgenda`, `storyNumero`); `montar()`, `montarStory()`; tons (`TONS`), texturas de fundo. Galeria: `node marketing/ferramentas/galeria.mjs` → `marketing/assets/galeria-templates.png`.
+- `marketing/ferramentas/assets.mjs`: 52 ornamentos, botânica, ciência e logos em SVG (também exportados em `marketing/assets/svg/`). Catálogo: `node marketing/ferramentas/catalogo.mjs` → `marketing/assets/catalogo.png`.
+- `marketing/instagram/_modelo/`: exemplo completo para copiar. `02-carta-ao-calouro/`: exemplo de estilo criativo (carta + prancha).
 
 ## Kit de marca
 `marketing/ferramentas/marca.mjs` traz fontes oficiais embutidas, paleta, medalhão/figura/folhagem vetorizados, granulação, poeira dourada, fio com losango, pincelada e o `renderizar()` (Chromium via Playwright). `icones.mjs` exporta os ícones Lucide em traço fino.

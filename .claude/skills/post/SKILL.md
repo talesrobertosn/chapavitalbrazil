@@ -10,7 +10,7 @@ Você vai criar uma pasta `marketing/instagram/NN-nome/` com `gerar.mjs`, os PNG
 ## 1. Leia antes (obrigatório, nesta ordem)
 1. `docs/MARKETING.md` § 11 "Como pedir um post" e § 2 (tom), § 6 (frases), § 9 (cuidados).
 2. `docs/DIRECAO-DE-ARTE.md` § 2 (paleta), § 3 (tipografia), § 8 (formatos e templates), § 9 (faça/não faça), § 10 (checklist).
-3. `marketing/ferramentas/templates.mjs` (blocos prontos) e `marketing/ferramentas/assets.mjs` (ornamentos, botânica, logos).
+3. `marketing/ferramentas/templates.mjs` (blocos prontos, básicos e criativos), `marketing/ferramentas/assets.mjs` (52 ornamentos, botânica, ciência e logos) e as pranchas `marketing/assets/catalogo.png` e `marketing/assets/galeria-templates.png`.
 4. Conteúdo oficial em `src/data/*.ts`: `programa.ts` (5 eixos, 52 propostas), `diretoria.ts` (23 membros), `frases.ts`, `vitalBrazil.ts`, `diario.ts`. **Copie de lá; nunca invente.**
 5. `marketing/instagram/_modelo/gerar.mjs` (exemplo completo) e o último post publicado (para alternar o ritmo escuro ↔ claro).
 
@@ -19,9 +19,10 @@ Extraia do pedido: **tema** (eixo, proposta, membro, frase, data, Vital Brazil, 
 
 ## 3. Roteiro visual (antes de codar)
 Escreva, em 5–8 linhas, o roteiro slide a slide: frase, template, tom, destaque (UMA palavra em ouro) e o que a pessoa sente ao arrastar. Regras:
-- **Capa** com frase de impacto em CAIXA ALTA (template `capa`), **fecho** sempre com `fecho()` (medalhão + slogan + @).
+- **Capa** com frase de impacto em CAIXA ALTA (template `capa`) ou uma capa de estilo (`cartaCapa`, `gazeta`, `numero`, `convite`); **fecho** sempre com `fecho()` (medalhão + slogan + @).
+- **Escolha o estilo pelo assunto** (tabela em MARKETING.md § 11): carta, gazeta, prancha, número, linha do tempo, citação, convite, checklist, dicionário, receituário, mosaico, foto com moldura, telegrama. Veja `marketing/assets/galeria-templates.png` e, para um exemplo completo de estilo criativo, `marketing/instagram/02-carta-ao-calouro/`. Não repita o estilo do post anterior.
 - Alterne tons: `tom: 'noite' | 'verde' | 'musgo'` no escuro; `'papel' | 'marfim' | 'areia'` no claro. Varie levemente, nunca saia da paleta.
-- Ornamentos e botânica vêm de `assets.mjs` (`ramo`, `grinalda`, `cantoneira`, `divisor`, `selo`, `cartucho`, `serpenteTraco`, `frasco`, `microscopio`, `jaleco`…). Use 1–2 por slide, nos cantos, nunca sobre texto.
+- Ornamentos e botânica vêm de `assets.mjs` (`ramo`, `grinalda`, `cantoneira`, `divisor`, `selo`, `lacre`, `envelope`, `samambaia`, `flor`, `oliveira`, `bastaoAsclepio`, `livro`, `coracao`, `balanca`…). Use 1–2 por slide, nos cantos, nunca sobre texto. Varie também `fundoEscuro({ textura })` e `fundoClaro({ decor })`.
 - Uma ideia por slide. Texto curto. Números grandes em serifada vazada quando houver.
 - Pessoas em círculo; imagens históricas em arco. Fotos da diretoria vêm de `src/assets/diretoria/<slug>.jpg`.
 - Carrossel **panorâmico** (fio de ouro atravessa os slides) é o padrão: `montar({ panoramico: true })`.

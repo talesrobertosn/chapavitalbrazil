@@ -188,6 +188,29 @@ Qualquer agente de IA que trabalhe neste repositório deve seguir `.claude/skill
 - Varie a composição: retrato em arco à direita ↔ à esquerda; frase centralizada ↔ alinhada à esquerda; lista numerada ↔ tópicos com losango.
 - Nunca varie: paleta, fontes, logo (voltado à direita), tom de voz, assinatura.
 
+### Estilos de post (além dos básicos)
+Cada estilo é um template em `marketing/ferramentas/templates.mjs`; a prancha com um exemplo de cada está em `marketing/assets/galeria-templates.png`.
+
+| Estilo | Quando usar | Template | Exemplo de pedido |
+|---|---|---|---|
+| **Carta** | Calouro, véspera, agradecimento, mensagem pessoal | `cartaCapa` + `carta` (+ `storyCarta`) | `/post carta ao calouro` |
+| **Gazeta** | "Você sabia?", história do Vital Brazil, notícias da campanha | `gazeta` | `/post gazeta sobre a rede de soros do Butantan` |
+| **Prancha científica** | Propostas como "espécimes" numerados, resumos de eixo | `prancha` | `/post prancha com 4 propostas do eixo Internato` |
+| **Número** | 52 propostas, 23 pessoas, 5 eixos, 20 dias | `numero` / `storyNumero` | `/post número: 52 propostas` |
+| **Linha do tempo** | Vital Brazil, 100 primeiros dias, calendário | `linhaDoTempo` | `/post linha do tempo do Vital Brazil` |
+| **Citação** | Frase longa do manifesto, depoimento aprovado | `citacao` | `/post citação "Tradição para lembrar…"` |
+| **Convite / agenda** | Eleição, reunião aberta, evento | `convite` / `storyAgenda` | `/post convite da eleição` |
+| **Checklist** | 100 primeiros dias, prestação de contas, "o que já fizemos" | `checklist` | `/post checklist dos 100 dias` |
+| **Dicionário** | Explicar um termo: Ouvidoria, Ata, Transparência | `dicionario` | `/post dicionário: Ouvidoria` |
+| **Receituário** | Tom leve: "Rx" com itens e posologia (só propostas reais) | `prescricao` | `/post receituário da transparência` |
+| **Mosaico** | Apresentar um time ou diretoria (até 12 rostos) | `mosaico` | `/post mosaico da Diretoria Científica` |
+| **Foto com moldura** | Fotos reais: bastidores, eventos (`fotoLocal('caminho.jpg')`) | `fotoMoldura` | `/post bastidores com a foto X` |
+| **Telegrama** | Aviso urgente, reta final, lembrete de voto | `telegrama` | `/post telegrama: amanhã é dia de votar` |
+| **Contagem** | Faltam N dias | `storyContagem` | `/post story: faltam 7 dias` |
+| **Enquete / quiz** | Perguntas para os stories (a figurinha vai por cima) | `storyEnquete` / `storyQuiz` | `/post enquete: do que o campus precisa?` |
+
+Variações de fundo: `fundoEscuro({ textura: 'luz' | 'raios' | 'vinheta' | 'folhas' | 'samambaia' | 'oliveira' })` e `fundoClaro({ decor: 'folhas' | 'ramos' | 'moldura' | 'trepadeira' | 'flores' | 'nenhum' })`. Tons extras: escuro `floresta`, `carvao`; claro `branco`, `linho`.
+
 ### Estrutura de um carrossel (5–7 slides)
 | # | Papel | Template | Tom |
 |---|---|---|---|
@@ -198,7 +221,7 @@ Qualquer agente de IA que trabalhe neste repositório deve seguir `.claude/skill
 
 ### Biblioteca de assets
 `marketing/assets/svg/` (gerada por `node marketing/ferramentas/catalogo.mjs`; prancha em `marketing/assets/catalogo.png`):
-ornamentos (cantoneira, moldura, divisor, cartucho, selo, losango duplo), botânica (ramo, ramo duplo, grinalda, folha oficial), ciência (frasco, microscópio, serpente em traço, estetoscópio, jaleco) e logos (horizontal, empilhado, monograma VB, selo-carimbo, figura). Todos em ouro (escuro) e verde (claro).
+52 elementos: ornamentos (cantoneira, moldura, divisor, cartucho, selo, losango duplo, banderola, roseta, filete, asterismo, etiqueta de espécime, carimbo, lacre de cera, envelope), botânica (ramo, ramo duplo, grinalda, folha oficial, samambaia, espiga, flor, trepadeira, oliveira, folhas espalhadas), ciência (frasco, microscópio, serpente em traço, estetoscópio, jaleco, bastão de Asclépio, livro, pena, lamparina, ampulheta, balança, coração anatômico, lupa, retorta, ampola, DNA, rosa dos ventos) e logos (horizontal, empilhado, monograma VB, selo-carimbo, figura, assinatura em itálico, carimbo 1865·2026, banderola, etiqueta, mínimo com @, lacre). Todos em ouro (escuro) e verde (claro).
 
 ## 12. Contato
 - Instagram: @chapavitalbrazil
