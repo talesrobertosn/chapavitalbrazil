@@ -50,7 +50,7 @@ export function MobileMenu({ onClose, cta }: { onClose: () => void; cta: string 
       role="dialog"
       aria-modal="true"
       aria-label="Menu"
-      className="fixed inset-0 z-[45] overflow-y-auto overflow-x-hidden overscroll-contain bg-noite lg:hidden"
+      className="fixed inset-0 z-[45] overflow-y-auto overflow-x-hidden overscroll-contain bg-noite"
       data-lenis-prevent
       initial={{ clipPath: `circle(0% at ${origem})` }}
       animate={{ clipPath: `circle(150% at ${origem})` }}
@@ -63,7 +63,7 @@ export function MobileMenu({ onClose, cta }: { onClose: () => void; cta: string 
       </div>
       <div className="container-x relative flex min-h-full flex-col pb-[max(2rem,env(safe-area-inset-bottom))] pt-[calc(var(--header-h)+2rem)]">
         <nav aria-label="Menu principal" className="flex-1">
-          <ul className="flex flex-col">
+          <ul className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-16">
             <li>
               <MenuLink to="/" i={0} on={pathname === '/'} numero="00" rotulo="Início" />
             </li>
@@ -80,11 +80,11 @@ export function MobileMenu({ onClose, cta }: { onClose: () => void; cta: string 
           animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.6, ease: EASE_OUT } }}
           exit={{ opacity: 0, transition: { duration: 0.15 } }}
         >
-          <div className="grid grid-cols-2 gap-3">
-            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="flex h-14 items-center justify-center gap-2.5 rounded-full bg-papel text-[0.74rem] font-bold uppercase tracking-[0.14em] text-noite active:scale-[0.98]">
+          <div className="grid grid-cols-2 gap-3 lg:max-w-xl">
+            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="flex h-14 items-center justify-center gap-2.5 rounded-full bg-papel text-[0.74rem] font-bold uppercase tracking-[0.14em] text-noite transition-colors hover:bg-ouro-claro active:scale-[0.98]">
               <InstagramIcon size={18} /> Seguir
             </a>
-            <Link to="/compartilhar" className="flex h-14 items-center justify-center gap-2.5 rounded-full text-[0.74rem] font-bold uppercase tracking-[0.14em] text-papel ring-1 ring-inset ring-ouro/60 active:scale-[0.98]">
+            <Link to="/compartilhar" className="flex h-14 items-center justify-center gap-2.5 rounded-full text-[0.74rem] font-bold uppercase tracking-[0.14em] text-papel ring-1 ring-inset ring-ouro/60 transition-colors hover:bg-papel/10 active:scale-[0.98]">
               <InstagramIcon size={18} /> Meu story
             </Link>
           </div>
@@ -120,7 +120,7 @@ function MenuLink({ to, i, on, numero, rotulo, descricao }: { to: string; i: num
       >
         <span className={cn('tabular w-6 text-[0.7rem] font-medium tracking-widest', on ? 'text-ouro' : 'text-salvia')}>{numero}</span>
         <span className="flex flex-1 flex-col">
-          <span className={cn('font-display text-[clamp(1.6rem,7vw,2.3rem)] font-semibold leading-tight transition-colors', on ? 'text-ouro-claro' : 'text-papel group-active:text-ouro-claro')}>
+          <span className={cn('font-display text-[clamp(1.6rem,7vw,2.3rem)] font-semibold leading-tight transition-colors', on ? 'text-ouro-claro' : 'text-papel group-hover:text-ouro-claro group-active:text-ouro-claro')}>
             {rotulo}
           </span>
           {descricao && <span className="text-[0.8rem] text-salvia">{descricao}</span>}

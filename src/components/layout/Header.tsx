@@ -63,7 +63,7 @@ export function Header() {
             </span>
             <span className="flex flex-col leading-none">
               <span className="eyebrow text-[0.58rem] text-ouro-claro">Gestão</span>
-              <span className="mt-1 font-display text-[1rem] font-bold tracking-tight text-papel sm:text-[1.08rem]">Dr. Vital Brazil</span>
+              <span className="mt-1 whitespace-nowrap font-display text-[1rem] font-bold tracking-tight text-papel sm:text-[1.08rem]">Dr. Vital Brazil</span>
             </span>
           </Link>
 
@@ -80,7 +80,7 @@ export function Header() {
                       onFocus={() => setHover(item.to)}
                       onBlur={() => setHover(null)}
                       className={cn(
-                        'relative block px-4 py-3 text-[0.8rem] font-medium tracking-[0.06em] transition-colors duration-300',
+                        'relative block whitespace-nowrap px-3 py-3 text-[0.8rem] font-medium tracking-[0.06em] transition-colors duration-300 xl:px-4',
                         on ? 'text-papel' : 'text-papel/70 hover:text-papel',
                       )}
                     >
@@ -109,16 +109,16 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram da chapa: @chapavitalbrazil"
-              className="group/ig relative flex h-11 shrink-0 items-center gap-2 rounded-full px-3 text-papel ring-1 ring-inset ring-ouro/60 transition-colors duration-300 hover:bg-papel hover:text-noite active:scale-95 lg:px-4"
+              className="group/ig relative flex h-11 shrink-0 items-center gap-2 rounded-full px-3 text-papel ring-1 ring-inset ring-ouro/60 transition-colors duration-300 hover:bg-papel hover:text-noite active:scale-95 xl:px-4"
             >
               <InstagramIcon size={18} />
-              <span className="hidden text-[0.72rem] font-semibold tracking-[0.04em] lg:inline">{site.instagram.handle}</span>
+              <span className="hidden text-[0.72rem] font-semibold tracking-[0.04em] xl:inline">{site.instagram.handle}</span>
               <span aria-hidden="true" className="absolute inset-0 rounded-full ring-2 ring-ouro/70 opacity-0 transition-opacity duration-300 group-hover/ig:opacity-100" />
             </a>
             <Link
               to="/votar"
               className={cn(
-                'group/cta relative hidden h-11 items-center gap-2 overflow-hidden rounded-[2px] px-5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] ring-1 ring-inset ring-ouro/60 transition-colors duration-500 hover:text-noite sm:inline-flex',
+                'group/cta relative hidden h-11 items-center gap-2 overflow-hidden whitespace-nowrap rounded-[2px] px-5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] ring-1 ring-inset ring-ouro/60 transition-colors duration-500 hover:text-noite sm:inline-flex lg:hidden xl:inline-flex',
                 fase === 'eleicao' ? 'bg-ouro text-noite' : 'text-papel',
               )}
             >
@@ -133,8 +133,8 @@ export function Header() {
               aria-controls="menu-movel"
               aria-label={menu ? 'Fechar menu' : 'Abrir menu'}
               className={cn(
-                'relative z-[60] flex h-11 items-center gap-3 rounded-full pl-4 pr-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] ring-1 ring-inset transition-colors duration-300 active:scale-95 lg:hidden',
-                menu ? 'bg-papel text-noite ring-papel' : 'bg-noite/60 text-papel ring-ouro/60',
+                'relative z-[60] flex h-11 shrink-0 items-center gap-3 whitespace-nowrap rounded-full pl-4 pr-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] ring-1 ring-inset transition-colors duration-300 active:scale-95',
+                menu ? 'bg-papel text-noite ring-papel' : 'bg-noite/60 text-papel ring-ouro/60 hover:bg-papel hover:text-noite',
               )}
             >
               <span aria-hidden="true">{menu ? 'Fechar' : 'Menu'}</span>
