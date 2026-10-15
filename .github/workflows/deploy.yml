@@ -30,11 +30,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # O GitHub devolve http:// enquanto o certificado do domínio não sai; o site é sempre https.
+      - id: url
+        run: echo "site=$(echo '${{ steps.pages.outputs.base_url }}' | sed 's#^http://#https://#')" >> "$GITHUB_OUTPUT"
       - run: npm run build
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}/
-          SITE_URL: ${{ steps.pages.outputs.base_url }}
-      - run: echo "Publicado para ${{ steps.pages.outputs.base_url }}"
+          SITE_URL: ${{ steps.url.outputs.site }}
+      - run: echo "Publicado para ${{ steps.url.outputs.site }}"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
