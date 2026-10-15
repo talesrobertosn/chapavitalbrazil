@@ -86,7 +86,7 @@ export function Footer() {
           <motion.div style={{ y: fig }} className="hidden w-[11vw] shrink-0 pb-[1.2vw] text-ouro/80 sm:block">
             <Figure />
           </motion.div>
-          <p className="whitespace-nowrap font-display text-[16.5vw] font-extrabold uppercase leading-[0.78] tracking-[-0.04em] text-papel sm:text-[13.2vw]">
+          <p className="whitespace-nowrap font-display text-[15.5vw] font-extrabold uppercase leading-[0.78] tracking-[-0.04em] text-papel sm:text-[10.6vw]">
             Vital Brazil
           </p>
         </motion.div>
