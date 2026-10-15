@@ -17,6 +17,7 @@ const Diario = lazy(() => import('./pages/Diario'));
 const FaleConosco = lazy(() => import('./pages/FaleConosco'));
 const Votar = lazy(() => import('./pages/Votar'));
 const Calouro = lazy(() => import('./pages/Calouro'));
+const Transferido = lazy(() => import('./pages/Transferido'));
 const Compartilhar = lazy(() => import('./pages/Compartilhar'));
 const Privacidade = lazy(() => import('./pages/Privacidade'));
 const NaoEncontrada = lazy(() => import('./pages/NaoEncontrada'));
@@ -70,6 +71,7 @@ export default function App() {
               <Route path="/fale-conosco" element={<L><FaleConosco /></L>} />
               <Route path="/votar" element={<L><Votar /></L>} />
               <Route path="/calouro" element={<L><Calouro /></L>} />
+              <Route path="/transferido" element={<L><Transferido /></L>} />
               <Route path="/compartilhar" element={<L><Compartilhar /></L>} />
               <Route path="/privacidade" element={<L><Privacidade /></L>} />
               <Route path="*" element={<L><NaoEncontrada /></L>} />

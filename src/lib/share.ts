@@ -20,6 +20,7 @@ export const TEXTOS_WHATSAPP = {
   votar: (data: string) =>
     `🗳️ *Eleição do CA de Medicina FAPI*\n${data}\n\nSua voz vira voto. Vê como, onde e quando:\n${linkPublico('/votar')}`,
   calouro: () => `✉️ *Querido calouro,*\numa carta da Gestão Dr. Vital Brazil pra quem está chegando.\n\n${linkPublico('/calouro')}`,
+  transferido: () => `✉️ *Querido transferido,*\numa carta da Gestão Dr. Vital Brazil pra quem chegou depois: ninguém precisa descobrir tudo sozinho.\n\n${linkPublico('/transferido')}`,
   membro: (nome: string, cargo: string, rota: string) => `${nome} · ${cargo}\nGestão Dr. Vital Brazil\n\n${linkPublico(rota)}`,
 };
 

@@ -15,5 +15,6 @@ export const NAV: NavItem[] = [
 export const NAV_EXTRA: NavItem[] = [
   { to: '/votar', rotulo: 'Como votar', descricao: 'Data, local e lembrete' },
   { to: '/calouro', rotulo: 'Querido calouro', descricao: 'Uma carta pra quem chega' },
+  { to: '/transferido', rotulo: 'Querido transferido', descricao: 'Pra quem chegou depois' },
   { to: '/compartilhar', rotulo: 'Stories', descricao: 'Imagens para compartilhar' },
 ];

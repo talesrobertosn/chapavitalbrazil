@@ -77,6 +77,9 @@ export default function Calouro() {
           <ButtonLink to="/programa" variant="outline" icon={false}>
             O que propomos
           </ButtonLink>
+          <ButtonLink to="/transferido" variant="outline" icon={false}>
+            Chegou de transferência?
+          </ButtonLink>
         </div>
       </section>
     </Page>
