@@ -21,7 +21,7 @@ await montar({
   formato: FEED,
   slides: [
     homenagem({ data: '15 de outubro', titulo: 'Professores', sub: 'Hoje é a data. Pra gente, é todo dia.' }),
-    citacao({ texto: 'Ninguém se forma sozinho. Cada diagnóstico que um dia vamos fazer passou antes pelas mãos de quem nos ensinou.', autor: 'Gestão Dr. Vital Brazil', fonte: 'Mensagem aos professores', tema: 'claro', tom: 'marfim', decor: 'buque' }),
+    citacao({ texto: 'Ninguém se forma sozinho. Cada diagnóstico que um dia vamos fazer passou antes pelas mãos de quem nos ensinou.', autor: 'Gestão Dr. Vital Brazil', fonte: 'Mensagem aos professores', tema: 'claro', tom: 'marfim', decor: 'serpente' }),
     lista({ rotuloTxt: 'No nosso programa, todo dia', titulo: 'Mais perto de quem ensina', tom: 'verde', textura: 'vinheta', itens: PROPOSTAS.map((p) => ({ titulo: p.titulo, texto: p.texto })) }),
     frase({ texto: 'Valorizar quem ensina é cuidar de quem aprende.', destaque: 'ensina', tema: 'claro', tom: 'branco', decor: 'flores', rotuloTxt: 'Dia dos Professores', apoio: 'Respeito nas relações entre alunos, professores e preceptores está escrito no nosso programa. E se cobra todo dia.' }),
     fecho({ cta: 'Marca um professor que marcou você.' }),

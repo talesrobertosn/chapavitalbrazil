@@ -9,6 +9,7 @@
  *  BOTÂNICA     ramo, ramoDuplo, grinalda, folhaSolta,
  *               samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas,
  *               coroaLouros, buque
+ *  LOGO II      serpenteLogo (a serpente do logo, sem o retrato)
  *  CIÊNCIA      frasco, microscopio, serpenteTraco, estetoscopio, jaleco,
  *               bastaoAsclepio, livro, pena, lampada, ampulheta, balanca, coracao,
  *               lupa, retorta, ampola, dna, bussola
@@ -18,6 +19,7 @@
  * Use `cor` para a tonalidade (ouro sobre escuro; verde sobre claro).
  */
 import { COR, MEDAL, FIGURE, LEAF, medalhao } from './marca.mjs';
+import { SERPENTE } from './serpente.mjs';
 import { site } from '../../src/config/site.ts';
 
 const F_DISPLAY = "'PF',Georgia,serif";
@@ -701,4 +703,11 @@ export const buque = ({ cor = COR.ouro, h = 520, op = 1, flip = false } = {}) =>
   return svg(w, h, `<g ${traco(cor, Math.max(1.1, h * 0.0026))} opacity="${op}" ${flip ? `transform="scale(-1 1) translate(-${w} 0)"` : ''}>${corpo}</g>`);
 };
 
-export const CATALOGO = { cantoneira, moldura, divisor, cartucho, selo, losangoDuplo, banderola, roseta, filete, asterismo, etiqueta, carimbo, lacre, envelope, ramo, ramoDuplo, grinalda, folhaSolta, samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas, coroaLouros, buque, frasco, microscopio, serpenteTraco, estetoscopio, jaleco, bastaoAsclepio, livro, pena, lampada, ampulheta, balanca, coracao, lupa, retorta, ampola, dna, bussola, logoHorizontal, logoEmpilhado, logoMonograma, logoSelo, figuraInline, logoAssinatura, logoCarimbo, logoBanderola, logoEtiqueta, logoMinimo, logoLacre };
+/** A serpente do logo, sem o retrato. Silhueta cheia; use baixa opacidade como marca d'água. */
+export const serpenteLogo = ({ cor = COR.ouro, w = 600, op = 1, flip = false } = {}) => {
+  const [, , vw, vh] = SERPENTE.vb.split(' ').map(Number);
+  const id = `sp${Math.round(Math.random() * 1e8)}`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${SERPENTE.vb}" width="${w}" height="${Math.round((w * vh) / vw)}" style="display:block;opacity:${op};${flip ? 'transform:scaleX(-1);' : ''}"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="2000" height="2000"><rect width="2000" height="2000" fill="#fff"/><polygon points="${SERPENTE.mascara}" fill="#000"/></mask></defs><path fill="${cor}" fill-rule="evenodd" mask="url(#${id})" d="${SERPENTE.d}"/></svg>`;
+};
+
+export const CATALOGO = { cantoneira, moldura, divisor, cartucho, selo, losangoDuplo, banderola, roseta, filete, asterismo, etiqueta, carimbo, lacre, envelope, ramo, ramoDuplo, grinalda, folhaSolta, samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas, coroaLouros, buque, frasco, microscopio, serpenteTraco, estetoscopio, jaleco, bastaoAsclepio, livro, pena, lampada, ampulheta, balanca, coracao, lupa, retorta, ampola, dna, bussola, logoHorizontal, logoEmpilhado, logoMonograma, logoSelo, figuraInline, logoAssinatura, logoCarimbo, logoBanderola, logoEtiqueta, logoMinimo, logoLacre, serpenteLogo };

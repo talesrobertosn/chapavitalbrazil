@@ -133,6 +133,7 @@ export const fundoClaro = ({ folhas = true, tom = 'papel', decor = 'folhas', w =
     moldura: `<div class="abs" style="inset:44px 44px ${h === FEED.h ? 96 : 44}px;border:1px solid rgba(30,58,47,.45)"></div><div class="abs" style="inset:54px 54px ${h === FEED.h ? 106 : 54}px;border:1px solid rgba(30,58,47,.2)"></div>${[[0, 0], [90, 1], [270, 2], [180, 3]].map(([rot, i]) => `<div class="abs" style="${i % 2 ? 'right' : 'left'}:34px;${i < 2 ? 'top' : 'bottom'}:${i < 2 || h !== FEED.h ? 34 : 86}px">${A.cantoneira({ cor: COR.ouroEscuro, t: 90, rot })}</div>`).join('')}`,
     trepadeira: `<div class="abs" style="left:14px;top:-20px">${A.trepadeira({ cor: COR.verde, h: h + 40, op: 0.22 })}</div><div class="abs" style="right:14px;top:-20px">${A.trepadeira({ cor: COR.verde, h: h + 40, op: 0.22, flip: true })}</div>`,
     buque: `<div class="abs" style="right:56px;bottom:${h === FEED.h ? 130 : 290}px">${A.buque({ cor: COR.verde, h: h * 0.3, op: 0.28 })}</div>`,
+    serpente: `<div class="abs" style="right:70px;top:${h === FEED.h ? 80 : 240}px">${A.serpenteLogo({ cor: COR.verde, w: 520, op: 0.13 })}</div>`,
     flores: `<div class="abs" style="right:60px;top:${h === FEED.h ? 120 : 280}px;transform:rotate(12deg)">${A.flor({ cor: COR.verde, t: 200, op: 0.22 })}</div><div class="abs" style="right:230px;top:${h === FEED.h ? 70 : 230}px;transform:rotate(-16deg)">${A.flor({ cor: COR.verde, t: 130, haste: false, op: 0.18 })}</div>`,
     nenhum: '',
   };
