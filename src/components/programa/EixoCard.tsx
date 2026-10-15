@@ -25,6 +25,7 @@ export function EixoCard({ eixo, className }: { eixo: Eixo; className?: string }
     <Link
       to={`/programa/${eixo.id}`}
       state={{ fundo: location }}
+      data-cursor="Abrir"
       className={cn('group block h-full outline-none', className)}
       aria-label={`Eixo ${eixo.numero}: ${eixo.titulo}. Ver as ${contarPropostas(eixo)} propostas`}
     >

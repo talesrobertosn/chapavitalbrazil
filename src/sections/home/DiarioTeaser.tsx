@@ -12,7 +12,7 @@ export function DiarioTeaser() {
   const janela = DIARIO.slice(Math.max(0, Math.min(i - 1, DIARIO.length - 4)), Math.max(0, Math.min(i - 1, DIARIO.length - 4)) + 4);
 
   return (
-    <section className="surface-noite section-y relative overflow-hidden" aria-labelledby="diario-titulo">
+    <section className="surface-verde section-y relative overflow-hidden" aria-labelledby="diario-titulo">
       <div className="grain" />
       <div className="container-x relative">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">

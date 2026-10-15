@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'motion/react';
 import { useRef } from 'react';
-import { Diamond, Leaf } from '../../components/brand/Brand';
+import { Diamond, Leaf, Medal } from '../../components/brand/Brand';
+import { FeixesDeLuz, PoeiraDourada } from '../../components/fx/Atmosfera';
 import { ButtonLink } from '../../components/ui/Button';
 import { Countdown } from '../../components/ui/Countdown';
 import { BrushUnderline } from '../../components/ui/Reveal';
@@ -22,7 +23,7 @@ const TITULOS: Record<Fase, { titulo: string; sub: string }> = {
 export function Hero() {
   const fase = useFase();
   const { titulo, sub } = TITULOS[fase];
-  const d0 = INTRO_ATIVA_NA_CARGA ? 2.05 : 0.15;
+  const d0 = INTRO_ATIVA_NA_CARGA ? 2.75 : 0.15;
   const ref = useRef<HTMLElement>(null);
   const fine = useFinePointer();
 
@@ -51,7 +52,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative isolate overflow-hidden bg-noite pt-[calc(var(--header-h)+env(safe-area-inset-top))]"
+      className="relative isolate overflow-hidden bg-noite pt-[calc(var(--header-h)+env(safe-area-inset-top))] lg:min-h-[100svh]"
       onPointerMove={(e) => {
         if (!fine) return;
         mx.set(e.clientX / window.innerWidth - 0.5);
@@ -65,8 +66,28 @@ export function Hero() {
         className="absolute inset-0 -z-10"
         style={{ background: 'radial-gradient(80% 60% at 72% 42%, rgb(40 74 60 / 0.75) 0%, transparent 70%), radial-gradient(60% 50% at 10% 90%, rgb(30 58 47 / 0.6) 0%, transparent 70%)' }}
       />
+      {/* Medalhão monumental girando devagar ao fundo */}
+      <motion.div
+        aria-hidden="true"
+        style={{ x: p1x, y: p1y }}
+        className="pointer-events-none absolute -right-[18vw] top-[8%] -z-10 w-[min(64rem,92vw)] md:-right-[10vw] md:top-[2%]"
+        initial={{ opacity: 0, scale: 0.9, rotate: -20 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ duration: 3, delay: d0, ease: EASE_OUT }}
+      >
+        <div className="animate-spin-slow text-ouro/[0.045]" style={{ ['--spin-duration' as string]: '260s' }}>
+          <Medal title="" aria-hidden="true" />
+        </div>
+      </motion.div>
+      <FeixesDeLuz className="-z-10" />
+      <PoeiraDourada className="-z-10" densidade={1.1} />
       <div className="grain -z-10" />
+      <div className="vignette -z-10" />
       <motion.div aria-hidden="true" style={{ x: p3x, y: p3y }} className="pointer-events-none absolute -left-24 bottom-[-6rem] -z-10 w-[min(26rem,60vw)] text-ouro/[0.14]">
+        <Leaf />
+      </motion.div>
+      {/* Folhagem em primeiro plano, mais próxima da câmera */}
+      <motion.div aria-hidden="true" style={{ x: p3x, y: p3y }} className="pointer-events-none absolute -bottom-24 -right-16 z-20 hidden w-[min(22rem,30vw)] -scale-x-100 text-ouro/[0.22] lg:block">
         <Leaf />
       </motion.div>
 
@@ -85,7 +106,21 @@ export function Hero() {
 
         {/* Título monumental */}
         <motion.div style={{ y: yTitulo, opacity: opTitulo }} className="relative z-10">
-          <h1 id="hero-titulo" className="t-mega mt-5 text-papel md:mt-8" aria-label={titulo}>
+          <h1 id="hero-titulo" className="t-mega relative mt-5 text-papel md:mt-8" aria-label={titulo}>
+            {/* Folha de ouro: o brilho percorre o título de tempos em tempos */}
+            <motion.span
+              aria-hidden="true"
+              className="brilho-metalico pointer-events-none absolute inset-0 flex"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: d0 + 1.6, duration: 0.6 }}
+            >
+              {letras.map((l, i) => (
+                <span key={i} className="inline-block pb-[0.06em]">
+                  {l}
+                </span>
+              ))}
+            </motion.span>
             <span className="flex" aria-hidden="true">
               {letras.map((l, i) => (
                 <span key={`${titulo}-${i}`} className="inline-block overflow-hidden pb-[0.06em]">

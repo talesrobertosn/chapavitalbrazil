@@ -30,6 +30,7 @@ export function Prancha({ dia, estado, className }: { dia: DiaCampanha; estado: 
   return (
     <Link
       to={dia.rota}
+      data-cursor="Ver"
       className={cn(
         'group relative flex h-full min-h-[15rem] flex-col overflow-hidden border p-6 transition-[border-color,transform] duration-500 ease-[var(--ease-expo)] hover:-translate-y-1',
         estado === 'hoje' ? 'border-ouro bg-verde' : 'border-ouro/20 bg-verde/40 hover:border-ouro/50',

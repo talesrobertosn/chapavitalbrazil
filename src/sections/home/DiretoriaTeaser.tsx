@@ -22,7 +22,7 @@ export function DiretoriaTeaser() {
       <div aria-hidden="true" className="absolute inset-0" style={{ background: 'radial-gradient(50% 60% at 70% 50%, rgb(40 74 60 / 0.55), transparent 70%)' }} />
       <div className="container-x relative grid items-center gap-14 lg:grid-cols-12">
         <div className="min-w-0 lg:col-span-5">
-          <SectionHead numero="05" rotulo="A diretoria" titulo={'Do 1º ao último período.\nUma só chapa.'} tituloClass="t-h1">
+          <SectionHead numero="07" rotulo="A diretoria" titulo={'Do 1º ao último período.\nUma só chapa.'} tituloClass="t-h1">
             {MEMBROS.length} estudantes, da turma {TURMAS[0]} à turma {TURMAS[TURMAS.length - 1]}, em {CARGOS.length} frentes de trabalho.
           </SectionHead>
           <Reveal delay={0.2} className="mt-10 grid grid-cols-2 gap-4">
