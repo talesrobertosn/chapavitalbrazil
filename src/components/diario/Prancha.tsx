@@ -14,14 +14,17 @@ export function Prancha({ dia, estado, className }: { dia: DiaCampanha; estado: 
   if (estado === 'lacrado') {
     return (
       <div
-        className={cn('relative flex h-full min-h-[15rem] flex-col items-center justify-center overflow-hidden border border-dashed border-ouro/25 bg-noite/40 p-6 text-center', className)}
+        className={cn('group relative flex h-full min-h-[15rem] flex-col items-center justify-center overflow-hidden border border-ouro/15 bg-noite/50 p-6 text-center transition-colors duration-500 hover:border-ouro/35', className)}
         aria-label={`Dia ${dia.dia}, ${data}: abre na data`}
       >
-        <span className="tabular eyebrow text-[0.6rem] text-salvia">Dia {String(dia.dia).padStart(2, '0')}</span>
-        <span className="relative mt-5 grid size-16 place-items-center rounded-full bg-verde-2 shadow-[inset_0_-6px_12px_rgb(0_0_0/0.35),0_6px_18px_-6px_rgb(0_0_0/0.6)] ring-1 ring-ouro/30">
+        <span aria-hidden="true" className="tabular pointer-events-none absolute -bottom-6 -right-2 font-display text-[7.5rem] font-bold leading-none text-transparent opacity-40 [-webkit-text-stroke:1px_var(--color-ouro)] transition-transform duration-700 group-hover:-translate-y-1">
+          {String(dia.dia).padStart(2, '0')}
+        </span>
+        <span className="eyebrow relative text-[0.6rem] text-salvia">{dia.formato}</span>
+        <span className="relative mt-5 grid size-16 place-items-center rounded-full bg-verde-2 transition-transform duration-700 ease-[var(--ease-expo)] group-hover:rotate-[-12deg] group-hover:scale-105 shadow-[inset_0_-6px_12px_rgb(0_0_0/0.35),0_6px_18px_-6px_rgb(0_0_0/0.6)] ring-1 ring-ouro/30">
           <Medal className="size-11 text-noite/70" title="" aria-hidden="true" />
         </span>
-        <span className="mt-5 flex items-center gap-2 text-[0.8rem] text-papel/60">
+        <span className="relative mt-5 flex items-center gap-2 text-[0.8rem] text-papel/60">
           <Lock size={13} strokeWidth={1.5} /> Abre em {data}
         </span>
       </div>
