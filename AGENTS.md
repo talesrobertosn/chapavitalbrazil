@@ -20,6 +20,9 @@ Ele será usado também para criar **posts, stories, carrosséis e outras artes*
 - Programa oficial = **5 eixos, 52 propostas**.
 - Português do Brasil, tom sério, próximo e propositivo.
 
+## Posts do Instagram
+Pedido de post/carrossel/story → siga `.claude/skills/post/SKILL.md` (comando `/post`). Templates em `marketing/ferramentas/templates.mjs`, assets em `marketing/ferramentas/assets.mjs`, modelo em `marketing/instagram/_modelo/`.
+
 ## Ferramentas prontas
 - `src/lib/story.ts`: gera stories 1080×1920 com fontes e vetores oficiais (`frase`, `apoio`, `votar`, `proposta`, `membro`).
 - `public/og.png`: referência de composição horizontal (1200×630).

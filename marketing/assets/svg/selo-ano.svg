@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none" ><defs><path id="selo383206" d="M 110 110 m -74.8 0 a 74.8 74.8 0 1 1 149.6 0 a 74.8 74.8 0 1 1 -149.6 0"/></defs>
+    
+    <g stroke="#B08D57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="110" cy="110" r="107"/><circle cx="110" cy="110" r="101" stroke-width="1" opacity=".5"/>
+      <circle cx="110" cy="110" r="55" stroke-width="1" opacity=".6"/>
+      <circle cx="110" cy="110" r="48.39999999999999" stroke-width="1" stroke-dasharray="2 5" opacity=".5"/>
+    </g>
+    <text font-family="'IN',system-ui,sans-serif" font-weight="600" font-size="12.32" letter-spacing="3.52" fill="#B08D57" dy="4.4"><textPath href="#selo383206">CIÊNCIA · CORAGEM · SERVIÇO · </textPath></text>
+    <text x="110" y="132" text-anchor="middle" font-family="'PF',Georgia,serif" font-weight="700" font-size="61.60000000000001" fill="#B08D57">1865</text></svg>

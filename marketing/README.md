@@ -5,6 +5,14 @@ Cada post tem uma pasta em `marketing/instagram/NN-nome/` com:
 - os PNGs prontos (`carrossel-NN.png`, `story-NN-*.png`);
 - `LEGENDA.md`: legenda pronta, textos dos stories e texto alternativo.
 
+## Comando `/post`
+Peça um post em linguagem natural (`/post carrossel sobre o eixo Internato`) e o agente segue `.claude/skills/post/SKILL.md`: lê os guias, usa os dados oficiais, monta com os templates, revisa e publica.
+
+## Templates e assets
+- `marketing/ferramentas/templates.mjs`: `capa`, `frase`, `proposta`, `pergunta`, `lista`, `pessoa`, `fecho`, `storyFrase`, `storyPessoa`, `montar()`, `montarStory()`; tons variáveis (`TONS`).
+- `marketing/ferramentas/assets.mjs`: ornamentos, botânica, ciência e logos em SVG. Catálogo: `node marketing/ferramentas/catalogo.mjs` → `marketing/assets/`.
+- `marketing/instagram/_modelo/`: exemplo completo para copiar.
+
 ## Kit de marca
 `marketing/ferramentas/marca.mjs` traz fontes oficiais embutidas, paleta, medalhão/figura/folhagem vetorizados, granulação, poeira dourada, fio com losango, pincelada e o `renderizar()` (Chromium via Playwright). `icones.mjs` exporta os ícones Lucide em traço fino.
 

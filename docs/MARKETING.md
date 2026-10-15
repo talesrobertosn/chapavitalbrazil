@@ -163,6 +163,43 @@ Gestão Dr. Vital Brazil · CA Medicina FAPI
 
 ---
 
-## 10. Contato
+## 11. Como pedir um post (comando `/post`)
+
+Qualquer agente de IA que trabalhe neste repositório deve seguir `.claude/skills/post/SKILL.md`. Para a chapa, basta pedir em linguagem natural; exemplos:
+
+- `/post carrossel sobre o eixo Cuidado com o Estudante, tom claro, 6 slides`
+- `/post story com a frase "Cansaço não é mérito"`
+- `/post apresentando a Diretoria Científica (Julia e Isadora)`
+- `/post contagem regressiva: faltam 7 dias`
+- `/post "Você sabia?" sobre a especificidade dos soros`
+
+### O que o comando garante
+1. Lê este guia e a direção de arte antes de desenhar.
+2. Usa só conteúdo de `src/data` (programa, diretoria, frases, Vital Brazil, diário).
+3. Monta com os templates de `marketing/ferramentas/templates.mjs` e os assets de `marketing/ferramentas/assets.mjs`.
+4. Renderiza, **revisa as imagens**, escreve a legenda e publica em `marketing/instagram/NN-nome/`.
+
+### Ritmo e variação (para o feed não ficar engessado)
+- **Xadrez**: alterne post escuro e post claro. Dentro de cada um, varie o tom:
+  - escuro → `noite` (profundo, padrão) · `verde` (institucional) · `musgo` (mais claro, para posts leves)
+  - claro → `papel` (padrão) · `marfim` (mais forte e quente) · `areia` (mais escuro, para propostas densas)
+- **Capa** sempre em CAIXA ALTA com UMA palavra em ouro; **fecho** sempre o medalhão + slogan + @.
+- Varie os ornamentos entre posts (ramo, grinalda, cantoneira, selo, serpente, frasco, microscópio, jaleco), sem repetir o mesmo conjunto em posts seguidos.
+- Varie a composição: retrato em arco à direita ↔ à esquerda; frase centralizada ↔ alinhada à esquerda; lista numerada ↔ tópicos com losango.
+- Nunca varie: paleta, fontes, logo (voltado à direita), tom de voz, assinatura.
+
+### Estrutura de um carrossel (5–7 slides)
+| # | Papel | Template | Tom |
+|---|---|---|---|
+| 1 | Gancho (frase de impacto) | `capa` | escuro |
+| 2 | Contexto / dor real | `frase` | claro |
+| 3–5 | Propostas ou conteúdo | `proposta` · `lista` · `pergunta` · `pessoa` | alternando |
+| último | Slogan + @ + CTA | `fecho` | escuro |
+
+### Biblioteca de assets
+`marketing/assets/svg/` (gerada por `node marketing/ferramentas/catalogo.mjs`; prancha em `marketing/assets/catalogo.png`):
+ornamentos (cantoneira, moldura, divisor, cartucho, selo, losango duplo), botânica (ramo, ramo duplo, grinalda, folha oficial), ciência (frasco, microscópio, serpente em traço, estetoscópio, jaleco) e logos (horizontal, empilhado, monograma VB, selo-carimbo, figura). Todos em ouro (escuro) e verde (claro).
+
+## 12. Contato
 - Instagram: @chapavitalbrazil
 - E-mail: chapavitalbrazil@outlook.com

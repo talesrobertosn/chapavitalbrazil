@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150" fill="none" >
+    <circle cx="75" cy="75" r="71" fill="none" stroke="#B08D57" stroke-width="1.5"/>
+    <circle cx="75" cy="75" r="63" fill="none" stroke="#B08D57" stroke-width="1" opacity=".4"/>
+    <text x="75" y="93" text-anchor="middle" font-family="'PF',Georgia,serif" font-weight="700" font-size="60" letter-spacing="-2" fill="#B08D57">VB</text>
+    <rect x="70" y="111" width="10" height="10" transform="rotate(45 75 116)" fill="#B08D57"/></svg>

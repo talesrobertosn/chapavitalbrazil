@@ -4,3 +4,4 @@ dist
 .DS_Store
 .vite
 marketing/**/*.zip
+marketing/**/_panorama*.png
