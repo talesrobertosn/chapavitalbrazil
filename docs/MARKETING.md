@@ -165,4 +165,4 @@ Gestão Dr. Vital Brazil · CA Medicina FAPI
 
 ## 10. Contato
 - Instagram: @chapavitalbrazil
-- E-mail: valeriagodoy0208@gmail.com
+- E-mail: chapavitalbrazil@outlook.com

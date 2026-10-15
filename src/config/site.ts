@@ -52,7 +52,7 @@ export const site = {
   ouvidoriaPrazoDias: '',
 
   /** E-mail de contato (montado no navegador para dificultar robôs de spam). */
-  email: { usuario: 'valeriagodoy0208', dominio: 'gmail.com' },
+  email: { usuario: 'chapavitalbrazil', dominio: 'outlook.com' },
 
   /**
    * Google Search Console: cole aqui só o código do "content" da tag
