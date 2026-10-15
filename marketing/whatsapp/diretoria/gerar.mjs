@@ -19,7 +19,7 @@ import { site } from '../../../src/config/site.ts';
 
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
 const RAIZ = path.resolve(AQUI, '../../..');
-const W = 2400;
+const W = 3000;
 
 const foto = (slug) => {
   const f = path.join(RAIZ, 'src/assets/diretoria', `${slug}.jpg`);
@@ -67,8 +67,8 @@ function quadro(cargo, largura, t, nomePx) {
   return `<div style="position:relative;width:${largura}px;flex:none;border:1.5px solid rgba(176,141,87,.5);background:linear-gradient(180deg,rgba(40,74,60,.55),rgba(18,36,28,.25));padding:${t * 0.34}px 50px ${t * 0.26}px;box-shadow:inset 0 0 120px rgba(0,0,0,.25)">
     <div class="abs" style="inset:10px;border:1px solid rgba(176,141,87,.16)"></div>
     ${canto('left:0;top:0')}${canto('left:100%;top:0')}${canto('left:0;top:100%')}${canto('left:100%;top:100%')}
-    ${faixa(cargo.titulo, nomePx * 0.68)}
-    <div style="display:flex;justify-content:center;gap:70px;margin-top:${t * 0.08}px">
+    ${faixa(cargo.titulo, nomePx * 0.62)}
+    <div style="display:flex;justify-content:center;gap:50px;margin-top:${t * 0.08}px">
       ${membros.map((m) => pessoa(m, t, nomePx, larguraPessoa)).join('')}
     </div>
   </div>`;
@@ -83,12 +83,13 @@ const secretaria = porId('secretaria');
 const frentes = CARGOS.filter((c) => !['presidencia', 'vice-presidencia', 'secretaria'].includes(c.id));
 
 const MARGEM = 110;
-const GUT = 56;
-const LARG_QUADRO = (W - MARGEM * 2 - GUT) / 2;
-const T_FRENTE = 310;
-const NOME_FRENTE = 40;
+const GUT = 48;
+const COLS = 3;
+const LARG_QUADRO = (W - MARGEM * 2 - GUT * (COLS - 1)) / COLS;
+const T_FRENTE = 280;
+const NOME_FRENTE = 34;
 const linhas = [];
-for (let i = 0; i < frentes.length; i += 2) linhas.push(frentes.slice(i, i + 2));
+for (const n of [3, 3, 2, 2]) linhas.push(frentes.splice(0, n));
 
 /** Conector em T com losangos. */
 const conector = (altura, largura, pontos, dir = 'baixo') => `
@@ -106,8 +107,7 @@ const conectorReto = (altura) => `<div style="position:relative;width:3px;height
 const html = `
 <div style="position:relative;width:${W}px;background:
   radial-gradient(1500px 1100px at 50% 700px, rgba(40,74,60,1), rgba(40,74,60,0)),
-  radial-gradient(1300px 1300px at 50% 3400px, rgba(40,74,60,.5), rgba(40,74,60,0)),
-  radial-gradient(1300px 1300px at 50% 6600px, rgba(40,74,60,.45), rgba(40,74,60,0)),
+  radial-gradient(1500px 1300px at 50% 3000px, rgba(40,74,60,.5), rgba(40,74,60,0)),
   linear-gradient(180deg, ${COR.noite} 0%, ${COR.noite2} 100%);padding:0 0 120px;overflow:hidden">
 
   <!-- Feixes de luz -->
@@ -115,13 +115,12 @@ const html = `
   <div class="abs" style="left:56%;top:-400px;width:20%;height:3000px;transform:rotate(22deg);background:linear-gradient(180deg,rgba(244,240,230,.12),rgba(205,177,134,.02) 50%,transparent 80%);filter:blur(50px);mix-blend-mode:screen"></div>
 
   <!-- Gravura monumental e folhagem -->
-  <div class="abs" style="left:50%;top:3200px;transform:translateX(-50%);opacity:.04">${figura({ cor: COR.ouro, w: 2300 })}</div>
-  <div class="abs" style="left:-240px;top:-140px">${folha({ w: 860, op: 0.2 })}</div>
-  <div class="abs" style="right:-260px;top:1500px">${folha({ w: 900, op: 0.14, flip: true })}</div>
-  <div class="abs" style="left:-300px;top:4300px">${folha({ w: 760, op: 0.12 })}</div>
-  <div class="abs" style="right:-220px;bottom:-160px">${folha({ w: 900, op: 0.18, flip: true })}</div>
-  <div class="abs" style="left:-260px;bottom:1200px">${folha({ w: 700, op: 0.1 })}</div>
-  ${poeira({ w: W, h: 8600, n: 900, semente: 23, op: 0.85 })}
+  <div class="abs" style="left:50%;top:2300px;transform:translateX(-50%);opacity:.04">${figura({ cor: COR.ouro, w: 2300 })}</div>
+  <div class="abs" style="left:-320px;top:-280px">${folha({ w: 980, op: 0.2 })}</div>
+  <div class="abs" style="right:-380px;top:900px">${folha({ w: 1000, op: 0.14, flip: true })}</div>
+  <div class="abs" style="left:-420px;top:2800px">${folha({ w: 880, op: 0.12 })}</div>
+  <div class="abs" style="right:-360px;bottom:-360px">${folha({ w: 980, op: 0.18, flip: true })}</div>
+  ${poeira({ w: W, h: 5400, n: 760, semente: 23, op: 0.85 })}
 
   <!-- Moldura dupla com losangos nos cantos -->
   <div class="abs" style="inset:46px;border:2px solid rgba(176,141,87,.6)"></div>
@@ -129,15 +128,15 @@ const html = `
   ${['left:46px;top:46px', 'right:46px;top:46px', 'left:46px;bottom:46px', 'right:46px;bottom:46px'].map((p) => `<div class="abs" style="${p};width:22px;height:22px;background:${COR.noite};transform:translate(${p.includes('left') ? '-50%' : '50%'},${p.includes('top') ? '-50%' : '50%'}) rotate(45deg);border:2px solid ${COR.ouro}"></div>`).join('')}
 
   <!-- ATO I · Abertura -->
-  <div style="position:relative;padding-top:170px;display:flex;flex-direction:column;align-items:center;text-align:center">
+  <div style="position:relative;padding-top:140px;display:flex;flex-direction:column;align-items:center;text-align:center">
     <div style="display:flex;align-items:center;gap:30px;color:${COR.ouroClaro}">${fio({ w: 150, losango: 14 })}</div>
     <div class="eyebrow" style="font-size:32px;color:${COR.ouroClaro};margin-top:36px;letter-spacing:.34em">Chapa ao Centro Acadêmico de Medicina · FAPI</div>
 
     <!-- Retrato em arco com a serpente do medalhão -->
-    <div style="position:relative;width:700px;height:860px;margin-top:70px">
-      <div class="abs" style="inset:-44px;border-radius:394px 394px 0 0;border:1.5px solid rgba(176,141,87,.3)"></div>
-      <div class="abs" style="inset:-20px;border-radius:370px 370px 0 0;border:3px solid rgba(176,141,87,.9)"></div>
-      <div class="abs" style="inset:0;border-radius:350px 350px 0 0;overflow:hidden;box-shadow:0 120px 200px -60px rgba(0,0,0,.85)">
+    <div style="position:relative;width:600px;height:720px;margin-top:56px">
+      <div class="abs" style="inset:-44px;border-radius:344px 344px 0 0;border:1.5px solid rgba(176,141,87,.3)"></div>
+      <div class="abs" style="inset:-20px;border-radius:320px 320px 0 0;border:3px solid rgba(176,141,87,.9)"></div>
+      <div class="abs" style="inset:0;border-radius:300px 300px 0 0;overflow:hidden;box-shadow:0 120px 200px -60px rgba(0,0,0,.85)">
         <img src="${RETRATO}" style="width:100%;height:100%;object-fit:cover;object-position:62% 12%"/>
         <div class="abs" style="inset:0;background:linear-gradient(0deg,${COR.noite} 0%,rgba(18,36,28,.78) 16%,rgba(18,36,28,0) 44%)"></div>
       </div>
@@ -150,12 +149,12 @@ const html = `
       </div>
     </div>
 
-    <div class="eyebrow" style="font-size:36px;color:${COR.ouroClaro};margin-top:190px;letter-spacing:.44em">Gestão</div>
+    <div class="eyebrow" style="font-size:36px;color:${COR.ouroClaro};margin-top:170px;letter-spacing:.44em">Gestão</div>
     <div class="pf" style="position:relative;font-weight:800;font-size:176px;line-height:.92;letter-spacing:-.025em;color:${COR.papel};margin-top:18px;text-shadow:0 30px 80px rgba(0,0,0,.6)">DR. VITAL BRAZIL</div>
     <div style="margin-top:10px">${pincelada({ w: 1120, h: 46 })}</div>
     <div class="cg" style="font-weight:600;font-size:72px;line-height:1.1;color:${COR.ouroClaro};margin-top:44px">Mais que uma gestão,<br/><span style="color:${COR.papel}">um compromisso com a nossa formação.</span></div>
 
-    <div style="display:flex;align-items:center;gap:40px;margin-top:100px">
+    <div style="display:flex;align-items:center;gap:40px;margin-top:80px">
       <span style="width:200px;height:2px;background:linear-gradient(90deg,transparent,${COR.ouro})"></span>
       <div class="pf" style="font-weight:800;font-size:80px;color:${COR.papel};text-transform:uppercase;letter-spacing:.06em">Conheça a diretoria</div>
       <span style="width:200px;height:2px;background:linear-gradient(90deg,${COR.ouro},transparent)"></span>
@@ -163,42 +162,34 @@ const html = `
     <div class="in" style="font-size:38px;color:${COR.salvia};margin-top:26px;letter-spacing:.06em">${MEMBROS.length} estudantes · ${CARGOS.length} frentes · do 1º ao último período. <span style="color:${COR.papel}">Uma só chapa.</span></div>
   </div>
 
-  <!-- ATO II · Núcleo -->
-  <div style="position:relative;margin-top:110px">
-    <div class="abs" style="left:50%;top:50%;transform:translate(-50%,-50%);width:1700px;height:1000px;border-radius:50%;background:radial-gradient(ellipse,rgba(205,177,134,.14),rgba(205,177,134,0) 65%)"></div>
-    <div style="position:relative;display:flex;justify-content:center;gap:300px">
+  <!-- ATO II · Núcleo: Presidência · Vice · Secretaria -->
+  <div style="position:relative;margin-top:90px">
+    <div class="abs" style="left:50%;top:50%;transform:translate(-50%,-50%);width:2200px;height:900px;border-radius:50%;background:radial-gradient(ellipse,rgba(205,177,134,.14),rgba(205,177,134,0) 65%)"></div>
+    <div style="position:relative;display:flex;justify-content:center;align-items:flex-start;gap:110px">
       ${[['Presidência', presidencia], ['Vice-Presidência', vice]].map(([t, m]) => `
-      <div style="display:flex;flex-direction:column;align-items:center;width:680px">
-        <div class="eyebrow" style="font-size:32px;color:${COR.ouroClaro};letter-spacing:.32em;margin-bottom:60px;display:flex;align-items:center;gap:20px">${losango(13)} ${t} ${losango(13)}</div>
-        ${retrato(m, 460)}
-        <div class="pf" style="font-weight:700;font-size:58px;line-height:1.1;color:${COR.papel};text-align:center;margin-top:70px;text-wrap:balance">${m.nome}</div>
-        <div class="in" style="font-weight:600;font-size:32px;letter-spacing:.26em;text-transform:uppercase;color:${COR.ouroClaro};margin-top:22px">Turma ${m.turma}</div>
+      <div style="display:flex;flex-direction:column;align-items:center;width:560px">
+        <div class="eyebrow" style="font-size:30px;color:${COR.ouroClaro};letter-spacing:.32em;margin-bottom:50px;display:flex;align-items:center;gap:20px">${losango(13)} ${t} ${losango(13)}</div>
+        ${retrato(m, 400)}
+        <div class="pf" style="font-weight:700;font-size:52px;line-height:1.1;color:${COR.papel};text-align:center;margin-top:62px;text-wrap:balance">${m.nome}</div>
+        <div class="in" style="font-weight:600;font-size:30px;letter-spacing:.26em;text-transform:uppercase;color:${COR.ouroClaro};margin-top:20px">Turma ${m.turma}</div>
       </div>`).join('')}
+      <div style="width:1.5px;align-self:stretch;background:linear-gradient(180deg,transparent,${COR.ouro},transparent);opacity:.6;margin:0 10px"></div>
+      <div style="padding-top:16px">${quadro(secretaria, 1000, 300, 38)}</div>
     </div>
-    <!-- Pedestal: fio de ouro ligando os dois ao tronco -->
-    <svg width="${W}" height="120" style="display:block;margin-top:30px" viewBox="0 0 ${W} 120">
-      <path d="M ${W / 2 - 490} 0 V 60 H ${W / 2 + 490} V 0" fill="none" stroke="${COR.ouro}" stroke-width="3" opacity=".9"/>
-      <line x1="${W / 2}" y1="60" x2="${W / 2}" y2="120" stroke="${COR.ouroClaro}" stroke-width="3"/>
-      <rect x="${W / 2 - 10}" y="50" width="20" height="20" transform="rotate(45 ${W / 2} 60)" fill="${COR.ouro}"/>
-    </svg>
-  </div>
-
-  <!-- Secretaria -->
-  <div style="position:relative;display:flex;justify-content:center">
-    ${quadro(secretaria, 1360, 340, 42)}
   </div>
 
   <!-- ATO III · A árvore -->
-  <div style="position:relative">${conector(130, W - MARGEM * 2, [LARG_QUADRO / 2, LARG_QUADRO + GUT + LARG_QUADRO / 2])}</div>
+  <div style="position:relative;margin-top:60px">${conector(130, W - MARGEM * 2, Array.from({ length: COLS }, (_, i) => LARG_QUADRO / 2 + i * (LARG_QUADRO + GUT)))}</div>
   <div style="position:relative;display:flex;flex-direction:column;gap:${GUT + 16}px;padding:0 ${MARGEM}px">
     ${linhas.map((linha, i) => `
-      ${i > 0 ? `<div style="display:flex;justify-content:space-around;margin:-${GUT + 16}px 0 0">${linha.map(() => `<div style="width:${LARG_QUADRO}px">${conectorReto(GUT + 16)}</div>`).join('')}</div>` : ''}
-      <div style="display:flex;gap:${GUT}px;align-items:stretch">${linha.map((c) => quadro(c, LARG_QUADRO, T_FRENTE, NOME_FRENTE)).join('')}</div>`).join('')}
+      ${i > 0 && linha.length === linhas[i - 1].length ? `<div style="display:flex;gap:${GUT}px;justify-content:center;margin:-${GUT + 16}px 0 0">${linha.map(() => `<div style="width:${LARG_QUADRO}px">${conectorReto(GUT + 16)}</div>`).join('')}</div>` : ''}
+      ${i > 0 && linha.length !== linhas[i - 1].length ? `<div style="margin:-${GUT + 16}px 0 0">${conector(GUT + 16 + 110, W - MARGEM * 2, linha.map((_, k) => (W - MARGEM * 2) / 2 + (k - (linha.length - 1) / 2) * (LARG_QUADRO + GUT)))}</div>` : ''}
+      <div style="display:flex;gap:${GUT}px;align-items:stretch;justify-content:center">${linha.map((c) => quadro(c, LARG_QUADRO, T_FRENTE, NOME_FRENTE)).join('')}</div>`).join('')}
   </div>
 
   <!-- Fecho -->
-  <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:120px">
-    <div style="width:200px;opacity:.9">${medalhao({ cor: COR.verde, fundo: COR.papel, w: 200 })}</div>
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:100px">
+    <div style="width:180px;opacity:.9">${medalhao({ cor: COR.verde, fundo: COR.papel, w: 180 })}</div>
     <div style="margin-top:50px">${fio({ w: 180, losango: 16 })}</div>
     <div class="cg" style="font-weight:600;font-size:76px;line-height:1.08;color:${COR.papel};margin-top:50px">Ciência, coragem e serviço.<br/><span style="color:${COR.ouroClaro}">Por isso o nome.</span></div>
     <div class="in" style="font-weight:700;font-size:54px;color:${COR.papel};margin-top:70px;letter-spacing:.02em">${site.instagram.handle}</div>
