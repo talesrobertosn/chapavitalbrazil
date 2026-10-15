@@ -1,13 +1,16 @@
 # Pôster da diretoria · WhatsApp
 
-Proporção A4 (1 : 1,41), pensada para circular **como foto** no WhatsApp: aparece inteira na conversa e o app comprime pouco.
+Proporção **4:5**, a mesma de um post de feed do Instagram. Foi pensado para circular **como foto** no WhatsApp, não como documento. A foto aparece inteira na conversa, sem corte, e não fica alta demais.
 
-- `diretoria-vital-brazil-whatsapp.jpg` (1600 × 2263, ~600 KB): **mande este**, como foto normal. Testado com a compressão do WhatsApp: nomes e rostos continuam legíveis.
-- `diretoria-vital-brazil-hd.png` (1600 × 2263, sem perda): para quem quiser salvar/imprimir em casa.
-- `diretoria-vital-brazil.png` (2480 × 3508 = A4 em 300 dpi): original para impressão.
+## Por que estes tamanhos
+O WhatsApp reduz toda foto enviada em qualidade padrão para no máximo **1600 px no lado maior** e recomprime o JPEG. Uma imagem maior que isso é redimensionada pelo app e perde nitidez. Por isso:
+
+- `diretoria-vital-brazil-whatsapp.jpg` (**1280 × 1600**, ~550 KB): **mande este**, como foto normal. Já está no tamanho-limite, então o app não redimensiona. JPEG de alta qualidade sem subamostragem de cor, que mantém o dourado e os textos finos.
+- `diretoria-vital-brazil-hd.jpg` (1600 × 2000): para enviar com a opção **HD** do WhatsApp.
+- `diretoria-vital-brazil.png` (2000 × 2500, sem perda): original para guardar ou imprimir.
 - Sem o endereço do site (provisório). Mostra o @chapavitalbrazil.
 
-Regenerar: `node marketing/whatsapp/diretoria/gerar.mjs` (ver `marketing/README.md`).
+Regenerar: `node marketing/whatsapp/diretoria/gerar.mjs` (gera o PNG e as duas versões JPG).
 
 ## Texto para enviar junto (copiar e colar)
 
