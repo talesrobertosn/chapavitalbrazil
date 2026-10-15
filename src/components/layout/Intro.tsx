@@ -1,6 +1,8 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { MEDAL } from '../brand/logoPaths';
+
+const [MX, MY, MW, MH] = MEDAL.viewBox.split(' ').map(Number) as [number, number, number, number];
 import { EASE_IN_OUT, EASE_OUT } from '../../lib/motion';
 
 const CHAVE = 'vb-intro-vista';
@@ -87,13 +89,23 @@ export function Intro() {
             exit={{ opacity: 0, scale: 1.08, transition: { duration: 0.45, ease: EASE_OUT } }}
           >
             <svg viewBox={MEDAL.viewBox} className="size-[clamp(8rem,22vw,11.5rem)]" aria-hidden="true">
+              {/* Disco de papel surge por trás; o retrato é gravado em traço de ouro e ganha o verde */}
+              <motion.circle
+                cx={MX + MW / 2}
+                cy={MY + MH / 2}
+                r={Math.min(MW, MH) / 2 - 3}
+                initial={{ fill: 'rgba(244,240,230,0)', scale: 0.92 }}
+                animate={{ fill: 'rgba(244,240,230,1)', scale: 1 }}
+                style={{ transformOrigin: 'center' }}
+                transition={{ duration: 0.7, delay: 1.0, ease: EASE_OUT }}
+              />
               <motion.path
                 d={MEDAL.d}
                 fillRule="evenodd"
                 stroke="var(--color-ouro)"
                 strokeWidth={5}
-                initial={{ pathLength: 0, fill: 'rgba(244,240,230,0)' }}
-                animate={{ pathLength: 1, fill: 'rgba(244,240,230,1)' }}
+                initial={{ pathLength: 0, fill: 'rgba(30,58,47,0)' }}
+                animate={{ pathLength: 1, fill: 'rgba(30,58,47,1)' }}
                 transition={{ pathLength: { duration: 1.4, ease: EASE_IN_OUT }, fill: { duration: 0.6, delay: 1.1, ease: EASE_OUT } }}
               />
             </svg>

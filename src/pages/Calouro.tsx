@@ -40,7 +40,7 @@ export default function Calouro() {
             <div className="relative border-[3px] border-double border-verde/60 px-6 py-12 sm:px-12 md:px-16 md:py-16">
               <div className="flex items-start justify-between">
                 <p className="eyebrow text-[0.6rem] text-ouro-escuro">CA Medicina · FAPI</p>
-                <Medal className="size-14 text-verde/80" title="" aria-hidden="true" />
+                <Medal invertido disco="var(--color-verde)" retrato="var(--color-papel)" className="size-14 rounded-full ring-1 ring-ouro-escuro/50" title="" aria-hidden="true" />
               </div>
               <h2 className="mt-8 font-script text-[clamp(2.4rem,6vw,3.6rem)] font-semibold italic leading-none text-verde">Querido calouro,</h2>
               <div className="mt-10 space-y-6">

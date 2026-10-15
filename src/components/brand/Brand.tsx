@@ -4,8 +4,23 @@ import { LEAF } from './leafPath';
 
 type P = SVGProps<SVGSVGElement> & { title?: string };
 
-/** Medalhão oficial (vetorizado): disco + retrato vazado. Cor = currentColor. */
-export function Medal({ title = 'Medalhão da Gestão Dr. Vital Brazil', ...p }: P) {
+const [MX, MY, MW, MH] = MEDAL.viewBox.split(' ').map(Number) as [number, number, number, number];
+
+/**
+ * Medalhão oficial (vetorizado). Cor = currentColor.
+ * `invertido`: disco claro com o retrato em verde (as feições aparecem;
+ * é a versão usada no site). Sem `invertido`: disco na cor do texto e
+ * retrato vazado (marca d'água, favicon sobre fundo claro).
+ */
+export function Medal({ title = 'Medalhão da Gestão Dr. Vital Brazil', invertido = false, disco = 'var(--color-papel)', retrato = 'var(--color-verde)', ...p }: P & { invertido?: boolean; disco?: string; retrato?: string }) {
+  if (invertido) {
+    return (
+      <svg viewBox={MEDAL.viewBox} role="img" aria-label={title} {...p}>
+        <circle cx={MX + MW / 2} cy={MY + MH / 2} r={Math.min(MW, MH) / 2 - 3} fill={disco} />
+        <path d={MEDAL.d} fillRule="evenodd" fill={retrato} />
+      </svg>
+    );
+  }
   return (
     <svg viewBox={MEDAL.viewBox} fill="currentColor" role="img" aria-label={title} {...p}>
       <path d={MEDAL.d} fillRule="evenodd" />

@@ -59,7 +59,7 @@ export function Participe() {
               {/* Mini story */}
               <div className="relative aspect-[9/16] w-24 shrink-0 overflow-hidden rounded-[10px] bg-verde-2 ring-1 ring-ouro/40 transition-transform duration-700 ease-[var(--ease-expo)] group-hover:-rotate-3 group-hover:scale-105 sm:w-28">
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-2 text-center">
-                  <Medal className="w-10 text-papel" title="" aria-hidden="true" />
+                  <Medal invertido className="w-10 rounded-full ring-1 ring-ouro/60" title="" aria-hidden="true" />
                   <span className="font-script text-[0.6rem] italic text-ouro-claro">Eu apoio a</span>
                   <span className="font-display text-[0.7rem] font-extrabold uppercase leading-none text-papel">Gestão<br />Vital Brazil</span>
                   <span className="h-px w-8 bg-ouro" />

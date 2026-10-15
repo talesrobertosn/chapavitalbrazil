@@ -112,7 +112,7 @@ function Gaveta({ onFechar }: { onFechar: () => void }) {
         </div>
         <div className="relative flex items-center justify-between px-6 pb-2 pt-4">
           <div className="flex items-center gap-3">
-            <Medal className="size-9 text-papel" title="" aria-hidden="true" />
+            <Medal invertido className="size-9 rounded-full ring-1 ring-ouro/60" title="" aria-hidden="true" />
             <div>
               <p className="eyebrow text-[0.56rem] text-ouro-claro">Compartilhar</p>
               <p className="font-display text-[1.15rem] font-semibold text-papel">Leve a chapa adiante</p>

@@ -65,11 +65,15 @@ body{background:${COR.noite};-webkit-font-smoothing:antialiased;text-rendering:g
 export function medalhao({ cor = COR.papel, fundo = null, w = 300, estilo = '' } = {}) {
   const [x, y, vw, vh] = MEDAL.vb.split(' ').map(Number);
   const disco = fundo ? `<circle cx="${x + vw / 2}" cy="${y + vh / 2}" r="${Math.min(vw, vh) / 2 - 3}" fill="${fundo}"/>` : '';
-  return `<svg viewBox="${MEDAL.vb}" width="${w}" style="${estilo}">${disco}<path fill="${cor}" fill-rule="evenodd" d="${MEDAL.d}"/></svg>`;
+  return `<svg viewBox="${MEDAL.vb}" width="${w}" height="${Math.round((w * vh) / vw)}" style="display:block;${estilo}">${disco}<path fill="${cor}" fill-rule="evenodd" d="${MEDAL.d}"/></svg>`;
 }
 export const figura = ({ cor = COR.ouro, w = 400, estilo = '' } = {}) => `<svg viewBox="${FIGURE.vb}" width="${w}" style="${estilo}"><path fill="${cor}" fill-rule="evenodd" d="${FIGURE.d}"/></svg>`;
-export const folha = ({ cor = COR.ouro, w = 300, op = 0.2, flip = false, estilo = '' } = {}) =>
-  `<svg viewBox="${LEAF.vb}" width="${w}" style="opacity:${op};${flip ? 'transform:scaleX(-1);' : ''}${estilo}"><path fill="${cor}" d="${LEAF.d}"/></svg>`;
+export const folha = ({ cor = COR.ouro, w = 300, op = 0.2, flip = false, estilo = '' } = {}) => {
+  // Altura proporcional ao desenho: sem ela o navegador corta a ponta da folha.
+  const [, , vw, vh] = LEAF.vb.split(' ').map(Number);
+  const h = Math.round((w * vh) / vw);
+  return `<svg viewBox="${LEAF.vb}" width="${w}" height="${h}" style="display:block;opacity:${op};${flip ? 'transform:scaleX(-1);' : ''}${estilo}"><path fill="${cor}" d="${LEAF.d}"/></svg>`;
+};
 
 /** Granulação de papel/filme sobre toda a área. */
 export const grao = (op = 0.09, escuro = false) => `
@@ -105,7 +109,7 @@ export const anel = (svg, t = 120, cor = COR.ouro) =>
   `<div style="position:relative;width:${t}px;height:${t}px;border-radius:50%;border:2px solid ${cor}99;display:grid;place-items:center"><div style="position:absolute;inset:6px;border-radius:50%;border:1px solid ${cor}33"></div>${svg}</div>`;
 
 /** Renderiza HTML em PNG. `recortes` = lista de {x,y,w,h,arquivo} (para carrosséis panorâmicos). */
-export async function renderizar({ html, w, h, saida, recortes }) {
+export async function renderizar({ html, w, h, saida, recortes, medirAltura = false }) {
   let pw;
   try {
     pw = await import('playwright');
@@ -114,7 +118,7 @@ export async function renderizar({ html, w, h, saida, recortes }) {
   }
   const b = await pw.chromium.launch();
   const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
-  await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${CSS_BASE}</style></head><body style="width:${w}px;height:${h}px;position:relative;overflow:hidden">${html}</body></html>`);
+  await p.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${CSS_BASE}</style></head><body style="width:${w}px;height:${medirAltura ? 'auto' : `${h}px`};position:relative;overflow:hidden">${html}</body></html>`);
   await p.evaluate(() => document.fonts.ready);
   // Ajuste automático de textos marcados com data-caber="largura"
   await p.evaluate(() => {
@@ -128,7 +132,14 @@ export async function renderizar({ html, w, h, saida, recortes }) {
     }
   });
   await p.waitForTimeout(150);
-  if (recortes) for (const r of recortes) await p.screenshot({ path: r.arquivo, clip: { x: r.x, y: r.y, width: r.w, height: r.h } });
+  if (medirAltura) {
+    // Altura real do conteúdo (pôsteres de altura variável)
+    const alt = await p.evaluate(() => Math.ceil(document.body.firstElementChild.getBoundingClientRect().height));
+    await p.setViewportSize({ width: w, height: alt });
+    await p.evaluate((a) => { document.body.style.height = `${a}px`; }, alt);
+    await p.waitForTimeout(100);
+    await p.screenshot({ path: saida, clip: { x: 0, y: 0, width: w, height: alt } });
+  } else if (recortes) for (const r of recortes) await p.screenshot({ path: r.arquivo, clip: { x: r.x, y: r.y, width: r.w, height: r.h } });
   else await p.screenshot({ path: saida });
   await b.close();
 }

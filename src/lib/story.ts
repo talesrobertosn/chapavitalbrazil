@@ -282,8 +282,25 @@ export async function gerarStory(c: StoryConteudo): Promise<Blob> {
     case 'apoio': {
       fundo(ctx, 'noite');
       cabecalho(ctx, 'noite');
-      // Medalhão em papel, retrato vazado
-      desenharPath(ctx, MEDAL.d, MEDAL.viewBox, W / 2 - 250, 560, 500, C.papel, { evenodd: true });
+      // Medalhão invertido: disco em papel, retrato em verde
+      {
+        const v = vb(MEDAL.viewBox);
+        const esc = 500 / v.w;
+        ctx.save();
+        ctx.fillStyle = C.papel;
+        ctx.beginPath();
+        ctx.arc(W / 2, 560 + (v.h * esc) / 2, (Math.min(v.w, v.h) / 2 - 3) * esc, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+        desenharPath(ctx, MEDAL.d, MEDAL.viewBox, W / 2 - 250, 560, 500, C.verde, { evenodd: true });
+        ctx.save();
+        ctx.strokeStyle = C.ouro;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(W / 2, 560 + (v.h * esc) / 2, (Math.min(v.w, v.h) / 2 - 3) * esc + 14, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      }
       ctx.textAlign = 'center';
       ctx.fillStyle = C.ouroClaro;
       ctx.font = `italic 500 72px ${F_SCRIPT}`;

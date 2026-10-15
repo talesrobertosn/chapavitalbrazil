@@ -77,7 +77,7 @@ function Orbita() {
         <circle cx="50" cy="50" r="17" fill="none" stroke="currentColor" strokeWidth="0.1" strokeDasharray="0.3 0.9" opacity="0.5" />
       </svg>
       <div className="absolute left-1/2 top-1/2 w-[24%] -translate-x-1/2 -translate-y-1/2 text-papel">
-        <Medal title="Medalhão Vital Brazil" />
+        <Medal invertido className="rounded-full ring-1 ring-ouro/60" title="Medalhão Vital Brazil" />
       </div>
       <Anel membros={EXTERNO} raio={42} duracao={190} reverso onAbrir={abrir} />
       <Anel membros={INTERNO} raio={29} duracao={150} onAbrir={abrir} />

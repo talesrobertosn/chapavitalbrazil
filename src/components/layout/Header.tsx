@@ -58,7 +58,7 @@ export function Header() {
         <div className="container-x flex h-[var(--header-h)] items-center justify-between gap-6 pt-[env(safe-area-inset-top)]">
           <Link to="/" className="group flex items-center gap-3" aria-label="Gestão Dr. Vital Brazil, página inicial">
             <span className="relative grid size-10 place-items-center">
-              <Medal className="size-10 text-papel transition-transform duration-700 ease-[var(--ease-expo)] group-hover:rotate-[-8deg] group-hover:scale-105" title="" aria-hidden="true" />
+              <Medal invertido className="size-10 rounded-full ring-1 ring-ouro/70 transition-transform duration-700 ease-[var(--ease-expo)] group-hover:rotate-[-8deg] group-hover:scale-105" title="" aria-hidden="true" />
             </span>
             <span className="flex flex-col leading-none">
               <span className="eyebrow text-[0.58rem] text-ouro-claro">Gestão</span>

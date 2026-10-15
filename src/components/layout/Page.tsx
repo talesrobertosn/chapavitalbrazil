@@ -81,7 +81,7 @@ export function Page({ titulo, children, tema = 'noite' }: { titulo?: string; ch
         >
           <div className="grain" />
           <motion.div variants={selo} className="flex flex-col items-center gap-4">
-            <Medal className="size-16 text-papel" title="" />
+            <Medal invertido className="size-16 rounded-full ring-1 ring-ouro/60" title="" />
             <span className="h-px w-16 bg-ouro" />
           </motion.div>
         </motion.div>
