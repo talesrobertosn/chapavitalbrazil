@@ -11,6 +11,10 @@ const base = process.env.BASE_PATH ?? '/chapavitalbrazil/';
 
 export default defineConfig({
   base,
+  define: {
+    // Endereço público usado nos links compartilhados (ver src/config/site.ts)
+    __SITE_URL__: JSON.stringify(process.env.SITE_URL ?? 'https://talesrobertosn.github.io/chapavitalbrazil'),
+  },
   plugins: [react(), tailwindcss(), imagetools(), prerenderMeta()],
   build: {
     target: 'es2022',

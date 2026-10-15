@@ -6,6 +6,16 @@
  * modo véspera, modo dia da eleição e diário da campanha.
  */
 
+declare const __SITE_URL__: string | undefined;
+declare const process: { env?: Record<string, string | undefined> } | undefined;
+
+const PADRAO = 'https://talesrobertosn.github.io/chapavitalbrazil';
+const URL_PUBLICA = (
+  (typeof __SITE_URL__ !== 'undefined' && __SITE_URL__) ||
+  (typeof process !== 'undefined' && process.env?.SITE_URL) ||
+  PADRAO
+).replace(/\/$/, '');
+
 export const site = {
   nome: 'Gestão Dr. Vital Brazil',
   assinatura: 'Gestão Dr. Vital Brazil · CA Medicina FAPI',
@@ -51,8 +61,12 @@ export const site = {
    */
   googleVerificacao: '',
 
-  /** Endereço público, usado nas prévias de link (WhatsApp, Instagram). */
-  url: 'https://talesrobertosn.github.io/chapavitalbrazil',
+  /**
+   * Endereço público do site: vai em TODAS as mensagens de WhatsApp,
+   * stories, prévias e no sitemap. Vem da variável SITE_URL do deploy
+   * (.github/workflows/deploy.yml). Trocou o domínio? Mude só lá.
+   */
+  url: URL_PUBLICA,
 } as const;
 
 export type Site = typeof site;
