@@ -6,6 +6,7 @@ import { Footer } from './components/layout/Footer';
 import { Intro } from './components/layout/Intro';
 import { SmoothScroll } from './components/layout/SmoothScroll';
 import { Cursor } from './components/fx/Cursor';
+import { CompartilharFab } from './components/layout/CompartilharFab';
 import Home from './pages/Home';
 
 const Programa = lazy(() => import('./pages/Programa'));
@@ -55,6 +56,7 @@ export default function App() {
         <Intro />
         <Cursor />
         <Header />
+        <CompartilharFab />
         <LayoutGroup>
           <AnimatePresence mode="wait" initial={false}>
             <Routes location={pagina} key={pagina.pathname}>

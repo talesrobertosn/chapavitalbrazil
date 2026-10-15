@@ -86,6 +86,9 @@
     background: var(--color-noite);
     scroll-padding-top: var(--header-h);
     text-size-adjust: 100%;
+    /* Celular: sem zoom acidental de toque duplo (o zoom com dois dedos continua) */
+    touch-action: manipulation;
+    overscroll-behavior-x: none;
   }
 
   html.lenis,
@@ -107,6 +110,8 @@
     font-size: 1rem;
     line-height: 1.6;
     overflow-x: clip;
+    overscroll-behavior-x: none;
+    position: relative;
   }
 
   ::selection {

@@ -10,6 +10,12 @@ import { fileURLToPath } from 'node:url';
 import { COR, CSS_BASE, anel, figura, fio, folha, grao, imagem, losango, medalhao, pincelada, poeira, renderizar } from '../../ferramentas/marca.mjs';
 import { icone } from '../../ferramentas/icones.mjs';
 import { MEMBROS, iniciais } from '../../../src/data/diretoria.ts';
+import fs from 'node:fs';
+
+const foto = (slug) => {
+  const f = path.resolve(path.dirname(fileURLToPath(import.meta.url)), `../../../src/assets/diretoria/${slug}.jpg`);
+  return fs.existsSync(f) ? `data:image/jpeg;base64,${fs.readFileSync(f).toString('base64')}` : null;
+};
 
 void CSS_BASE;
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
@@ -125,8 +131,11 @@ function s4() {
   const demais = MEMBROS.slice(2);
   const interno = demais.slice(0, 8);
   const externo = demais.slice(8);
-  const bolinha = (m, px, py, t, cor = COR.papel) =>
-    `<div class="abs pf" style="left:${px - t / 2}px;top:${py - t / 2}px;width:${t}px;height:${t}px;border-radius:50%;background:radial-gradient(circle at 50% 38%,${COR.verde2},${COR.verde} 60%,${COR.noite});border:1.5px solid rgba(176,141,87,.55);display:grid;place-items:center;font-weight:600;font-size:${t * 0.34}px;color:${cor}">${iniciais(m.nome)}</div>`;
+  const bolinha = (m, px, py, t, cor = COR.papel) => {
+    const f = foto(m.slug);
+    const dentro = f ? `<img src="${f}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;filter:grayscale(.35) sepia(.12)"/>` : iniciais(m.nome);
+    return `<div class="abs pf" style="left:${px - t / 2}px;top:${py - t / 2}px;width:${t}px;height:${t}px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 38%,${COR.verde2},${COR.verde} 60%,${COR.noite});border:2px solid rgba(176,141,87,.75);display:grid;place-items:center;font-weight:600;font-size:${t * 0.34}px;color:${cor}">${dentro}</div>`;
+  };
   const anelM = (lista, r, t, rot = 0) =>
     lista.map((m, i) => {
       const a = (i / lista.length) * Math.PI * 2 - Math.PI / 2 + rot;
@@ -146,7 +155,7 @@ function s4() {
   ${anelM(externo, 330, 76, 0.12)}
   ${anelM(interno, 210, 70, 0.3)}
   <div class="abs" style="left:${cx - 92}px;top:${cy - 92}px">${medalhao({ cor: COR.noite, fundo: COR.papel, w: 184 })}</div>
-  ${nucleo.map((m, i) => `<div class="abs" style="left:${x + (i === 0 ? 70 : 760)}px;top:${cy + 300}px;width:250px;text-align:${i === 0 ? 'left' : 'right'}"><div class="eyebrow" style="font-size:15px;color:${COR.ouroClaro}">${m.cargo.titulo}</div><div class="pf" style="font-weight:600;font-size:24px;line-height:1.15;color:${COR.papel};margin-top:8px">${m.nome}</div></div>`).join('')}`;
+  ${nucleo.map((m, i) => `${bolinha(m, x + (i === 0 ? 120 : 960), cy + 190, 96)}<div class="abs" style="left:${x + (i === 0 ? 70 : 760)}px;top:${cy + 252}px;width:250px;text-align:${i === 0 ? 'left' : 'right'}"><div class="eyebrow" style="font-size:15px;color:${COR.ouroClaro}">${m.cargo.titulo}</div><div class="pf" style="font-weight:600;font-size:24px;line-height:1.15;color:${COR.papel};margin-top:8px">${m.nome}</div></div>`).join('')}`;
 }
 
 function s5() {

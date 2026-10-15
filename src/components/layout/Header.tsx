@@ -7,6 +7,7 @@ import { cn } from '../../lib/cn';
 import { EASE_OUT, SPRING_UI } from '../../lib/motion';
 import { MobileMenu } from './MobileMenu';
 import { useFase } from '../../lib/fase';
+import { useIsDesktop } from '../../lib/media';
 
 function ativo(pathname: string, to: string) {
   return pathname === to || pathname.startsWith(`${to}/`);
@@ -20,6 +21,7 @@ export function Header() {
   const [menu, setMenu] = useState(false);
   const [hover, setHover] = useState<string | null>(null);
   const fase = useFase();
+  const desktop = useIsDesktop();
 
   useMotionValueEvent(scrollY, 'change', (y) => {
     const prev = scrollY.getPrevious() ?? 0;
@@ -43,7 +45,7 @@ export function Header() {
       <motion.header
         className="no-print fixed inset-x-0 top-0 z-50"
         initial={false}
-        animate={{ y: oculto ? '-110%' : '0%' }}
+        animate={{ y: oculto && desktop ? '-110%' : '0%' }}
         transition={{ duration: 0.6, ease: EASE_OUT }}
       >
         <div
@@ -60,7 +62,7 @@ export function Header() {
             </span>
             <span className="flex flex-col leading-none">
               <span className="eyebrow text-[0.58rem] text-ouro-claro">Gestão</span>
-              <span className="mt-1 font-display text-[1.08rem] font-bold tracking-tight text-papel">Dr. Vital Brazil</span>
+              <span className="mt-1 font-display text-[1rem] font-bold tracking-tight text-papel sm:text-[1.08rem]">Dr. Vital Brazil</span>
             </span>
           </Link>
 
@@ -118,17 +120,21 @@ export function Header() {
               aria-expanded={menu}
               aria-controls="menu-movel"
               aria-label={menu ? 'Fechar menu' : 'Abrir menu'}
-              className="relative z-[60] grid size-12 place-items-center rounded-full text-papel transition-colors hover:bg-papel/5 lg:hidden"
+              className={cn(
+                'relative z-[60] flex h-11 items-center gap-3 rounded-full pl-4 pr-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] ring-1 ring-inset transition-colors duration-300 active:scale-95 lg:hidden',
+                menu ? 'bg-papel text-noite ring-papel' : 'bg-noite/60 text-papel ring-ouro/60',
+              )}
             >
-              <span className="relative block h-3 w-6" aria-hidden="true">
+              <span aria-hidden="true">{menu ? 'Fechar' : 'Menu'}</span>
+              <span className="relative block h-3 w-5" aria-hidden="true">
                 <motion.span
-                  className="absolute left-0 top-0 h-px w-6 bg-current"
-                  animate={menu ? { y: 6, rotate: 45 } : { y: 0, rotate: 0 }}
+                  className="absolute left-0 top-0 h-[1.5px] w-5 bg-current"
+                  animate={menu ? { y: 5, rotate: 45 } : { y: 0, rotate: 0 }}
                   transition={SPRING_UI}
                 />
                 <motion.span
-                  className="absolute bottom-0 right-0 h-px bg-current"
-                  animate={menu ? { y: -5, rotate: -45, width: 24 } : { y: 0, rotate: 0, width: 16 }}
+                  className="absolute bottom-0 right-0 h-[1.5px] bg-current"
+                  animate={menu ? { y: -5, rotate: -45, width: 20 } : { y: 0, rotate: 0, width: 13 }}
                   transition={SPRING_UI}
                 />
               </span>

@@ -58,7 +58,7 @@ export function Portrait({
             className={cn(
               'absolute inset-0 h-full w-full object-cover transition-[filter,opacity,transform] duration-700 ease-[var(--ease-expo)]',
               carregada ? 'opacity-100' : 'opacity-0',
-              ativo ? 'grayscale-0' : 'grayscale-[0.85] sepia-[0.25]',
+              ativo ? 'grayscale-0 sepia-0' : 'grayscale-[0.45] sepia-[0.12]',
             )}
             style={{ objectPosition: membro.foco ?? '50% 35%', transform: `scale(${(membro.zoom ?? 1) * (ativo ? 1.04 : 1)})` }}
           />

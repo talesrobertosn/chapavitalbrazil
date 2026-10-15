@@ -87,7 +87,7 @@ export default function EixoOverlay({ id }: { id: string }) {
         <div className="grain" />
         <Leaf className="pointer-events-none absolute -bottom-20 -right-16 w-[min(28rem,60vw)] -scale-x-100 text-ouro/[0.08]" />
 
-        <div ref={scrollRef} className="relative h-full overflow-y-auto overscroll-contain" data-lenis-prevent>
+        <div ref={scrollRef} className="relative h-full overflow-y-auto overflow-x-hidden overscroll-contain" data-lenis-prevent>
           {/* Barra */}
           <motion.div
             className="sticky top-0 z-10 flex items-center justify-between bg-gradient-to-b from-verde via-verde/95 to-transparent px-[var(--gutter)] pb-6 pt-[max(1rem,env(safe-area-inset-top))]"

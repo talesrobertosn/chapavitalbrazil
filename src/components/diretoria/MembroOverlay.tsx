@@ -119,7 +119,7 @@ export default function MembroOverlay({ slug }: { slug: string }) {
         <Leaf className="absolute -bottom-16 -left-20 w-[min(26rem,60vw)] text-ouro/[0.08]" />
       </motion.div>
 
-      <div className="relative flex h-full flex-col overflow-y-auto overscroll-contain" data-lenis-prevent>
+      <div className="relative flex h-full flex-col overflow-y-auto overflow-x-hidden overscroll-contain" data-lenis-prevent>
         {/* Barra superior */}
         <motion.div
           className="container-x sticky top-0 z-10 flex h-[var(--header-h)] shrink-0 items-center justify-between bg-gradient-to-b from-noite via-noite/90 to-transparent pt-[env(safe-area-inset-top)]"

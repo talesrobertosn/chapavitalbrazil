@@ -50,7 +50,7 @@ export function MobileMenu({ onClose, cta }: { onClose: () => void; cta: string 
       role="dialog"
       aria-modal="true"
       aria-label="Menu"
-      className="fixed inset-0 z-[55] overflow-y-auto bg-noite lg:hidden"
+      className="fixed inset-0 z-[45] overflow-y-auto overflow-x-hidden overscroll-contain bg-noite lg:hidden"
       data-lenis-prevent
       initial={{ clipPath: `circle(0% at ${origem})` }}
       animate={{ clipPath: `circle(150% at ${origem})` }}
@@ -58,7 +58,9 @@ export function MobileMenu({ onClose, cta }: { onClose: () => void; cta: string 
       transition={{ duration: 0.8, ease: EASE_IN_OUT }}
     >
       <div className="grain" />
-      <Leaf className="pointer-events-none absolute -bottom-10 -right-16 w-72 text-ouro/15" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <Leaf className="absolute -bottom-10 -right-16 w-72 text-ouro/15" />
+      </div>
       <div className="container-x relative flex min-h-full flex-col pb-[max(2rem,env(safe-area-inset-bottom))] pt-[calc(var(--header-h)+2rem)]">
         <nav aria-label="Menu principal" className="flex-1">
           <ul className="flex flex-col">
@@ -73,7 +75,17 @@ export function MobileMenu({ onClose, cta }: { onClose: () => void; cta: string 
           </ul>
         </nav>
         <motion.div
-          className="mt-10 flex items-center justify-between border-t border-ouro/20 pt-6"
+          className="mt-8"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.6, ease: EASE_OUT } }}
+          exit={{ opacity: 0, transition: { duration: 0.15 } }}
+        >
+          <Link to="/compartilhar" className="flex h-14 w-full items-center justify-center gap-3 rounded-full bg-papel text-[0.8rem] font-bold uppercase tracking-[0.16em] text-noite active:scale-[0.98]">
+            <InstagramIcon size={18} /> Postar no meu story
+          </Link>
+        </motion.div>
+        <motion.div
+          className="mt-8 flex items-center justify-between border-t border-ouro/20 pt-6"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.55, duration: 0.6, ease: EASE_OUT } }}
           exit={{ opacity: 0, transition: { duration: 0.15 } }}

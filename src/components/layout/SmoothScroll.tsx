@@ -67,18 +67,41 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
   const lock = useCallback(() => {
     locks.current += 1;
-    lenisRef.current?.stop();
-    const sw = window.innerWidth - document.documentElement.clientWidth;
-    document.documentElement.style.overflow = 'hidden';
-    if (sw > 0) document.documentElement.style.paddingRight = `${sw}px`;
+    const html = document.documentElement;
+    const body = document.body;
+    const primeiro = locks.current === 1;
+    const y = window.scrollY;
+    if (primeiro) {
+      lenisRef.current?.stop();
+      const sw = window.innerWidth - html.clientWidth;
+      html.style.overflow = 'hidden';
+      if (sw > 0) html.style.paddingRight = `${sw}px`;
+      // No toque (iOS/Android), overflow:hidden não basta: fixa o body na
+      // posição atual para a página de fundo não deslizar nem "sambar".
+      if (!lenisRef.current) {
+        body.style.position = 'fixed';
+        body.style.top = `-${y}px`;
+        body.style.left = '0';
+        body.style.right = '0';
+        body.style.width = '100%';
+      }
+    }
     let liberado = false;
     return () => {
       if (liberado) return;
       liberado = true;
       locks.current = Math.max(0, locks.current - 1);
       if (locks.current === 0) {
-        document.documentElement.style.overflow = '';
-        document.documentElement.style.paddingRight = '';
+        const fixo = body.style.position === 'fixed';
+        const voltar = fixo ? -parseInt(body.style.top || '0', 10) : null;
+        html.style.overflow = '';
+        html.style.paddingRight = '';
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.width = '';
+        if (voltar !== null) window.scrollTo({ top: voltar, behavior: 'instant' as ScrollBehavior });
         lenisRef.current?.start();
       }
     };
