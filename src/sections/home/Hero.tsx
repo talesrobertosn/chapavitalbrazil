@@ -7,6 +7,7 @@ import { Countdown } from '../../components/ui/Countdown';
 import { BrushUnderline } from '../../components/ui/Reveal';
 import { INTRO_ATIVA_NA_CARGA } from '../../components/layout/Intro';
 import { site } from '../../config/site';
+import { InstagramIcon } from '../../components/brand/Brand';
 import { DATA_ELEICAO, useFase, type Fase } from '../../lib/fase';
 import { diaDaSemana, formatarLongo } from '../../lib/datas';
 import { useFinePointer } from '../../lib/media';
@@ -195,6 +196,21 @@ export function Hero() {
                 Conheça a diretoria
               </ButtonLink>
             </motion.div>
+            <motion.a
+              href={site.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/ig mt-5 inline-flex items-center gap-2.5 text-[0.85rem] font-semibold text-papel/85 transition-colors hover:text-ouro-claro"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: d0 + 1.32, ease: EASE_OUT }}
+            >
+              <span className="grid size-8 place-items-center rounded-full ring-1 ring-ouro/60 transition-colors group-hover/ig:bg-ouro-claro group-hover/ig:text-noite">
+                <InstagramIcon size={15} />
+              </span>
+              {site.instagram.handle}
+              <span className="text-salvia">· todo dia tem novidade</span>
+            </motion.a>
 
             {/* Contagem */}
             {(fase === 'campanha' || fase === 'vespera') && (

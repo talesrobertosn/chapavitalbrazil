@@ -6,7 +6,8 @@ import { InstagramIcon, Medal, WhatsappIcon } from '../brand/Brand';
 import { useSmooth } from './SmoothScroll';
 import { site } from '../../config/site';
 import { gerarStory } from '../../lib/story';
-import { TEXTOS_WHATSAPP, compartilharImagem, linkPublico, whatsappUrl } from '../../lib/share';
+import { compartilharImagem, linkPublico } from '../../lib/share';
+import { useNuvem } from './NuvemFrases';
 import { EASE_OUT, SPRING_UI } from '../../lib/motion';
 import { cn } from '../../lib/cn';
 
@@ -61,6 +62,7 @@ export function CompartilharFab() {
 
 function Gaveta({ onFechar }: { onFechar: () => void }) {
   const { lock } = useSmooth();
+  const { abrir: abrirNuvem } = useNuvem();
   const [estado, setEstado] = useState<'' | 'gerando' | 'ok' | 'baixado'>('');
   const [copiado, setCopiado] = useState(false);
 
@@ -149,16 +151,23 @@ function Gaveta({ onFechar }: { onFechar: () => void }) {
             <ChevronRight size={18} className="text-salvia" />
           </Link>
 
-          <a href={whatsappUrl(TEXTOS_WHATSAPP.site())} target="_blank" rel="noopener noreferrer" className={cn(linha, 'text-papel hover:bg-papel/5')}>
+          <button
+            type="button"
+            onClick={() => {
+              onFechar();
+              window.setTimeout(abrirNuvem, 250);
+            }}
+            className={cn(linha, 'text-papel hover:bg-papel/5')}
+          >
             <span className="grid size-11 shrink-0 place-items-center rounded-full ring-1 ring-ouro/50 text-ouro-claro">
               <WhatsappIcon size={19} />
             </span>
             <span className="flex-1">
               <span className="block text-[0.98rem] font-semibold">Mandar no WhatsApp</span>
-              <span className="block text-[0.8rem] text-salvia">Texto pronto pro grupo da turma</span>
+              <span className="block text-[0.8rem] text-salvia">Escolha a frase, o link vai junto</span>
             </span>
             <ChevronRight size={18} className="text-salvia" />
-          </a>
+          </button>
 
           <div className="grid grid-cols-2 gap-2 px-1 pt-1">
             <button

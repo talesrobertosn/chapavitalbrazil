@@ -4,11 +4,12 @@ import { useRef } from 'react';
 import { NAV, NAV_EXTRA } from '../../config/nav';
 import { site } from '../../config/site';
 import { Figure, InstagramIcon, Leaf, Ornament, WhatsappIcon } from '../brand/Brand';
-import { TEXTOS_WHATSAPP, whatsappUrl } from '../../lib/share';
+import { useNuvem } from './NuvemFrases';
 import { Email } from '../ui/Email';
 
 export function Footer() {
   const ref = useRef<HTMLElement>(null);
+  const { abrir } = useNuvem();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end end'] });
   const y = useTransform(scrollYProgress, [0, 1], ['18%', '0%']);
   const fig = useTransform(scrollYProgress, [0, 1], [60, 0]);
@@ -33,14 +34,13 @@ export function Footer() {
               >
                 <InstagramIcon size={18} /> {site.instagram.handle}
               </a>
-              <a
-                href={whatsappUrl(TEXTOS_WHATSAPP.site())}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={abrir}
                 className="inline-flex h-12 items-center gap-2.5 rounded-full px-5 text-sm ring-1 ring-inset ring-papel/20 transition-colors hover:bg-papel hover:text-noite"
               >
                 <WhatsappIcon size={18} /> Mandar no grupo
-              </a>
+              </button>
             </div>
           </div>
 

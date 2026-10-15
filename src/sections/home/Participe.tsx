@@ -7,11 +7,12 @@ import { InstagramIcon, Medal, WhatsappIcon } from '../../components/brand/Brand
 import { SectionHead } from '../../components/ui/SectionHead';
 import { TiltCard } from '../../components/ui/TiltCard';
 import { site } from '../../config/site';
-import { TEXTOS_WHATSAPP, whatsappUrl } from '../../lib/share';
+import { useNuvem } from '../../components/layout/NuvemFrases';
 import { DUR, EASE_OUT } from '../../lib/motion';
 
 export function Participe() {
   const [hover, setHover] = useState(false);
+  const { abrir } = useNuvem();
   return (
     <section className="surface-noite section-y relative overflow-hidden" aria-labelledby="participe-titulo">
       <div className="grain" />
@@ -72,18 +73,17 @@ export function Participe() {
               </div>
             </Link>
             <div className="grid grid-cols-2 gap-5">
-              <a
-                href={whatsappUrl(TEXTOS_WHATSAPP.site())}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col gap-6 border border-ouro/25 p-6 transition-colors duration-500 hover:border-ouro/60 hover:bg-verde/40"
+              <button
+                type="button"
+                onClick={abrir}
+                className="group flex flex-col gap-6 border border-ouro/25 p-6 text-left transition-colors duration-500 hover:border-ouro/60 hover:bg-verde/40"
               >
                 <WhatsappIcon size={26} className="text-ouro-claro" />
                 <span>
                   <span className="block font-display text-[1.1rem] font-semibold text-papel">Manda no grupo</span>
-                  <span className="mt-1 block text-[0.8rem] text-salvia">Texto pronto pro WhatsApp</span>
+                  <span className="mt-1 block text-[0.8rem] text-salvia">Escolha a frase, o link vai junto</span>
                 </span>
-              </a>
+              </button>
               <a
                 href={site.instagram.url}
                 target="_blank"

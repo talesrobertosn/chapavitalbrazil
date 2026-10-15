@@ -80,9 +80,14 @@ export function MobileMenu({ onClose, cta }: { onClose: () => void; cta: string 
           animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.6, ease: EASE_OUT } }}
           exit={{ opacity: 0, transition: { duration: 0.15 } }}
         >
-          <Link to="/compartilhar" className="flex h-14 w-full items-center justify-center gap-3 rounded-full bg-papel text-[0.8rem] font-bold uppercase tracking-[0.16em] text-noite active:scale-[0.98]">
-            <InstagramIcon size={18} /> Postar no meu story
-          </Link>
+          <div className="grid grid-cols-2 gap-3">
+            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="flex h-14 items-center justify-center gap-2.5 rounded-full bg-papel text-[0.74rem] font-bold uppercase tracking-[0.14em] text-noite active:scale-[0.98]">
+              <InstagramIcon size={18} /> Seguir
+            </a>
+            <Link to="/compartilhar" className="flex h-14 items-center justify-center gap-2.5 rounded-full text-[0.74rem] font-bold uppercase tracking-[0.14em] text-papel ring-1 ring-inset ring-ouro/60 active:scale-[0.98]">
+              <InstagramIcon size={18} /> Meu story
+            </Link>
+          </div>
         </motion.div>
         <motion.div
           className="mt-8 flex items-center justify-between border-t border-ouro/20 pt-6"

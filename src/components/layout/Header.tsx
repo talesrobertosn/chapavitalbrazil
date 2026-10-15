@@ -2,7 +2,8 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { NAV } from '../../config/nav';
-import { Medal } from '../brand/Brand';
+import { InstagramIcon, Medal } from '../brand/Brand';
+import { site } from '../../config/site';
 import { cn } from '../../lib/cn';
 import { EASE_OUT, SPRING_UI } from '../../lib/motion';
 import { MobileMenu } from './MobileMenu';
@@ -103,6 +104,16 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <a
+              href={site.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram da chapa: @chapavitalbrazil"
+              className="group/ig relative grid size-11 shrink-0 place-items-center rounded-full text-papel ring-1 ring-inset ring-ouro/60 transition-colors duration-300 hover:bg-papel hover:text-noite active:scale-95"
+            >
+              <InstagramIcon size={18} />
+              <span aria-hidden="true" className="absolute inset-0 rounded-full ring-2 ring-ouro/70 opacity-0 transition-opacity duration-300 group-hover/ig:opacity-100" />
+            </a>
             <Link
               to="/votar"
               className={cn(

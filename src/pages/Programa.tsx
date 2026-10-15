@@ -9,12 +9,12 @@ import { PropostaItem } from '../components/programa/PropostaItem';
 import { ICONE_EIXO, IconRing } from '../components/ui/Icons';
 import { Diamond, Leaf, WhatsappIcon } from '../components/brand/Brand';
 import { Reveal, RevealText, BrushUnderline } from '../components/ui/Reveal';
-import { Button, ButtonA } from '../components/ui/Button';
+import { Button } from '../components/ui/Button';
 import { PoeiraDourada } from '../components/fx/Atmosfera';
 import { ArcoReveal } from '../components/fx/Arco';
 import { CemDias } from '../sections/home/CemDias';
 import { Cobrar } from '../sections/home/Cobrar';
-import { TEXTOS_WHATSAPP, whatsappUrl } from '../lib/share';
+import { useNuvem } from '../components/layout/NuvemFrases';
 import { cn } from '../lib/cn';
 import { EASE_OUT } from '../lib/motion';
 
@@ -22,6 +22,7 @@ const norm = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').to
 
 export default function Programa() {
   const [params, setParams] = useSearchParams();
+  const { abrir: abrirNuvem } = useNuvem();
   const [termo, setTermo] = useState('');
   const [eixo, setEixo] = useState<string | null>(null);
   const perfilParam = params.get('perfil');
@@ -88,9 +89,9 @@ export default function Programa() {
             <Button onClick={() => window.print()} icon={<Printer size={16} strokeWidth={1.6} />}>
               Salvar em PDF
             </Button>
-            <ButtonA href={whatsappUrl(TEXTOS_WHATSAPP.programa())} variant="outline" icon={<WhatsappIcon size={16} />}>
+            <Button onClick={abrirNuvem} variant="outline" icon={<WhatsappIcon size={16} />}>
               Mandar no grupo
-            </ButtonA>
+            </Button>
           </Reveal>
         </div>
       </section>

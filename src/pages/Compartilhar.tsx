@@ -4,13 +4,14 @@ import { Download, Share2 } from 'lucide-react';
 import { Page } from '../components/layout/Page';
 import { PageHero } from '../components/ui/PageHero';
 import { Diamond, WhatsappIcon } from '../components/brand/Brand';
-import { Button, ButtonA } from '../components/ui/Button';
+import { Button } from '../components/ui/Button';
 import { FRASES } from '../data/frases';
 import { site } from '../config/site';
 import { DATA_ELEICAO, useFase } from '../lib/fase';
 import { diaDaSemana, diasAte, formatarLongo } from '../lib/datas';
 import { gerarStory, type StoryConteudo } from '../lib/story';
-import { TEXTOS_WHATSAPP, baixar, compartilharImagem, whatsappUrl } from '../lib/share';
+import { baixar, compartilharImagem } from '../lib/share';
+import { useNuvem } from '../components/layout/NuvemFrases';
 import { cn } from '../lib/cn';
 import { SPRING_UI } from '../lib/motion';
 
@@ -22,6 +23,7 @@ interface Modelo {
 
 export default function Compartilhar() {
   const fase = useFase();
+  const { abrir: abrirNuvem } = useNuvem();
   const modelos = useMemo<Modelo[]>(() => {
     const data = `${diaDaSemana(DATA_ELEICAO)}, ${formatarLongo(DATA_ELEICAO)}`;
     const dias = fase === 'eleicao' ? 0 : fase === 'vespera' ? 1 : fase === 'encerrada' ? -1 : Math.max(2, diasAte(DATA_ELEICAO));
@@ -133,10 +135,10 @@ export default function Compartilhar() {
               })}
             </div>
             <div className="mt-10 border-t border-ouro/20 pt-8">
-              <p className="text-papel/75">Prefere mandar o site inteiro? Tem texto pronto pro grupo da turma.</p>
-              <ButtonA href={whatsappUrl(TEXTOS_WHATSAPP.site())} variant="outline" icon={<WhatsappIcon size={16} />} className="mt-5">
+              <p className="text-papel/75">Prefere mandar texto? Escolha uma frase da campanha e o link do site vai junto.</p>
+              <Button onClick={abrirNuvem} variant="outline" icon={<WhatsappIcon size={16} />} className="mt-5">
                 Mandar no WhatsApp
-              </ButtonA>
+              </Button>
             </div>
           </div>
         </div>

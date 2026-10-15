@@ -7,6 +7,7 @@ import { Intro } from './components/layout/Intro';
 import { SmoothScroll } from './components/layout/SmoothScroll';
 import { Cursor } from './components/fx/Cursor';
 import { CompartilharFab } from './components/layout/CompartilharFab';
+import { NuvemProvider } from './components/layout/NuvemFrases';
 import Home from './pages/Home';
 
 const Programa = lazy(() => import('./pages/Programa'));
@@ -50,6 +51,7 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <SmoothScroll>
+       <NuvemProvider>
         <a href="#conteudo" className="sr-only-focusable fixed left-4 top-4 z-[100] rounded bg-papel px-4 py-3 text-sm font-semibold text-noite">
           Pular para o conteúdo
         </a>
@@ -82,6 +84,7 @@ export default function App() {
           </Suspense>
         </LayoutGroup>
         <Footer />
+       </NuvemProvider>
       </SmoothScroll>
     </MotionConfig>
   );

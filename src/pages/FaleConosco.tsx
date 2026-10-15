@@ -6,7 +6,8 @@ import { Page } from '../components/layout/Page';
 import { PageHero } from '../components/ui/PageHero';
 import { Envelope } from '../components/brand/Envelope';
 import { Diamond, InstagramIcon, WhatsappIcon } from '../components/brand/Brand';
-import { ButtonA } from '../components/ui/Button';
+import { Button, ButtonA } from '../components/ui/Button';
+import { useNuvem } from '../components/layout/NuvemFrases';
 import { Reveal, RevealText } from '../components/ui/Reveal';
 import { ArcoReveal } from '../components/fx/Arco';
 import { site } from '../config/site';
@@ -15,7 +16,6 @@ import { TOTAL_PROPOSTAS } from '../data/programa';
 import { MEMBROS, TURMAS } from '../data/diretoria';
 import { DATA_ELEICAO } from '../lib/fase';
 import { diaDaSemana, formatarLongo } from '../lib/datas';
-import { TEXTOS_WHATSAPP, whatsappUrl } from '../lib/share';
 import { cn } from '../lib/cn';
 import { EASE_OUT, SPRING_UI } from '../lib/motion';
 
@@ -75,6 +75,7 @@ const PERGUNTAS: { p: string; r: React.ReactNode }[] = [
 
 export default function FaleConosco() {
   const [aberto, setAberto] = useState(false);
+  const { abrir: abrirNuvem } = useNuvem();
   const [faq, setFaq] = useState<number | null>(0);
 
   return (
@@ -181,9 +182,9 @@ export default function FaleConosco() {
               <ButtonA href={site.instagram.url} variant="solid-dark" icon={<InstagramIcon size={16} />}>
                 Direct
               </ButtonA>
-              <ButtonA href={whatsappUrl(TEXTOS_WHATSAPP.site())} variant="outline" icon={<WhatsappIcon size={16} />} className="text-verde">
+              <Button onClick={abrirNuvem} variant="outline" icon={<WhatsappIcon size={16} />} className="text-verde">
                 Compartilhar
-              </ButtonA>
+              </Button>
             </div>
           </div>
           <ul className="lg:col-span-8">
