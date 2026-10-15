@@ -5,6 +5,7 @@ import { NAV, NAV_EXTRA } from '../../config/nav';
 import { site } from '../../config/site';
 import { Figure, InstagramIcon, Leaf, Ornament, WhatsappIcon } from '../brand/Brand';
 import { TEXTOS_WHATSAPP, whatsappUrl } from '../../lib/share';
+import { Email } from '../ui/Email';
 
 export function Footer() {
   const ref = useRef<HTMLElement>(null);
@@ -73,7 +74,9 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-20 flex flex-wrap gap-x-5 gap-y-2 text-[0.78rem] text-salvia">
+        <Email className="mt-8 text-[0.85rem] text-papel/70 transition-colors hover:text-papel" />
+
+        <div className="mt-16 flex flex-wrap gap-x-5 gap-y-2 text-[0.78rem] text-salvia">
           {site.hashtags.map((h) => (
             <span key={h}>{h}</span>
           ))}

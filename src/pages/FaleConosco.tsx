@@ -10,6 +10,7 @@ import { ButtonA } from '../components/ui/Button';
 import { Reveal, RevealText } from '../components/ui/Reveal';
 import { ArcoReveal } from '../components/fx/Arco';
 import { site } from '../config/site';
+import { Email } from '../components/ui/Email';
 import { TOTAL_PROPOSTAS } from '../data/programa';
 import { MEMBROS, TURMAS } from '../data/diretoria';
 import { DATA_ELEICAO } from '../lib/fase';
@@ -174,7 +175,8 @@ export default function FaleConosco() {
               <span className="eyebrow">Pergunta pra gente</span>
             </p>
             <RevealText as="h2" text="Perguntas frequentes." className="t-h1 mt-5 text-verde" />
-            <p className="mt-6 text-tinta-2">Ficou alguma dúvida? Manda no direct, a resposta pode aparecer aqui.</p>
+            <p className="mt-6 text-tinta-2">Ficou alguma dúvida? Manda no direct, a resposta pode aparecer aqui. Se preferir, escreva para:</p>
+            <Email className="mt-3 font-semibold text-verde underline decoration-ouro-escuro/40 underline-offset-4 hover:decoration-ouro-escuro" />
             <div className="mt-8 flex flex-col gap-3 xs:flex-row lg:flex-col xl:flex-row">
               <ButtonA href={site.instagram.url} variant="solid-dark" icon={<InstagramIcon size={16} />}>
                 Direct

@@ -1,6 +1,7 @@
 import { Page } from '../components/layout/Page';
 import { PageHero } from '../components/ui/PageHero';
 import { site } from '../config/site';
+import { Email } from '../components/ui/Email';
 
 const ITENS = [
   ['Sem cookies e sem rastreadores', 'Este site não usa cookies de publicidade nem ferramentas que acompanham você pela internet.'],
@@ -31,7 +32,8 @@ export default function Privacidade() {
             Dúvidas? Fale com a gente no Instagram:{' '}
             <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="link-fio font-semibold text-verde">
               {site.instagram.handle}
-            </a>
+            </a>{' '}
+            ou por e-mail: <Email icone={false} className="font-semibold text-verde" />
           </p>
         </div>
       </section>

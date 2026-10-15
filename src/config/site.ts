@@ -41,6 +41,16 @@ export const site = {
   /** Prazo de retorno da Ouvidoria em dias (promessa do programa). Vazio = não exibe. */
   ouvidoriaPrazoDias: '',
 
+  /** E-mail de contato (montado no navegador para dificultar robôs de spam). */
+  email: { usuario: 'valeriagodoy0208', dominio: 'gmail.com' },
+
+  /**
+   * Google Search Console: cole aqui só o código do "content" da tag
+   * <meta name="google-site-verification" content="..."> (método "Tag HTML").
+   * Vazio = a tag não é gerada.
+   */
+  googleVerificacao: '',
+
   /** Endereço público, usado nas prévias de link (WhatsApp, Instagram). */
   url: 'https://talesrobertosn.github.io/chapavitalbrazil',
 } as const;

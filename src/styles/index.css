@@ -428,3 +428,27 @@ html.cursor-proprio textarea,
 html.cursor-proprio select {
   cursor: text;
 }
+
+/* Conteúdo pré-renderizado para robôs e navegação sem JavaScript.
+   Com JavaScript ativo (classe .js no <html>), o React assume a tela. */
+html.js .seo-pre {
+  display: none;
+}
+.seo-pre {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  font-family: Georgia, serif;
+  color: #f4f0e6;
+  line-height: 1.6;
+}
+.seo-pre a {
+  color: #cdb186;
+}
+.seo-pre nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}

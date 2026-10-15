@@ -15,7 +15,10 @@ function jaViu() {
 }
 
 function deveMostrar() {
-  return typeof window !== 'undefined' && !jaViu() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.location.search.indexOf('semintro') === -1;
+  if (typeof window === 'undefined') return false;
+  // Só na página inicial: quem chega por link direto (proposta, membro) vai direto ao conteúdo.
+  const naHome = window.location.pathname.replace(/\/+$/, '') === import.meta.env.BASE_URL.replace(/\/+$/, '');
+  return naHome && !jaViu() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.location.search.indexOf('semintro') === -1;
 }
 
 /**
