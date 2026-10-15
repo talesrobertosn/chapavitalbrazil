@@ -9,7 +9,7 @@
 declare const __SITE_URL__: string | undefined;
 declare const process: { env?: Record<string, string | undefined> } | undefined;
 
-const PADRAO = 'https://talesrobertosn.github.io/chapavitalbrazil';
+const PADRAO = 'https://chapavitalbrazil.com.br';
 const URL_PUBLICA = (
   (typeof __SITE_URL__ !== 'undefined' && __SITE_URL__) ||
   (typeof process !== 'undefined' && process.env?.SITE_URL) ||

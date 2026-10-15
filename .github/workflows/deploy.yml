@@ -17,21 +17,24 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      # Sem domínio próprio: /chapavitalbrazil/ e o endereço do GitHub Pages.
-      # Ao ativar chapavitalbrazil.com.br, troque para BASE_PATH: / e
-      # SITE_URL: https://chapavitalbrazil.com.br (e crie public/CNAME).
-      BASE_PATH: /chapavitalbrazil/
-      SITE_URL: https://talesrobertosn.github.io/chapavitalbrazil
     steps:
       - uses: actions/checkout@v4
+      # Lê o endereço configurado em Settings > Pages. Sem domínio próprio:
+      # https://talesrobertosn.github.io/chapavitalbrazil (base /chapavitalbrazil/).
+      # Com o domínio chapavitalbrazil.com.br salvo lá: base / e o domínio.
+      # Assim o site nunca é publicado com caminhos errados.
+      - id: pages
+        uses: actions/configure-pages@v5
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/configure-pages@v5
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+      - run: echo "Publicado para ${{ steps.pages.outputs.base_url }}"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

@@ -6,14 +6,15 @@ import { prerenderMeta } from './build/prerender';
 
 // Caminho base do site.
 // GitHub Pages sem domínio próprio: /chapavitalbrazil/
-// Com domínio próprio (chapavitalbrazil.com.br): defina BASE_PATH=/ no workflow.
-const base = process.env.BASE_PATH ?? '/chapavitalbrazil/';
+// O workflow lê o caminho em Settings > Pages: /chapavitalbrazil/ ou / (domínio próprio).
+// Normaliza para uma barra no início e uma no fim ("", "/x", "/x/", "/x//" → "/x/").
+const base = `/${(process.env.BASE_PATH ?? '/chapavitalbrazil/').replace(/^\/+|\/+$/g, '')}/`.replace(/^\/\/$/, '/');
 
 export default defineConfig({
   base,
   define: {
     // Endereço público usado nos links compartilhados (ver src/config/site.ts)
-    __SITE_URL__: JSON.stringify(process.env.SITE_URL ?? 'https://talesrobertosn.github.io/chapavitalbrazil'),
+    __SITE_URL__: JSON.stringify(process.env.SITE_URL ?? 'https://chapavitalbrazil.com.br'),
   },
   plugins: [react(), tailwindcss(), imagetools(), prerenderMeta()],
   build: {
