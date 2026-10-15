@@ -109,9 +109,10 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram da chapa: @chapavitalbrazil"
-              className="group/ig relative grid size-11 shrink-0 place-items-center rounded-full text-papel ring-1 ring-inset ring-ouro/60 transition-colors duration-300 hover:bg-papel hover:text-noite active:scale-95"
+              className="group/ig relative flex h-11 shrink-0 items-center gap-2 rounded-full px-3 text-papel ring-1 ring-inset ring-ouro/60 transition-colors duration-300 hover:bg-papel hover:text-noite active:scale-95 lg:px-4"
             >
               <InstagramIcon size={18} />
+              <span className="hidden text-[0.72rem] font-semibold tracking-[0.04em] lg:inline">{site.instagram.handle}</span>
               <span aria-hidden="true" className="absolute inset-0 rounded-full ring-2 ring-ouro/70 opacity-0 transition-opacity duration-300 group-hover/ig:opacity-100" />
             </a>
             <Link

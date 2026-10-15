@@ -7,7 +7,10 @@ import { Countdown } from '../../components/ui/Countdown';
 import { BrushUnderline } from '../../components/ui/Reveal';
 import { INTRO_ATIVA_NA_CARGA } from '../../components/layout/Intro';
 import { site } from '../../config/site';
-import { InstagramIcon } from '../../components/brand/Brand';
+import { InstagramIcon, WhatsappIcon } from '../../components/brand/Brand';
+import { FRASES } from '../../data/frases';
+import { useNuvem } from '../../components/layout/NuvemFrases';
+import { diaISO } from '../../lib/datas';
 import { DATA_ELEICAO, useFase, type Fase } from '../../lib/fase';
 import { diaDaSemana, formatarLongo } from '../../lib/datas';
 import { useFinePointer } from '../../lib/media';
@@ -49,6 +52,9 @@ export function Hero() {
 
   const dataTxt = `${diaDaSemana(DATA_ELEICAO)}, ${formatarLongo(DATA_ELEICAO)}`;
   const letras = titulo.toUpperCase().split('');
+  const { abrir: abrirNuvem } = useNuvem();
+  // Frase do dia: muda a cada dia, igual para todo mundo
+  const fraseDoDia = FRASES[Number(diaISO(new Date()).replace(/-/g, '')) % FRASES.length]!;
 
   return (
     <section
@@ -211,6 +217,28 @@ export function Hero() {
               {site.instagram.handle}
               <span className="text-salvia">· todo dia tem novidade</span>
             </motion.a>
+
+            {/* Frase do dia */}
+            {fase === 'campanha' && (
+              <motion.div
+                className="mt-8 flex max-w-xl flex-col gap-3 border-l border-ouro/40 pl-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: d0 + 1.45, ease: EASE_OUT }}
+              >
+                <div>
+                  <p className="eyebrow text-[0.56rem] text-salvia">Frase do dia</p>
+                  <p className="mt-1 font-script text-[1.35rem] italic leading-snug text-ouro-claro">“{fraseDoDia.texto}”</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={abrirNuvem}
+                  className="inline-flex h-11 shrink-0 items-center gap-2 self-start rounded-full px-4 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-papel ring-1 ring-inset ring-ouro/60 transition-colors hover:bg-papel hover:text-noite sm:self-auto"
+                >
+                  <WhatsappIcon size={15} /> Mandar essa
+                </button>
+              </motion.div>
+            )}
 
             {/* Contagem */}
             {(fase === 'campanha' || fase === 'vespera') && (

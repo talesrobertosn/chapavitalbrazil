@@ -14,3 +14,10 @@
 - Página de prestação de contas mensal ("Todo mês. Todo centavo.").
 - Série de posts "Um dia com" a partir dos membros.
 - Reels com os momentos-assinatura do site (abertura com o medalhão, arco do Butantan, cena dos capítulos do Vital Brazil).
+
+## Brainstorm (adições sugeridas, ainda não feitas)
+- [ ] Diário: no próximo dia lacrado, "abre amanhã"; título da aba com "Dia N de 20".
+- [ ] "Um dia com": série de stories com a rotina de um membro (template no gerador de stories).
+- [ ] Contador público de compartilhamentos (sem rastrear pessoas): só um número que cresce, em `/compartilhar`.
+- [ ] Modo gestão pós-eleição: painel de propostas com status em `programa.ts` e página de prestação de contas.
+- [ ] Reels: roteiros de 15 s com os momentos-assinatura do site (abertura, arco, cena do Vital Brazil).
