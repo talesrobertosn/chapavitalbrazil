@@ -9,7 +9,7 @@
  *  BOTÂNICA     ramo, ramoDuplo, grinalda, folhaSolta,
  *               samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas,
  *               coroaLouros, buque
- *  LOGO II      serpenteLogo (a serpente do logo, sem o retrato)
+ *  LOGO II      serpenteLogo (a serpente do logo, sem o retrato), serpenteMuda (trocando de pele)
  *  CIÊNCIA      frasco, microscopio, serpenteTraco, estetoscopio, jaleco,
  *               bastaoAsclepio, livro, pena, lampada, ampulheta, balanca, coracao,
  *               lupa, retorta, ampola, dna, bussola
@@ -708,6 +708,16 @@ export const serpenteLogo = ({ cor = COR.ouro, w = 600, op = 1, flip = false } =
   const [, , vw, vh] = SERPENTE.vb.split(' ').map(Number);
   const id = `sp${Math.round(Math.random() * 1e8)}`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${SERPENTE.vb}" width="${w}" height="${Math.round((w * vh) / vw)}" style="display:block;opacity:${op};${flip ? 'transform:scaleX(-1);' : ''}"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="2000" height="2000"><rect width="2000" height="2000" fill="#fff"/><polygon points="${SERPENTE.mascara}" fill="#000"/></mask></defs><path fill="${cor}" fill-rule="evenodd" mask="url(#${id})" d="${SERPENTE.d}"/></svg>`;
+};
+
+/**
+ * Serpente "trocando de pele": contorno tracejado (pele antiga, deslocado) + serpente cheia (nova).
+ * Devolve HTML (dois blocos absolutos); coloque dentro de um contêiner position:relative de w × 0.74w.
+ */
+export const serpenteMuda = ({ w = 760, cor = COR.ouro, deslocX = -70, deslocY = -60, opAntiga = 0.38, traco: esp = 3 } = {}) => {
+  const cheia = serpenteLogo({ cor, w });
+  const antiga = cheia.replace(/fill="[^"]+" fill-rule/, `fill="none" stroke="${cor}" stroke-width="${esp}" stroke-dasharray="16 12" stroke-linejoin="round" fill-rule`);
+  return `<div style="position:absolute;left:${deslocX}px;top:${deslocY}px;opacity:${opAntiga}">${antiga}</div><div style="position:absolute;left:0;top:0;filter:drop-shadow(0 30px 40px rgba(0,0,0,.5))">${cheia}</div>`;
 };
 
 export const CATALOGO = { cantoneira, moldura, divisor, cartucho, selo, losangoDuplo, banderola, roseta, filete, asterismo, etiqueta, carimbo, lacre, envelope, ramo, ramoDuplo, grinalda, folhaSolta, samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas, coroaLouros, buque, frasco, microscopio, serpenteTraco, estetoscopio, jaleco, bastaoAsclepio, livro, pena, lampada, ampulheta, balanca, coracao, lupa, retorta, ampola, dna, bussola, logoHorizontal, logoEmpilhado, logoMonograma, logoSelo, figuraInline, logoAssinatura, logoCarimbo, logoBanderola, logoEtiqueta, logoMinimo, logoLacre, serpenteLogo };

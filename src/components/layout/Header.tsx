@@ -108,7 +108,7 @@ export function Header() {
               href={site.instagram.url}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram da chapa: @chapavitalbrazil"
+              aria-label={`Instagram da chapa: ${site.instagram.handle}`}
               className="group/ig relative flex h-11 shrink-0 items-center gap-2 rounded-full px-3 text-papel ring-1 ring-inset ring-ouro/60 transition-colors duration-300 hover:bg-papel hover:text-noite active:scale-95 xl:px-4"
             >
               <InstagramIcon size={18} />
