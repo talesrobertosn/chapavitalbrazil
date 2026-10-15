@@ -1,5 +1,5 @@
 import { motion, useReducedMotion, type Variants } from 'motion/react';
-import { useEffect, useLayoutEffect, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useState, type ReactNode } from 'react';
 import { useLocation, useNavigationType } from 'react-router';
 import { Medal } from '../brand/Brand';
 import { EASE_IN_OUT, EASE_OUT } from '../../lib/motion';
@@ -36,7 +36,8 @@ export function Page({ titulo, children, tema = 'noite' }: { titulo?: string; ch
   const location = useLocation();
   const navType = useNavigationType();
   const { scrollTo } = useSmooth();
-  const inicial = primeiraCarga || reduce ? false : 'ini';
+  // Calculado uma única vez: re-renderizações não podem reativar a cortina.
+  const [inicial] = useState<false | 'ini'>(() => (primeiraCarga || reduce ? false : 'ini'));
 
   useEffect(() => {
     primeiraCarga = false;
@@ -77,7 +78,6 @@ export function Page({ titulo, children, tema = 'noite' }: { titulo?: string; ch
           variants={cortina}
           aria-hidden="true"
           className="no-print pointer-events-none fixed inset-0 z-[70] flex items-center justify-center bg-noite"
-          style={{ scaleY: primeiraCarga ? 0 : undefined }}
         >
           <div className="grain" />
           <motion.div variants={selo} className="flex flex-col items-center gap-4">

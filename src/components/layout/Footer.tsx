@@ -94,7 +94,15 @@ export function Footer() {
 
       <div className="container-x relative flex flex-col gap-3 border-t border-papel/10 py-7 text-[0.78rem] text-salvia sm:flex-row sm:items-center sm:justify-between">
         <p>{site.assinatura}</p>
-        <p className="font-script text-base italic text-ouro-claro">{site.lema}</p>
+        <div className="flex flex-col gap-1 sm:items-end">
+          <p className="font-script text-base italic text-ouro-claro">{site.lema}</p>
+          <p className="text-[0.7rem] text-salvia/70">
+            Criado por{' '}
+            <a href="https://ortoquestoes.com.br/" target="_blank" rel="noopener" className="underline decoration-salvia/30 underline-offset-2 transition-colors hover:text-papel hover:decoration-ouro">
+              Tales
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

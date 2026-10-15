@@ -67,7 +67,7 @@ export default function Diretoria() {
       {/* Controles */}
       <section className="surface-papel relative min-h-screen pb-28">
         <div className="grain" />
-        <div className="sticky top-0 z-30 border-b border-verde/10 bg-papel/95 backdrop-blur-[2px]">
+        <div className="relative z-30 border-b border-verde/10 bg-papel">
           <div className="container-x flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
             <LayoutGroup id="vista">
               <div role="tablist" aria-label="Forma de ver a diretoria" className="flex w-fit gap-1 rounded-full bg-papel-2 p-1 ring-1 ring-verde/10">
@@ -155,7 +155,9 @@ function CartaoMembro({ m, turma, foco, setFoco, tamanho = 'md' }: VistaProps & 
       className={cn('group flex flex-col items-center text-center transition-[opacity,filter] duration-500', apagado ? 'opacity-30 grayscale' : 'opacity-100')}
       onPointerEnter={() => setFoco(m.slug)}
       onPointerLeave={() => setFoco(null)}
-      onFocus={() => setFoco(m.slug)}
+      onFocus={(e) => {
+        if (e.currentTarget.matches(':focus-visible')) setFoco(m.slug);
+      }}
       onBlur={() => setFoco(null)}
     >
       <span className={cn('relative block', tamanho === 'md' ? 'w-[7.5rem] sm:w-[8.5rem]' : 'w-[4.5rem] sm:w-20')}>

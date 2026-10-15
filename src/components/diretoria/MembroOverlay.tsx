@@ -77,8 +77,10 @@ export default function MembroOverlay({ slug }: { slug: string }) {
 
   // Mantém a miniatura ativa visível na tira
   useEffect(() => {
-    const el = tiraRef.current?.querySelector<HTMLElement>(`[data-slug="${slug}"]`);
-    el?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    // Rola só a tira (scrollIntoView também moveria a página por trás)
+    const tira = tiraRef.current;
+    const el = tira?.querySelector<HTMLElement>(`[data-slug="${slug}"]`);
+    if (tira && el) tira.scrollTo({ left: el.offsetLeft - tira.clientWidth / 2 + el.offsetWidth / 2, behavior: 'smooth' });
   }, [slug]);
 
   useEffect(() => {
@@ -159,7 +161,7 @@ export default function MembroOverlay({ slug }: { slug: string }) {
         >
           <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
             {/* Retrato */}
-            <div className="relative mx-auto w-[min(70vw,22rem)] lg:col-span-5 lg:mx-0 lg:w-full lg:max-w-[30rem]">
+            <div className="relative mx-auto w-[min(56vw,22rem)] lg:col-span-5 lg:mx-0 lg:w-full lg:max-w-[30rem]">
               <AnimatePresence mode="popLayout" custom={direcao} initial={false}>
                 <motion.div
                   key={membro.slug}
@@ -254,7 +256,7 @@ export default function MembroOverlay({ slug }: { slug: string }) {
 
         {/* Tira de miniaturas */}
         <motion.div
-          className="sticky bottom-0 z-10 shrink-0 bg-gradient-to-t from-noite via-noite/95 to-transparent pb-[max(1rem,env(safe-area-inset-bottom))] pt-6"
+          className="relative z-10 shrink-0 bg-gradient-to-t from-noite via-noite/95 to-transparent pb-[max(1rem,env(safe-area-inset-bottom))] pt-6 md:sticky md:bottom-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.35, duration: 0.7, ease: EASE_OUT } }}
           exit={{ opacity: 0, y: 20, transition: { duration: 0.2 } }}
