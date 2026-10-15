@@ -167,7 +167,7 @@ export function Hero() {
                 transition={{ duration: 1.2, delay: d0 + 0.7, ease: EASE_OUT }}
               >
                 <div className="aspect-[3/4] overflow-hidden rounded-t-full">
-                  <img srcSet={IMG.retrato.srcSet} src={IMG.retrato.src} sizes="34vw" alt="" className="h-full w-full object-cover object-[50%_18%]" />
+                  <img srcSet={IMG.retrato.srcSet} src={IMG.retrato.src} sizes="(min-width: 48rem) 1px, 34vw" alt="" className="h-full w-full object-cover object-[50%_18%]" />
                 </div>
                 <span className="absolute -inset-1.5 rounded-t-full border border-ouro/45" />
               </motion.div>
@@ -246,7 +246,7 @@ export function Hero() {
                   <motion.img
                     srcSet={IMG.butantan.srcSet}
                     src={IMG.butantan.src}
-                    sizes="(min-width: 64rem) 22rem, 60vw"
+                    sizes="(min-width: 64rem) 22rem, (min-width: 48rem) 28vw, 1px"
                     alt=""
                     className="h-[118%] w-full object-cover opacity-80 [filter:sepia(0.35)_saturate(0.8)_brightness(0.85)]"
                     style={{ y: yPredio }}
@@ -271,9 +271,8 @@ export function Hero() {
                     <motion.img
                       srcSet={IMG.retrato.srcSet}
                       src={IMG.retrato.src}
-                      sizes="(min-width: 64rem) 20rem, 55vw"
+                      sizes="(min-width: 64rem) 20rem, (min-width: 48rem) 26vw, 1px"
                       alt=""
-                      fetchPriority="high"
                       className="h-full w-full object-cover object-[50%_20%]"
                       initial={{ scale: 1.25 }}
                       animate={{ scale: 1 }}

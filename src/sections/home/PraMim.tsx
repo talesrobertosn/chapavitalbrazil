@@ -103,7 +103,7 @@ export function PraMim() {
         </LayoutGroup>
 
         <div className="mt-10 text-center">
-          <Link to={`/programa?perfil=${perfil}`} className="link-fio text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-verde">
+          <Link to={`/programa?perfil=${perfil}`} className="link-fio inline-flex min-h-11 items-center text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-verde">
             Ver todas as {total} no programa <ArrowRight size={14} />
           </Link>
         </div>

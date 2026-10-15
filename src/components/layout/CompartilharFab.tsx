@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, type PanInfo } from 'motion/react';
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, type PanInfo } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { Check, ChevronRight, Images, Link as LinkIcon, Loader2, X } from 'lucide-react';
@@ -19,7 +19,11 @@ export function CompartilharFab() {
   const { pathname } = useLocation();
   const [aberto, setAberto] = useState(false);
   const [visivel, setVisivel] = useState(false);
+  const [compacto, setCompacto] = useState(false);
   const oculto = pathname.startsWith('/compartilhar');
+  const { scrollY } = useScroll();
+  // Depois de rolar, vira só o ícone (não tampa texto); volta a crescer ao subir ao topo.
+  useMotionValueEvent(scrollY, 'change', (y) => setCompacto(y > 480));
 
   useEffect(() => {
     const t = window.setTimeout(() => setVisivel(true), 1600);
@@ -39,7 +43,10 @@ export function CompartilharFab() {
             exit={{ opacity: 0, y: 16, scale: 0.9 }}
             whileTap={{ scale: 0.94 }}
             transition={{ duration: 0.5, ease: EASE_OUT }}
-            className="no-print fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-40 flex h-13 items-center gap-2.5 rounded-full bg-papel pl-4 pr-5 text-[0.74rem] font-bold uppercase tracking-[0.14em] text-noite shadow-[0_18px_40px_-12px_rgb(0_0_0/0.6)] ring-1 ring-ouro/60 transition-colors hover:bg-ouro-claro sm:right-6"
+            className={cn(
+              'no-print fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-40 flex h-13 items-center gap-2.5 rounded-full bg-papel text-[0.74rem] font-bold uppercase tracking-[0.14em] text-noite shadow-[0_18px_40px_-12px_rgb(0_0_0/0.6)] ring-1 ring-ouro/60 transition-[padding,background-color] duration-500 ease-[var(--ease-expo)] hover:bg-ouro-claro sm:right-6',
+              compacto ? 'pl-2.5 pr-2.5' : 'pl-4 pr-5',
+            )}
             aria-label="Compartilhar: postar no story do Instagram, WhatsApp ou copiar link"
           >
             <span className="relative grid size-8 place-items-center rounded-full bg-noite text-papel">
@@ -51,7 +58,14 @@ export function CompartilharFab() {
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 2.5, ease: 'easeOut' }}
               />
             </span>
-            Compartilhar
+            <motion.span
+              className="overflow-hidden whitespace-nowrap"
+              animate={{ width: compacto ? 0 : 'auto', opacity: compacto ? 0 : 1, marginLeft: compacto ? -10 : 0 }}
+              transition={{ duration: 0.4, ease: EASE_OUT }}
+              aria-hidden={compacto}
+            >
+              Compartilhar
+            </motion.span>
           </motion.button>
         )}
       </AnimatePresence>

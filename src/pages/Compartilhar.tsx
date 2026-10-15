@@ -43,7 +43,8 @@ export default function Compartilhar() {
     let vivo = true;
     let url = '';
     setEstado('gerando');
-    gerarStory(atual.conteudo).then((blob) => {
+    // Prévia leve (metade do tamanho, JPEG); o PNG cheio é gerado só na hora de compartilhar.
+    gerarStory(atual.conteudo, { escala: 0.5, formato: 'jpeg' }).then((blob) => {
       if (!vivo) return;
       url = URL.createObjectURL(blob);
       setPrevia({ id: atual.id, url, blob });
@@ -91,13 +92,25 @@ export default function Compartilhar() {
                 icon={<Share2 size={16} strokeWidth={1.6} />}
                 onClick={async () => {
                   if (!previa) return;
-                  const r = await compartilharImagem(previa.blob, nomeArquivo, `${site.nome} · ${site.instagram.handle}`);
-                  if (r !== 'cancelado') setEstado(r);
+                  setEstado('gerando');
+                  const cheio = await gerarStory(atual.conteudo);
+                  const r = await compartilharImagem(cheio, nomeArquivo, `${site.nome} · ${site.instagram.handle}`);
+                  setEstado(r === 'cancelado' ? '' : r);
                 }}
               >
                 Compartilhar
               </Button>
-              <Button variant="outline" disabled={!previa} icon={<Download size={16} strokeWidth={1.6} />} onClick={() => previa && (baixar(previa.blob, nomeArquivo), setEstado('baixado'))}>
+              <Button
+                variant="outline"
+                disabled={!previa || estado === 'gerando'}
+                icon={<Download size={16} strokeWidth={1.6} />}
+                onClick={async () => {
+                  if (!previa) return;
+                  setEstado('gerando');
+                  baixar(await gerarStory(atual.conteudo), nomeArquivo);
+                  setEstado('baixado');
+                }}
+              >
                 Salvar imagem
               </Button>
               <p className="min-h-[1.5em] text-center text-[0.85rem] text-salvia" aria-live="polite">

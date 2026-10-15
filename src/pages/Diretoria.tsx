@@ -104,7 +104,7 @@ export default function Diretoria() {
                     onClick={() => setTurma(t)}
                     aria-pressed={on}
                     className={cn(
-                      'tabular h-9 shrink-0 rounded-full px-4 text-[0.78rem] font-semibold ring-1 ring-inset transition-colors duration-300',
+                      'tabular h-11 shrink-0 rounded-full px-4 text-[0.8rem] font-semibold ring-1 ring-inset transition-colors duration-300',
                       on ? 'bg-verde text-papel ring-verde' : 'text-tinta-2 ring-verde/15 hover:ring-verde/40',
                     )}
                   >

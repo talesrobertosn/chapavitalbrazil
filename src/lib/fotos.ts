@@ -5,7 +5,7 @@
 const grandes = import.meta.glob<string>('../assets/diretoria/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', {
   eager: true,
   import: 'default',
-  query: '?w=900&format=webp&quality=80',
+  query: '?w=640&format=webp&quality=78',
 });
 const pequenas = import.meta.glob<string>('../assets/diretoria/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', {
   eager: true,

@@ -148,7 +148,7 @@ export default function FaleConosco() {
             <div>
               <h3 className="t-h3 text-papel">Precisa conversar agora?</h3>
               <p className="mt-2 text-papel/75">
-                O CVV atende 24 horas, de graça e em sigilo, pelo telefone <a href="tel:188" className="font-semibold text-ouro-claro underline underline-offset-2">188</a> ou pelo chat em cvv.org.br. Em emergência, ligue 192 (SAMU).
+                O CVV atende 24 horas, de graça e em sigilo, pelo telefone <a href="tel:188" className="inline-block px-1.5 py-2 font-semibold text-ouro-claro underline underline-offset-2">188</a> ou pelo chat em cvv.org.br. Em emergência, ligue 192 (SAMU).
               </p>
             </div>
           </Reveal>

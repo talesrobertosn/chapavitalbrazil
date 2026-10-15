@@ -1,10 +1,6 @@
 @import 'tailwindcss';
 
-@import '@fontsource-variable/playfair-display/wght.css';
-@import '@fontsource-variable/playfair-display/wght-italic.css';
-@import '@fontsource-variable/inter/wght.css';
-@import '@fontsource/cormorant-garamond/500-italic.css';
-@import '@fontsource/cormorant-garamond/600-italic.css';
+@import './fontes.css';
 
 /* ==========================================================================
    DESIGN SYSTEM · "Gravura Viva"

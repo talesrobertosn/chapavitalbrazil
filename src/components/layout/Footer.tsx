@@ -47,27 +47,27 @@ export function Footer() {
           <nav aria-label="Rodapé" className="grid grid-cols-2 gap-10 md:col-span-6 md:col-start-7">
             <div>
               <p className="eyebrow text-ouro-claro">Explore</p>
-              <ul className="mt-5 space-y-3">
+              <ul className="mt-4 space-y-1">
                 <li>
-                  <Link to="/" className="link-fio text-papel/80 hover:text-papel">Início</Link>
+                  <Link to="/" className="link-fio inline-block py-2 text-papel/80 hover:text-papel">Início</Link>
                 </li>
                 {NAV.map((n) => (
                   <li key={n.to}>
-                    <Link to={n.to} className="link-fio text-papel/80 hover:text-papel">{n.rotulo}</Link>
+                    <Link to={n.to} className="link-fio inline-block py-2 text-papel/80 hover:text-papel">{n.rotulo}</Link>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
               <p className="eyebrow text-ouro-claro">Participe</p>
-              <ul className="mt-5 space-y-3">
+              <ul className="mt-4 space-y-1">
                 {NAV_EXTRA.map((n) => (
                   <li key={n.to}>
-                    <Link to={n.to} className="link-fio text-papel/80 hover:text-papel">{n.rotulo}</Link>
+                    <Link to={n.to} className="link-fio inline-block py-2 text-papel/80 hover:text-papel">{n.rotulo}</Link>
                   </li>
                 ))}
                 <li>
-                  <Link to="/privacidade" className="link-fio text-papel/80 hover:text-papel">Privacidade</Link>
+                  <Link to="/privacidade" className="link-fio inline-block py-2 text-papel/80 hover:text-papel">Privacidade</Link>
                 </li>
               </ul>
             </div>

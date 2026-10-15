@@ -263,12 +263,23 @@ async function carregarImagem(src: string) {
   return img;
 }
 
-export async function gerarStory(c: StoryConteudo): Promise<Blob> {
+export interface OpcoesStory {
+  /** 1 = 1080×1920 (para postar). 0.5 = prévia leve na tela. */
+  escala?: number;
+  /** PNG para postar (sem perda); JPEG para prévia. */
+  formato?: 'png' | 'jpeg';
+}
+
+export async function gerarStory(c: StoryConteudo, opcoes: OpcoesStory = {}): Promise<Blob> {
+  const escala = opcoes.escala ?? 1;
+  const formato = opcoes.formato ?? 'png';
   await garantirFontes();
   const canvas = document.createElement('canvas');
-  canvas.width = W;
-  canvas.height = H;
+  canvas.width = Math.round(W * escala);
+  canvas.height = Math.round(H * escala);
   const ctx = canvas.getContext('2d')!;
+  // Tudo abaixo desenha em coordenadas de 1080×1920; a escala cuida do resto.
+  ctx.scale(escala, escala);
 
   switch (c.tipo) {
     case 'frase': {
@@ -457,5 +468,5 @@ export async function gerarStory(c: StoryConteudo): Promise<Blob> {
     }
   }
 
-  return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('Falha ao gerar imagem'))), 'image/png'));
+  return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('Falha ao gerar imagem'))), formato === 'jpeg' ? 'image/jpeg' : 'image/png', formato === 'jpeg' ? 0.86 : undefined));
 }

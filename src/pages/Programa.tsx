@@ -248,7 +248,7 @@ function Chips({ rotulo, itens, valor, onChange }: { rotulo: string; itens: { id
             type="button"
             aria-pressed={on}
             onClick={() => onChange(on ? null : it.id)}
-            className={cn('h-9 shrink-0 rounded-full px-4 text-[0.78rem] font-semibold ring-1 ring-inset transition-colors duration-300', on ? 'bg-verde text-papel ring-verde' : 'text-tinta-2 ring-verde/15 hover:ring-verde/40')}
+            className={cn('h-11 shrink-0 rounded-full px-4 text-[0.8rem] font-semibold ring-1 ring-inset transition-colors duration-300', on ? 'bg-verde text-papel ring-verde' : 'text-tinta-2 ring-verde/15 hover:ring-verde/40')}
           >
             {it.rotulo}
           </button>
