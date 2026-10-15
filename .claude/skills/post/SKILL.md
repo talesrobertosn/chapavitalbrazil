@@ -20,6 +20,8 @@ Extraia do pedido: **tema** (eixo, proposta, membro, frase, data, Vital Brazil, 
 ## 3. Roteiro visual (antes de codar)
 Escreva, em 5–8 linhas, o roteiro slide a slide: frase, template, tom, destaque (UMA palavra em ouro) e o que a pessoa sente ao arrastar. Regras:
 - **Capa** com frase de impacto em CAIXA ALTA (template `capa`) ou uma capa de estilo (`cartaCapa`, `gazeta`, `numero`, `convite`); **fecho** sempre com `fecho()` (medalhão + slogan + @).
+- **Data comemorativa** (Dia dos Professores, do Médico…): use `homenagem` + `storyHomenagem` (exemplo: `marketing/instagram/03-dia-dos-professores/`).
+- **Nada cortado**: nenhum ornamento pode terminar numa linha reta dentro da arte, nem passar por baixo de texto, rodapé ou contador. Confira na revisão visual.
 - **Escolha o estilo pelo assunto** (tabela em MARKETING.md § 11): carta, gazeta, prancha, número, linha do tempo, citação, convite, checklist, dicionário, receituário, mosaico, foto com moldura, telegrama. Veja `marketing/assets/galeria-templates.png` e, para um exemplo completo de estilo criativo, `marketing/instagram/02-carta-ao-calouro/`. Não repita o estilo do post anterior.
 - Alterne tons: `tom: 'noite' | 'verde' | 'musgo'` no escuro; `'papel' | 'marfim' | 'areia'` no claro. Varie levemente, nunca saia da paleta.
 - Ornamentos e botânica vêm de `assets.mjs` (`ramo`, `grinalda`, `cantoneira`, `divisor`, `selo`, `lacre`, `envelope`, `samambaia`, `flor`, `oliveira`, `bastaoAsclepio`, `livro`, `coracao`, `balanca`…). Use 1–2 por slide, nos cantos, nunca sobre texto. Varie também `fundoEscuro({ textura })` e `fundoClaro({ decor })`.

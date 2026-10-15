@@ -205,11 +205,12 @@ Cada estilo é um template em `marketing/ferramentas/templates.mjs`; a prancha c
 | **Receituário** | Tom leve: "Rx" com itens e posologia (só propostas reais) | `prescricao` | `/post receituário da transparência` |
 | **Mosaico** | Apresentar um time ou diretoria (até 12 rostos) | `mosaico` | `/post mosaico da Diretoria Científica` |
 | **Foto com moldura** | Fotos reais: bastidores, eventos (`fotoLocal('caminho.jpg')`) | `fotoMoldura` | `/post bastidores com a foto X` |
+| **Homenagem** | Datas comemorativas: Dia dos Professores, Dia do Médico, Dia do Estudante | `homenagem` / `storyHomenagem` (coroa de louros) | `/post homenagem ao Dia do Médico` |
 | **Telegrama** | Aviso urgente, reta final, lembrete de voto | `telegrama` | `/post telegrama: amanhã é dia de votar` |
 | **Contagem** | Faltam N dias | `storyContagem` | `/post story: faltam 7 dias` |
 | **Enquete / quiz** | Perguntas para os stories (a figurinha vai por cima) | `storyEnquete` / `storyQuiz` | `/post enquete: do que o campus precisa?` |
 
-Variações de fundo: `fundoEscuro({ textura: 'luz' | 'raios' | 'vinheta' | 'folhas' | 'samambaia' | 'oliveira' })` e `fundoClaro({ decor: 'folhas' | 'ramos' | 'moldura' | 'trepadeira' | 'flores' | 'nenhum' })`. Tons extras: escuro `floresta`, `carvao`; claro `branco`, `linho`.
+Variações de fundo: `fundoEscuro({ textura: 'luz' | 'raios' | 'vinheta' | 'folhas' | 'samambaia' | 'oliveira' })` e `fundoClaro({ decor: 'folhas' | 'ramos' | 'moldura' | 'trepadeira' | 'flores' | 'buque' | 'nenhum' })`. Ornamentos nunca podem aparecer cortados por uma linha reta dentro da arte: a folha oficial já tem as bordas dissolvidas, e os desenhos novos cabem inteiros no quadro. Tons extras: escuro `floresta`, `carvao`; claro `branco`, `linho`.
 
 ### Estrutura de um carrossel (5–7 slides)
 | # | Papel | Template | Tom |
@@ -221,7 +222,7 @@ Variações de fundo: `fundoEscuro({ textura: 'luz' | 'raios' | 'vinheta' | 'fol
 
 ### Biblioteca de assets
 `marketing/assets/svg/` (gerada por `node marketing/ferramentas/catalogo.mjs`; prancha em `marketing/assets/catalogo.png`):
-52 elementos: ornamentos (cantoneira, moldura, divisor, cartucho, selo, losango duplo, banderola, roseta, filete, asterismo, etiqueta de espécime, carimbo, lacre de cera, envelope), botânica (ramo, ramo duplo, grinalda, folha oficial, samambaia, espiga, flor, trepadeira, oliveira, folhas espalhadas), ciência (frasco, microscópio, serpente em traço, estetoscópio, jaleco, bastão de Asclépio, livro, pena, lamparina, ampulheta, balança, coração anatômico, lupa, retorta, ampola, DNA, rosa dos ventos) e logos (horizontal, empilhado, monograma VB, selo-carimbo, figura, assinatura em itálico, carimbo 1865·2026, banderola, etiqueta, mínimo com @, lacre). Todos em ouro (escuro) e verde (claro).
+54 elementos: ornamentos (cantoneira, moldura, divisor, cartucho, selo, losango duplo, banderola, roseta, filete, asterismo, etiqueta de espécime, carimbo, lacre de cera, envelope), botânica (ramo, ramo duplo, grinalda, folha oficial, samambaia, espiga, flor, trepadeira, oliveira, folhas espalhadas, coroa de louros, buquê), ciência (frasco, microscópio, serpente em traço, estetoscópio, jaleco, bastão de Asclépio, livro, pena, lamparina, ampulheta, balança, coração anatômico, lupa, retorta, ampola, DNA, rosa dos ventos) e logos (horizontal, empilhado, monograma VB, selo-carimbo, figura, assinatura em itálico, carimbo 1865·2026, banderola, etiqueta, mínimo com @, lacre). Todos em ouro (escuro) e verde (claro).
 
 ## 12. Contato
 - Instagram: @chapavitalbrazil

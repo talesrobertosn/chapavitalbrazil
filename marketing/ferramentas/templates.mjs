@@ -31,6 +31,7 @@
  *   mosaico                  grade de retratos circulares (times, diretorias)
  *   fotoMoldura              foto real com moldura dupla e legenda (bastidores)
  *   telegrama                mensagem urgente com STOP (reta final, avisos)
+ *   homenagem / storyHomenagem   datas comemorativas: coroa de louros + título (Dia dos Professores, do Médico…)
  *   storyContagem / storyEnquete / storyQuiz / storyCarta / storyAgenda / storyNumero
  */
 import fs from 'node:fs';
@@ -112,11 +113,12 @@ export const fundoEscuro = ({ w = FEED.w, h = FEED.h, luzX = 0.5, luzY = 0.42, s
     folhas: `<div class="abs" style="inset:0">${A.folhasEspalhadas({ w, h, n: Math.round((w * h) / 90000), semente, op: 0.12 })}</div>`,
     samambaia: `<div class="abs" style="left:-40px;bottom:-60px">${A.samambaia({ h: h * 0.55, op: 0.22 })}</div><div class="abs" style="right:-30px;top:-40px;transform:rotate(180deg)">${A.samambaia({ h: h * 0.42, op: 0.14 })}</div>`,
     oliveira: `<div class="abs" style="left:-60px;bottom:40px">${A.oliveira({ w: w * 0.5, op: 0.25 })}</div><div class="abs" style="right:-60px;top:60px;transform:rotate(180deg)">${A.oliveira({ w: w * 0.42, op: 0.16 })}</div>`,
+    buque: `<div class="abs" style="right:40px;bottom:${h === FEED.h ? 120 : 280}px;opacity:.3">${A.buque({ h: h * 0.34 })}</div>`,
   };
   return `
   <div class="abs" style="inset:0;background:radial-gradient(${w * 0.7}px ${h * 0.5}px at ${luzX * 100}% ${luzY * 100}%, rgba(40,74,60,.9), rgba(40,74,60,0)),linear-gradient(180deg,${a},${b})"></div>
   ${texturas[textura] ?? ''}
-  ${folhas && !['samambaia', 'oliveira', 'folhas'].includes(textura) ? `<div class="abs" style="left:-110px;bottom:-120px">${folha({ w: 420, op: 0.18 })}</div><div class="abs" style="right:-120px;top:-90px">${folha({ w: 380, op: 0.12, flip: true })}</div>` : ''}
+  ${folhas && !['samambaia', 'oliveira', 'folhas', 'buque'].includes(textura) ? `<div class="abs" style="left:-110px;bottom:-120px">${folha({ w: 420, op: 0.18 })}</div><div class="abs" style="right:-120px;top:-90px">${folha({ w: 380, op: 0.12, flip: true })}</div>` : ''}
   ${poeira({ w, h, n: Math.round((w * h) / 9000), semente })}`;
 };
 
@@ -130,7 +132,8 @@ export const fundoClaro = ({ folhas = true, tom = 'papel', decor = 'folhas', w =
     ramos: `<div class="abs" style="left:-30px;bottom:30px">${A.ramo({ cor: COR.verde, w: 420, op: 0.2 })}</div><div class="abs" style="right:-30px;top:20px;transform:rotate(180deg)">${A.ramo({ cor: COR.verde, w: 360, op: 0.14 })}</div>`,
     moldura: `<div class="abs" style="inset:44px 44px ${h === FEED.h ? 96 : 44}px;border:1px solid rgba(30,58,47,.45)"></div><div class="abs" style="inset:54px 54px ${h === FEED.h ? 106 : 54}px;border:1px solid rgba(30,58,47,.2)"></div>${[[0, 0], [90, 1], [270, 2], [180, 3]].map(([rot, i]) => `<div class="abs" style="${i % 2 ? 'right' : 'left'}:34px;${i < 2 ? 'top' : 'bottom'}:${i < 2 || h !== FEED.h ? 34 : 86}px">${A.cantoneira({ cor: COR.ouroEscuro, t: 90, rot })}</div>`).join('')}`,
     trepadeira: `<div class="abs" style="left:14px;top:-20px">${A.trepadeira({ cor: COR.verde, h: h + 40, op: 0.22 })}</div><div class="abs" style="right:14px;top:-20px">${A.trepadeira({ cor: COR.verde, h: h + 40, op: 0.22, flip: true })}</div>`,
-    flores: `<div class="abs" style="left:-20px;bottom:-30px;transform:rotate(-18deg)">${A.flor({ cor: COR.verde, t: 260, op: 0.16 })}</div><div class="abs" style="right:-40px;top:-60px;transform:rotate(160deg)">${A.flor({ cor: COR.verde, t: 220, op: 0.12 })}</div>`,
+    buque: `<div class="abs" style="right:56px;bottom:${h === FEED.h ? 130 : 290}px">${A.buque({ cor: COR.verde, h: h * 0.3, op: 0.28 })}</div>`,
+    flores: `<div class="abs" style="right:60px;top:${h === FEED.h ? 120 : 280}px;transform:rotate(12deg)">${A.flor({ cor: COR.verde, t: 200, op: 0.22 })}</div><div class="abs" style="right:230px;top:${h === FEED.h ? 70 : 230}px;transform:rotate(-16deg)">${A.flor({ cor: COR.verde, t: 130, haste: false, op: 0.18 })}</div>`,
     nenhum: '',
   };
   return `
@@ -182,12 +185,12 @@ export function capa({ frase, destaque, sub, rotuloTxt = 'Chapa ao CA de Medicin
 }
 
 /** FRASE: uma frase grande, uma palavra em ouro. `tema`: 'escuro' | 'claro'. */
-export function frase({ texto, destaque, tema = 'escuro', tom, rotuloTxt, apoio }) {
+export function frase({ texto, destaque, tema = 'escuro', tom, rotuloTxt, apoio, decor, textura }) {
   const claro = tema === 'claro';
   const corTxt = claro ? COR.verde : COR.papel;
   const corDest = claro ? COR.ouroEscuro : COR.ouroClaro;
   return `
-    ${claro ? fundoClaro({ tom }) : fundoEscuro({ semente: 5, tom })}
+    ${claro ? fundoClaro({ tom, decor }) : fundoEscuro({ semente: 5, tom, textura })}
     ${rotuloTxt ? `<div class="abs" style="left:80px;top:110px">${rotulo(rotuloTxt, corDest)}</div>` : ''}
     <div class="abs pf" data-caber="920" style="left:80px;right:80px;top:50%;transform:translateY(-50%);font-weight:800;font-size:${tamanhoFrase(texto)}px;line-height:1;letter-spacing:-.025em;color:${corTxt};text-transform:uppercase;text-wrap:balance">${destacar(texto.toUpperCase(), destaque, { cor: corDest })}</div>
     ${apoio ? `<div class="abs in" style="left:80px;right:80px;top:1090px;font-size:28px;line-height:1.5;color:${claro ? COR.tinta2 : 'rgba(244,240,230,.75)'}">${esc(apoio)}</div>` : ''}`;
@@ -220,9 +223,9 @@ export function pergunta({ pergunta: q, resposta }) {
 }
 
 /** LISTA (escuro): título + itens numerados. Bom para "3 coisas", resumos. */
-export function lista({ rotuloTxt, titulo, itens = [], tom }) {
+export function lista({ rotuloTxt, titulo, itens = [], tom, textura }) {
   return `
-    ${fundoEscuro({ semente: 13, tom })}
+    ${fundoEscuro({ semente: 13, tom, textura })}
     <div class="abs" style="left:80px;top:100px">${rotulo(rotuloTxt)}</div>
     <div class="abs pf" data-caber="920" style="left:80px;right:80px;top:160px;font-weight:800;font-size:80px;line-height:.98;color:${COR.papel};text-transform:uppercase;text-wrap:balance">${esc(titulo)}</div>
     <div class="abs" style="left:80px;right:80px;top:420px">
@@ -348,9 +351,9 @@ export async function montarStory({ html, pasta, nome }) {
 /* ======================================================================== */
 
 /** Quatro cantoneiras nos cantos de uma área (moldura leve). */
-export const cantoneiras = ({ cor = COR.ouro, t = 100, inset = 40 } = {}) =>
+export const cantoneiras = ({ cor = COR.ouro, t = 100, inset = 40, base = inset } = {}) =>
   [[0, 'left', 'top'], [90, 'right', 'top'], [270, 'left', 'bottom'], [180, 'right', 'bottom']]
-    .map(([rot, x, y]) => `<div class="abs" style="${x}:${inset}px;${y}:${inset}px">${A.cantoneira({ cor, t, rot })}</div>`)
+    .map(([rot, x, y]) => `<div class="abs" style="${x}:${inset}px;${y}:${y === 'bottom' ? base : inset}px">${A.cantoneira({ cor, t, rot })}</div>`)
     .join('');
 
 /** Imagem de qualquer caminho (foto real) como data URI. */
@@ -758,4 +761,47 @@ export function storyNumero({ valor, rotuloTxt, texto, cta, tom }) {
     ${texto ? `<div class="abs cg" style="left:120px;right:120px;top:1210px;text-align:center;font-weight:600;font-size:46px;line-height:1.15;color:${COR.ouroClaro}">${esc(texto)}</div>` : ''}
     ${cta ? `<div class="abs eyebrow" style="left:0;right:0;top:1540px;text-align:center;font-size:20px;color:${COR.ouroClaro}">${esc(cta)}</div>` : ''}
     ${rodapeStory2()}`;
+}
+
+
+/* ----------------------------------------------------------- homenagem */
+
+/**
+ * HOMENAGEM (datas comemorativas): coroa de louros dourada emoldurando o título.
+ * Ex.: Dia dos Professores, Dia do Médico, Dia do Estudante. `pre` = linha menor acima do título.
+ */
+export function homenagem({ data, pre = 'Feliz Dia dos', titulo, sub, tom = 'floresta', textura = 'raios' }) {
+  const tam = titulo.length > 12 ? 78 : titulo.length > 9 ? 92 : 112;
+  return `
+    ${fundoEscuro({ tom, textura, semente: 107, luzY: 0.36, folhas: false })}
+    ${cantoneiras({ cor: COR.ouro, t: 90, inset: 40, base: 92 })}
+    <div class="abs" style="left:50%;top:96px;transform:translateX(-50%);filter:drop-shadow(0 0 40px rgba(205,177,134,.12))">${A.coroaLouros({ t: 980 })}</div>
+    <div class="abs" style="left:0;right:0;top:${data ? 330 : 360}px;display:flex;flex-direction:column;align-items:center;text-align:center">
+      ${data ? `<div class="eyebrow" style="font-size:22px;color:${COR.ouroClaro};display:flex;align-items:center;gap:16px">${losango(10)}<span>${esc(data)}</span>${losango(10)}</div>` : ''}
+      <div class="pf" style="font-weight:800;font-size:58px;line-height:1;letter-spacing:.02em;color:${COR.papel};text-transform:uppercase;margin-top:${data ? 40 : 0}px">${esc(pre)}</div>
+      <div class="pf" data-caber="560" style="position:relative;font-weight:800;font-style:italic;font-size:${tam}px;line-height:1.05;letter-spacing:-.01em;color:${COR.ouroClaro};text-transform:uppercase;margin-top:14px;white-space:nowrap">${esc(titulo)}</div>
+      <div style="margin-top:6px">${pincelada({ w: 400, h: 24 })}</div>
+      <div style="margin-top:40px">${medalhao({ cor: COR.verde, fundo: COR.papel, w: 92 })}</div>
+    </div>
+    ${sub ? `<div class="abs cg" style="left:120px;right:120px;top:1110px;text-align:center;font-weight:600;font-size:50px;line-height:1.12;color:${COR.papel}">${esc(sub)}</div>` : ''}`;
+}
+
+/** STORY de homenagem: coroa de louros + título + frase. */
+export function storyHomenagem({ data, pre = 'Feliz Dia dos', titulo, sub, cta, tom = 'floresta' }) {
+  const tam = titulo.length > 12 ? 78 : titulo.length > 9 ? 92 : 112;
+  return `
+    ${fundoEscuro({ w: STORY.w, h: STORY.h, tom, textura: 'raios', semente: 109, luzY: 0.4, folhas: false })}
+    ${cantoneiras({ cor: COR.ouro, t: 90, inset: 60 })}
+    ${cabecalhoStory2()}
+    <div class="abs" style="left:50%;top:400px;transform:translateX(-50%)">${A.coroaLouros({ t: 980 })}</div>
+    <div class="abs" style="left:0;right:0;top:640px;display:flex;flex-direction:column;align-items:center;text-align:center">
+      ${data ? `<div class="eyebrow" style="font-size:22px;color:${COR.ouroClaro};display:flex;align-items:center;gap:16px">${losango(10)}<span>${esc(data)}</span>${losango(10)}</div>` : ''}
+      <div class="pf" style="font-weight:800;font-size:58px;line-height:1;color:${COR.papel};text-transform:uppercase;margin-top:40px">${esc(pre)}</div>
+      <div class="pf" data-caber="560" style="font-weight:800;font-style:italic;font-size:${tam}px;line-height:1.05;color:${COR.ouroClaro};text-transform:uppercase;margin-top:14px;white-space:nowrap">${esc(titulo)}</div>
+      <div style="margin-top:6px">${pincelada({ w: 400, h: 24 })}</div>
+      <div style="margin-top:40px">${medalhao({ cor: COR.verde, fundo: COR.papel, w: 92 })}</div>
+    </div>
+    ${sub ? `<div class="abs cg" style="left:110px;right:110px;top:1420px;text-align:center;font-weight:600;font-size:52px;line-height:1.12;color:${COR.papel}">${esc(sub)}</div>` : ''}
+    ${cta ? `<div class="abs eyebrow" style="left:0;right:0;top:1560px;text-align:center;font-size:20px;color:${COR.ouroClaro}">${esc(cta)}</div>` : ''}
+    <div class="abs" style="left:0;right:0;top:1680px;text-align:center"><div class="in" style="font-weight:600;font-size:32px;color:${COR.papel}">${site.instagram.handle}</div></div>`;
 }

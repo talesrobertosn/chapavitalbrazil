@@ -20,6 +20,7 @@ const e4 = EIXOS[3];
 const [dia, mes] = [site.eleicao.data.slice(8, 10), ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'][Number(site.eleicao.data.slice(5, 7)) - 1]];
 
 export const EXEMPLOS = {
+  homenagem: T.homenagem({ data: '15 de outubro', titulo: 'Professores', sub: 'Hoje é a data. Pra gente, é todo dia.' }),
   cartaCapa: T.cartaCapa({ sub: 'Uma carta para quem está chegando. E para todo veterano que lembra como foi.' }),
   carta: T.carta({ saudacao: 'Querido calouro,', capitular: true, paragrafos: ['Você chegou. Depois de tanto estudo e de tanta espera, você está aqui. E a gente sabe: o começo pode assustar.', 'Por isso, queremos te dizer uma coisa logo no primeiro dia: ninguém deveria se sentir sozinho no 1º período.'] }),
   cartaFim: T.carta({ paragrafos: ['A medicina também se faz fora da sala de aula. E ela começa com cuidado: com você.'], despedida: 'Seja muito bem-vindo.' }),
@@ -41,6 +42,7 @@ export const EXEMPLOS = {
   lista: T.lista({ rotuloTxt: 'Transparência', titulo: 'Todo mês. Todo centavo.', itens: e4.grupos[0].propostas.slice(0, 4).map((p) => ({ titulo: p.titulo, texto: p.texto })), tom: 'carvao' }),
 };
 export const STORIES = {
+  storyHomenagem: T.storyHomenagem({ data: '15 de outubro', titulo: 'Professores', sub: 'Hoje é a data. Pra gente, é todo dia.' }),
   storyContagem: T.storyContagem({ dias: 7 }),
   storyEnquete: T.storyEnquete({ pergunta: 'Do que o campus mais precisa?', opcoes: ['Sala de descanso', 'Micro-ondas e tomadas', 'Armários'] }),
   storyQuiz: T.storyQuiz({ pergunta: 'Cada soro antiofídico serve para qualquer serpente?', resposta: 'Não. Vital Brazil demonstrou que cada soro age contra o veneno de um tipo de serpente.' }),

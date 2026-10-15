@@ -72,7 +72,9 @@ export const folha = ({ cor = COR.ouro, w = 300, op = 0.2, flip = false, estilo 
   // Altura proporcional ao desenho: sem ela o navegador corta a ponta da folha.
   const [, , vw, vh] = LEAF.vb.split(' ').map(Number);
   const h = Math.round((w * vh) / vw);
-  return `<svg viewBox="${LEAF.vb}" width="${w}" height="${h}" style="display:block;opacity:${op};${flip ? 'transform:scaleX(-1);' : ''}${estilo}"><path fill="${cor}" d="${LEAF.d}"/></svg>`;
+  // O vetor é um recorte da arte original (bordas retas). A máscara dissolve as bordas.
+  const mask = 'radial-gradient(ellipse 50% 50% at 50% 46%, #000 52%, rgba(0,0,0,.55) 72%, transparent 96%)';
+  return `<svg viewBox="${LEAF.vb}" width="${w}" height="${h}" style="display:block;opacity:${op};${flip ? 'transform:scaleX(-1);' : ''}-webkit-mask-image:${mask};mask-image:${mask};${estilo}"><path fill="${cor}" d="${LEAF.d}"/></svg>`;
 };
 
 /** Granulação de papel/filme sobre toda a área. */

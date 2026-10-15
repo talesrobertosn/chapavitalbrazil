@@ -7,7 +7,8 @@
  *  ORNAMENTOS   cantoneira, moldura, divisor, cartucho, selo, losangoDuplo,
  *               banderola, roseta, filete, asterismo, etiqueta, carimbo, lacre, envelope
  *  BOTÂNICA     ramo, ramoDuplo, grinalda, folhaSolta,
- *               samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas
+ *               samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas,
+ *               coroaLouros, buque
  *  CIÊNCIA      frasco, microscopio, serpenteTraco, estetoscopio, jaleco,
  *               bastaoAsclepio, livro, pena, lampada, ampulheta, balanca, coracao,
  *               lupa, retorta, ampola, dna, bussola
@@ -596,4 +597,108 @@ export const logoMinimo = ({ cor = COR.papel, h = 64 } = {}) => {
 /** Lacre com o medalhão (versão pronta). */
 export const logoLacre = ({ t = 200 } = {}) => lacre({ t, cor: COR.ouro, miolo: COR.noite });
 
-export const CATALOGO = { cantoneira, moldura, divisor, cartucho, selo, losangoDuplo, banderola, roseta, filete, asterismo, etiqueta, carimbo, lacre, envelope, ramo, ramoDuplo, grinalda, folhaSolta, samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas, frasco, microscopio, serpenteTraco, estetoscopio, jaleco, bastaoAsclepio, livro, pena, lampada, ampulheta, balanca, coracao, lupa, retorta, ampola, dna, bussola, logoHorizontal, logoEmpilhado, logoMonograma, logoSelo, figuraInline, logoAssinatura, logoCarimbo, logoBanderola, logoEtiqueta, logoMinimo, logoLacre };
+/* ----------------------------------------------------------- BOTÂNICA III */
+
+/** Folha de louro em gravura (contorno, nervura central e laterais). */
+const folhaLouro = (len, larg, op = 1) => `<g opacity="${op}">
+  <path d="M0 0 C ${len * 0.25} ${-larg}, ${len * 0.7} ${-larg * 0.9}, ${len} 0 C ${len * 0.7} ${larg * 0.9}, ${len * 0.25} ${larg}, 0 0 z"/>
+  <path d="M${len * 0.04} 0 Q ${len * 0.5} ${-larg * 0.08}, ${len * 0.94} 0" opacity=".7"/>
+  ${[0.22, 0.38, 0.54, 0.7].map((k) => `<path d="M${len * k} ${-larg * 0.04} l ${len * 0.1} ${-larg * 0.55}" opacity=".38"/><path d="M${len * k} ${larg * 0.04} l ${len * 0.1} ${larg * 0.55}" opacity=".38"/>`).join('')}
+</g>`;
+
+/**
+ * Coroa de louros clássica: dois ramos que sobem pelos lados, abertos no topo,
+ * presos embaixo por um laço. Completa dentro da caixa (nada cortado).
+ */
+export const coroaLouros = ({ cor = COR.ouro, t = 600, folhas = 13, laco = true, frutos = true } = {}) => {
+  const c = t / 2;
+  const cy = t * 0.45;
+  const R = t * 0.38;
+  const a0 = Math.PI * 0.56; // embaixo (perto do laço)
+  const a1 = Math.PI * 1.36; // topo (abertura)
+  const lado = (sinal) => {
+    let d = '';
+    const pts = 40;
+    for (let i = 0; i <= pts; i++) {
+      const a = a0 + ((a1 - a0) * i) / pts;
+      const x = c + sinal * Math.cos(a) * R * -1;
+      const y = cy + Math.sin(a) * R;
+      d += `${i ? 'L' : 'M'} ${x.toFixed(1)} ${y.toFixed(1)} `;
+    }
+    const itens = Array.from({ length: folhas }, (_, i) => {
+      const k = (i + 0.6) / folhas;
+      const a = a0 + (a1 - a0) * k;
+      const x = c + sinal * Math.cos(a) * R * -1;
+      const y = cy + Math.sin(a) * R;
+      const tang = (Math.atan2(Math.cos(a), sinal * Math.sin(a)) * 180) / Math.PI;
+      const len = t * (0.13 - k * 0.045);
+      const larg = len * 0.3;
+      const fora = `<g transform="translate(${x} ${y}) rotate(${tang + sinal * -38})">${folhaLouro(len, larg)}</g>`;
+      const dentro = `<g transform="translate(${x} ${y}) rotate(${tang + sinal * 34})">${folhaLouro(len * 0.86, larg * 0.9, 0.95)}</g>`;
+      const fruto = frutos && i % 3 === 1 ? `<circle cx="${x + sinal * -t * 0.028}" cy="${y + t * 0.012}" r="${t * 0.0085}" fill="${cor}" opacity=".85"/>` : '';
+      return fora + dentro + fruto;
+    }).join('');
+    // folha terminal no topo
+    const ax = c + sinal * Math.cos(a1) * R * -1;
+    const ay = cy + Math.sin(a1) * R;
+    const tangF = (Math.atan2(Math.cos(a1), sinal * Math.sin(a1)) * 180) / Math.PI;
+    return `<path d="${d}" stroke-width="${Math.max(1.4, t * 0.0035)}"/>${itens}<g transform="translate(${ax} ${ay}) rotate(${tangF})">${folhaLouro(t * 0.08, t * 0.022)}</g>`;
+  };
+  const by = cy + Math.sin(a0) * R;
+  const lacoSvg = laco
+    ? `<g transform="translate(${c} ${by + t * 0.01})">
+        <path d="M0 0 C ${-t * 0.05} ${-t * 0.05}, ${-t * 0.11} ${-t * 0.02}, ${-t * 0.09} ${t * 0.02} C ${-t * 0.07} ${t * 0.05}, ${-t * 0.02} ${t * 0.02}, 0 0 z" fill="${cor}" fill-opacity=".18"/>
+        <path d="M0 0 C ${t * 0.05} ${-t * 0.05}, ${t * 0.11} ${-t * 0.02}, ${t * 0.09} ${t * 0.02} C ${t * 0.07} ${t * 0.05}, ${t * 0.02} ${t * 0.02}, 0 0 z" fill="${cor}" fill-opacity=".18"/>
+        <path d="M0 0 C ${-t * 0.02} ${t * 0.04}, ${-t * 0.05} ${t * 0.08}, ${-t * 0.08} ${t * 0.11} l ${t * 0.02} ${-t * 0.005} l ${t * 0.006} ${t * 0.02}"/>
+        <path d="M0 0 C ${t * 0.02} ${t * 0.04}, ${t * 0.05} ${t * 0.08}, ${t * 0.08} ${t * 0.11} l ${-t * 0.02} ${-t * 0.005} l ${-t * 0.006} ${t * 0.02}"/>
+        <ellipse cx="0" cy="0" rx="${t * 0.014}" ry="${t * 0.012}" fill="${cor}"/>
+      </g>`
+    : '';
+  return svg(t, t, `<g ${traco(cor, Math.max(1.1, t * 0.0022))}>${lado(1)}${lado(-1)}${lacoSvg}</g>`);
+};
+
+/**
+ * Buquê em gravura: flores de tamanhos diferentes, louro, samambaia e espigas
+ * convergindo para um laço. Desenho completo, para cantos e homenagens.
+ */
+export const buque = ({ cor = COR.ouro, h = 520, op = 1, flip = false } = {}) => {
+  const w = h * 0.82;
+  const bx = w * 0.5;
+  const by = h * 0.76; // ponto de amarração
+  const haste = (x, y) => `<path d="M${bx} ${by} C ${bx + (x - bx) * 0.15} ${by - (by - y) * 0.45}, ${x + (bx - x) * 0.25} ${y + (by - y) * 0.4}, ${x} ${y}"/>`;
+  const florAt = (x, y, t, rot = 0) => {
+    const f = flor({ cor, t, haste: false, petalas: 12 });
+    return `<g transform="translate(${x - t / 2} ${y - t / 2}) rotate(${rot} ${t / 2} ${t / 2})">${f.replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '')}</g>`;
+  };
+  const folhaAt = (x, y, len, ang) => `<g transform="translate(${x} ${y}) rotate(${ang})">${folhaLouro(len, len * 0.3)}</g>`;
+  const flores = [
+    [w * 0.5, h * 0.24, h * 0.3, 0],
+    [w * 0.25, h * 0.36, h * 0.23, 18],
+    [w * 0.76, h * 0.34, h * 0.25, -12],
+    [w * 0.39, h * 0.5, h * 0.17, 30],
+    [w * 0.63, h * 0.52, h * 0.16, -20],
+  ];
+  const brotos = [[w * 0.12, h * 0.22], [w * 0.9, h * 0.2], [w * 0.64, h * 0.12], [w * 0.34, h * 0.14]];
+  const corpo = `
+    ${flores.map(([x, y]) => haste(x, y)).join('')}
+    ${brotos.map(([x, y]) => haste(x, y)).join('')}
+    ${brotos.map(([x, y], i) => `<g transform="translate(${x} ${y}) rotate(${[-30, 30, 8, -10][i]})"><path d="M0 0 C ${-h * 0.018} ${-h * 0.03}, ${-h * 0.01} ${-h * 0.06}, 0 ${-h * 0.07} C ${h * 0.01} ${-h * 0.06}, ${h * 0.018} ${-h * 0.03}, 0 0 z"/><path d="M0 0 C ${-h * 0.02} ${-h * 0.01}, ${-h * 0.03} ${-h * 0.03}, ${-h * 0.028} ${-h * 0.045}" opacity=".6"/><path d="M0 0 C ${h * 0.02} ${-h * 0.01}, ${h * 0.03} ${-h * 0.03}, ${h * 0.028} ${-h * 0.045}" opacity=".6"/></g>`).join('')}
+    ${folhaAt(w * 0.3, h * 0.6, h * 0.17, -150)}${folhaAt(w * 0.7, h * 0.6, h * 0.17, -30)}
+    ${folhaAt(w * 0.2, h * 0.5, h * 0.15, -170)}${folhaAt(w * 0.8, h * 0.48, h * 0.15, -8)}
+    ${folhaAt(w * 0.42, h * 0.64, h * 0.12, -120)}${folhaAt(w * 0.58, h * 0.64, h * 0.12, -60)}
+    ${folhaAt(w * 0.14, h * 0.4, h * 0.11, -200)}${folhaAt(w * 0.86, h * 0.38, h * 0.11, 20)}
+    ${folhaAt(w * 0.5, h * 0.42, h * 0.1, -95)}
+    ${flores.map(([x, y, t, r]) => florAt(x, y, t, r)).join('')}
+    <g transform="translate(${bx} ${by})">
+      <path d="M${-w * 0.07} ${-h * 0.02} C ${-w * 0.16} ${-h * 0.07}, ${-w * 0.2} ${h * 0.0}, ${-w * 0.12} ${h * 0.025} C ${-w * 0.08} ${h * 0.035}, ${-w * 0.03} ${h * 0.01}, 0 0" fill="${cor}" fill-opacity=".16"/>
+      <path d="M${w * 0.07} ${-h * 0.02} C ${w * 0.16} ${-h * 0.07}, ${w * 0.2} ${h * 0.0}, ${w * 0.12} ${h * 0.025} C ${w * 0.08} ${h * 0.035}, ${w * 0.03} ${h * 0.01}, 0 0" fill="${cor}" fill-opacity=".16"/>
+      <path d="M${-w * 0.05} ${-h * 0.01} H ${w * 0.05}"/>
+      <ellipse cx="0" cy="0" rx="${w * 0.022}" ry="${h * 0.016}" fill="${cor}"/>
+      <path d="M0 0 C ${-w * 0.03} ${h * 0.06}, ${-w * 0.08} ${h * 0.11}, ${-w * 0.12} ${h * 0.15} l ${w * 0.03} 0 l ${w * 0.005} ${h * 0.025}"/>
+      <path d="M0 0 C ${w * 0.03} ${h * 0.06}, ${w * 0.08} ${h * 0.11}, ${w * 0.12} ${h * 0.15} l ${-w * 0.03} 0 l ${-w * 0.005} ${h * 0.025}"/>
+      ${[-0.03, -0.012, 0.006, 0.024].map((k) => `<path d="M${w * k} ${h * 0.02} V ${h * 0.17}" opacity=".7"/>`).join('')}
+    </g>`;
+  return svg(w, h, `<g ${traco(cor, Math.max(1.1, h * 0.0026))} opacity="${op}" ${flip ? `transform="scale(-1 1) translate(-${w} 0)"` : ''}>${corpo}</g>`);
+};
+
+export const CATALOGO = { cantoneira, moldura, divisor, cartucho, selo, losangoDuplo, banderola, roseta, filete, asterismo, etiqueta, carimbo, lacre, envelope, ramo, ramoDuplo, grinalda, folhaSolta, samambaia, espiga, flor, trepadeira, oliveira, folhasEspalhadas, coroaLouros, buque, frasco, microscopio, serpenteTraco, estetoscopio, jaleco, bastaoAsclepio, livro, pena, lampada, ampulheta, balanca, coracao, lupa, retorta, ampola, dna, bussola, logoHorizontal, logoEmpilhado, logoMonograma, logoSelo, figuraInline, logoAssinatura, logoCarimbo, logoBanderola, logoEtiqueta, logoMinimo, logoLacre };
