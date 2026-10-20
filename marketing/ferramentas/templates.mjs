@@ -21,7 +21,7 @@
  *   cartaCapa / carta        carta em papel (envelope com lacre, caligrafia, assinatura)
  *   gazeta                   primeira página de jornal do séc. XIX ("Você sabia?", notícias)
  *   prancha                  prancha científica: figuras numeradas + legendas (propostas como espécimes)
- *   numero                   um número gigante (52 propostas, 23 pessoas, 20 dias)
+ *   numero                   um número gigante (52 propostas, 22 pessoas, 20 dias)
  *   linhaDoTempo             marcos com fio vertical (Vital Brazil, 100 dias)
  *   citacao                  frase longa em itálico com aspas monumentais
  *   convite                  data grande, horário, local, carimbo (eleição, eventos)

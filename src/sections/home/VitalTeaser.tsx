@@ -43,7 +43,7 @@ export function VitalTeaser() {
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7">
-          <SectionHead numero="05" rotulo="O nome" titulo="Por que Vital Brazil?" tom="claro">
+          <SectionHead numero="06" rotulo="O nome" titulo="Por que Vital Brazil?" tom="claro">
             Médico, cientista e sanitarista. Dedicou a vida a transformar conhecimento em vidas salvas, longe dos holofotes e perto de quem precisava.
           </SectionHead>
 

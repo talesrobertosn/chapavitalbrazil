@@ -11,7 +11,7 @@ export function Principios() {
       <div className="grain" />
       <div className="container-x relative">
         <div className="grid gap-8 lg:grid-cols-12">
-          <SectionHead numero="02" rotulo="Nossos princípios" titulo="O que nos guia." className="lg:col-span-5" />
+          <SectionHead numero="03" rotulo="Nossos princípios" titulo="O que nos guia." className="lg:col-span-5" />
           <p className="t-lead self-end text-pretty text-papel/70 lg:col-span-6 lg:col-start-7">
             Cinco compromissos que atravessam todas as propostas, do primeiro dia de aula ao último plantão.
           </p>

@@ -122,7 +122,7 @@ export default function Diretoria() {
             {vista === 'galeria' ? <Galeria turma={turma} foco={foco} setFoco={setFoco} entrada={!alternou} /> : <Estrutura turma={turma} foco={foco} setFoco={setFoco} />}
           </LayoutGroup>
           <p className="mt-20 text-center text-[0.85rem] text-tinta-2">
-            Fotos e depoimentos de cada membro chegam em breve. Toque em alguém para ver a ficha completa.
+            Toque em alguém para ver a ficha completa e ler, nas palavras de cada um, por que está na chapa.
           </p>
         </div>
       </section>
@@ -146,9 +146,12 @@ function MembroLink({ m, className, children, ...rest }: { m: MembroComCargo; cl
 }
 
 /** Cartão de membro na galeria: destaca no hover, demais perdem ênfase. */
-function CartaoMembro({ m, turma, foco, setFoco, tamanho = 'md' }: VistaProps & { m: MembroComCargo; tamanho?: 'sm' | 'md' }) {
+function CartaoMembro({ m, turma, foco, setFoco, tamanho: base = 'md' }: VistaProps & { m: MembroComCargo; tamanho?: 'sm' | 'md' }) {
   const apagado = (turma !== null && m.turma !== turma) || (foco !== null && foco !== m.slug);
   const ativo = foco === m.slug;
+  // Destaque sobe um tamanho: sm → md (estrutura), md → lg (galeria)
+  const tamanho = m.destaque ? (base === 'sm' ? 'md' : 'lg') : base;
+  const larg = { sm: 'w-[4.5rem] sm:w-20', md: 'w-[7.5rem] sm:w-[8.5rem]', lg: 'w-[10rem] sm:w-[11.5rem]' }[tamanho];
   return (
     <MembroLink
       m={m}
@@ -160,11 +163,12 @@ function CartaoMembro({ m, turma, foco, setFoco, tamanho = 'md' }: VistaProps & 
       }}
       onBlur={() => setFoco(null)}
     >
-      <span className={cn('relative block', tamanho === 'md' ? 'w-[7.5rem] sm:w-[8.5rem]' : 'w-[4.5rem] sm:w-20')}>
-        <Portrait membro={m} layoutId={`ret-${m.slug}`} tamanho={tamanho === 'md' ? 'md' : 'sm'} ativo={ativo} className={cn('w-full transition-transform duration-700 ease-[var(--ease-expo)]', ativo && 'scale-[1.06]')} />
-        <span aria-hidden="true" className={cn('absolute -inset-1.5 rounded-full border transition-[opacity,transform] duration-500', ativo ? 'scale-100 border-ouro-escuro/60 opacity-100' : 'scale-95 border-transparent opacity-0')} />
+      <span className={cn('relative block', larg)}>
+        <Portrait membro={m} layoutId={`ret-${m.slug}`} tamanho={tamanho} ativo={ativo} className={cn('w-full transition-transform duration-700 ease-[var(--ease-expo)]', ativo && 'scale-[1.06]')} />
+        <span aria-hidden="true" className={cn('absolute -inset-1.5 rounded-full border transition-[opacity,transform] duration-500', ativo || m.destaque ? 'scale-100 border-ouro-escuro/60 opacity-100' : 'scale-95 border-transparent opacity-0')} />
+        {m.destaque && <span aria-hidden="true" className="absolute -inset-3.5 rounded-full border border-ouro-escuro/25" />}
       </span>
-      <span className={cn('mt-4 max-w-[10rem] font-display font-semibold leading-tight text-verde', tamanho === 'md' ? 'text-[1rem]' : 'text-[0.82rem]')}>{m.nome}</span>
+      <span className={cn('mt-4 font-display font-semibold leading-tight text-verde', { sm: 'max-w-[10rem] text-[0.82rem]', md: 'max-w-[10rem] text-[1rem]', lg: 'mt-6 max-w-[13rem] text-[1.2rem]' }[tamanho])}>{m.nome}</span>
       <span className={cn('mt-1 text-[0.75rem] transition-colors duration-300', ativo ? 'text-ouro-escuro' : 'text-tinta-2')}>Turma {m.turma}</span>
     </MembroLink>
   );

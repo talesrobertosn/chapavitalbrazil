@@ -42,6 +42,15 @@ export function Footer() {
                 <WhatsappIcon size={18} /> Mandar no grupo
               </button>
             </div>
+            {/* No celular o QR não faz sentido (é a própria tela); no computador, alguém aponta a câmera */}
+            <div className="mt-10 hidden items-center gap-5 md:flex">
+              <img src={`${import.meta.env.BASE_URL}qr-code.svg`} alt="QR Code que abre o site da chapa" width={112} height={112} loading="lazy" className="size-28 rounded-[2px] bg-papel p-1.5 ring-1 ring-ouro/40" />
+              <p className="max-w-[14rem] text-[0.85rem] leading-relaxed text-salvia">
+                <span className="block font-display text-[1rem] font-semibold text-papel">Aponte a câmera</span>
+                e leve o site no celular.{' '}
+                <Link to="/compartilhar#qr-code" className="link-fio text-ouro-claro hover:text-papel">Baixar QR Code</Link>
+              </p>
+            </div>
           </div>
 
           <nav aria-label="Rodapé" className="grid grid-cols-2 gap-10 md:col-span-6 md:col-start-7">

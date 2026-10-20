@@ -70,7 +70,7 @@
 
 ## 4. Diretoria
 
-23 estudantes, da turma 1 à turma 6, em 13 frentes. Fonte: `src/data/diretoria.ts` (nomes completos, cargos e turmas, exatamente como informados).
+22 estudantes, da turma 1 à turma 6, em 13 frentes. Fonte: `src/data/diretoria.ts` (nomes completos, cargos e turmas, exatamente como informados).
 - **Presidência**: Enzo Martins de Marco Santos (T1) · **Vice**: Rafaella Hanna Arcanjo (T4).
 - "T1" = Turma 1. Não converter em "período" sem confirmação.
 - **Não inventar** biografias, falas ou conquistas. O depoimento "Eu estou na chapa porque…" só com texto da própria pessoa.
@@ -196,7 +196,7 @@ Cada estilo é um template em `marketing/ferramentas/templates.mjs`; a prancha c
 | **Carta** | Calouro, véspera, agradecimento, mensagem pessoal | `cartaCapa` + `carta` (+ `storyCarta`) | `/post carta ao calouro` |
 | **Gazeta** | "Você sabia?", história do Vital Brazil, notícias da campanha | `gazeta` | `/post gazeta sobre a rede de soros do Butantan` |
 | **Prancha científica** | Propostas como "espécimes" numerados, resumos de eixo | `prancha` | `/post prancha com 4 propostas do eixo Internato` |
-| **Número** | 52 propostas, 23 pessoas, 5 eixos, 20 dias | `numero` / `storyNumero` | `/post número: 52 propostas` |
+| **Número** | 52 propostas, 22 pessoas, 5 eixos, 20 dias | `numero` / `storyNumero` | `/post número: 52 propostas` |
 | **Linha do tempo** | Vital Brazil, 100 primeiros dias, calendário | `linhaDoTempo` | `/post linha do tempo do Vital Brazil` |
 | **Citação** | Frase longa do manifesto, depoimento aprovado | `citacao` | `/post citação "Tradição para lembrar…"` |
 | **Convite / agenda** | Eleição, reunião aberta, evento | `convite` / `storyAgenda` | `/post convite da eleição` |

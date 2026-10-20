@@ -10,7 +10,7 @@ export function CemDias() {
     <section className="surface-verde section-y relative overflow-hidden" aria-labelledby="cem-titulo">
       <div className="grain" />
       <div className="container-x relative">
-        <SectionHead numero="06" rotulo="Primeiros 100 dias" titulo="Resultado desde o início.">
+        <SectionHead numero="07" rotulo="Primeiros 100 dias" titulo="Resultado desde o início.">
           Algumas propostas levam a gestão inteira. Estas começam já, para você ver resultado desde o início.
         </SectionHead>
 
