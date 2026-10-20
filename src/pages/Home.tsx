@@ -25,6 +25,8 @@ export default function Home() {
       <ArcoReveal>
         <Manifesto />
       </ArcoReveal>
+      {/* Diretoria logo no começo: é a pergunta que todo mundo faz primeiro */}
+      <DiretoriaTeaser />
       <Principios />
       <FaixaMonumental palavras={['Ciência', 'Coragem', 'Serviço']} className="bg-noite" traco="rgb(176 141 87 / 0.75)" />
       <Eixos />
@@ -33,7 +35,6 @@ export default function Home() {
       </ArcoReveal>
       <CenaVital />
       <CemDias />
-      <DiretoriaTeaser />
       <ArcoReveal>
         <Cobrar />
       </ArcoReveal>

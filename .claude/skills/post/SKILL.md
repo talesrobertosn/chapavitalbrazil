@@ -11,7 +11,7 @@ Você vai criar uma pasta `marketing/instagram/NN-nome/` com `gerar.mjs`, os PNG
 1. `docs/MARKETING.md` § 11 "Como pedir um post" e § 2 (tom), § 6 (frases), § 9 (cuidados).
 2. `docs/DIRECAO-DE-ARTE.md` § 2 (paleta), § 3 (tipografia), § 8 (formatos e templates), § 9 (faça/não faça), § 10 (checklist).
 3. `marketing/ferramentas/templates.mjs` (blocos prontos, básicos e criativos), `marketing/ferramentas/assets.mjs` (52 ornamentos, botânica, ciência e logos) e as pranchas `marketing/assets/catalogo.png` e `marketing/assets/galeria-templates.png`.
-4. Conteúdo oficial em `src/data/*.ts`: `programa.ts` (5 eixos, 52 propostas), `diretoria.ts` (23 membros), `frases.ts`, `vitalBrazil.ts`, `diario.ts`. **Copie de lá; nunca invente.**
+4. Conteúdo oficial em `src/data/*.ts`: `programa.ts` (5 eixos, 52 propostas), `diretoria.ts` (22 membros), `frases.ts`, `vitalBrazil.ts`, `diario.ts`. **Copie de lá; nunca invente.**
 5. `marketing/instagram/_modelo/gerar.mjs` (exemplo completo) e o último post publicado (para alternar o ritmo escuro ↔ claro).
 
 ## 2. Entenda o pedido

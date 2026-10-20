@@ -24,7 +24,7 @@ export function Eixos() {
 function Intro({ className }: { className?: string }) {
   return (
     <div className={className}>
-      <SectionHead numero="03" rotulo="O programa" titulo={'5 eixos.\n1 compromisso.'} tituloClass="t-h1">
+      <SectionHead numero="04" rotulo="O programa" titulo={'5 eixos.\n1 compromisso.'} tituloClass="t-h1">
         {TOTAL_PROPOSTAS} propostas que dizem o que vamos fazer. Escritas para serem cobradas.
       </SectionHead>
       <Reveal delay={0.3} className="mt-10">

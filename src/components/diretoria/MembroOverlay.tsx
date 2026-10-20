@@ -217,9 +217,9 @@ export default function MembroOverlay({ slug }: { slug: string }) {
                   </p>
 
                   <div className="mt-10 border-l border-ouro/40 pl-6">
-                    <p className="eyebrow text-[0.58rem] text-salvia">Eu estou na chapa porque…</p>
+                    <p className="eyebrow text-[0.58rem] text-salvia">Nas palavras de {primeiroNome(membro.nome)}</p>
                     {membro.porque ? (
-                      <p className="t-quote mt-3 text-papel">“{membro.porque}”</p>
+                      <Depoimento texto={membro.porque} />
                     ) : (
                       <p className="mt-3 font-script text-[1.4rem] italic leading-snug text-papel/45">O depoimento de {primeiroNome(membro.nome)} chega em breve.</p>
                     )}
@@ -287,6 +287,23 @@ export default function MembroOverlay({ slug }: { slug: string }) {
         </motion.div>
       </div>
     </motion.div>
+  );
+}
+
+/** Frase curta em citação grande; texto longo em corpo menor, com parágrafos. */
+function Depoimento({ texto }: { texto: string }) {
+  const paragrafos = texto.split(/\n{2,}/);
+  const curto = texto.length <= 240;
+  return (
+    <blockquote className={cn('mt-3 space-y-4 text-papel', curto ? 't-quote' : 'max-w-[40rem] font-script text-[clamp(1.25rem,1.9vw,1.55rem)] italic leading-snug text-papel/90')}>
+      {paragrafos.map((p, i) => (
+        <p key={i}>
+          {i === 0 && '“'}
+          {p}
+          {i === paragrafos.length - 1 && '”'}
+        </p>
+      ))}
+    </blockquote>
   );
 }
 

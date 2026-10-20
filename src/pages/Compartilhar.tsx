@@ -147,6 +147,21 @@ export default function Compartilhar() {
                 );
               })}
             </div>
+            <div id="qr-code" className="mt-10 flex scroll-mt-28 flex-col gap-6 border-t border-ouro/20 pt-8 sm:flex-row sm:items-center">
+              <img src={`${import.meta.env.BASE_URL}qr-code.svg`} alt="QR Code que abre a página inicial do site" width={160} height={160} loading="lazy" className="size-40 shrink-0 rounded-[2px] bg-papel p-2 ring-1 ring-ouro/40" />
+              <div>
+                <p className="font-display text-[1.15rem] font-semibold text-papel">QR Code do site</p>
+                <p className="mt-2 text-papel/75">Abre a página inicial. Use em cartazes, panfletos e posts.</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <a href={`${import.meta.env.BASE_URL}qr-code.png`} download="qr-code-vital-brazil.png" className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-[0.78rem] font-semibold text-papel ring-1 ring-papel/20 transition-colors hover:bg-papel hover:text-noite">
+                    <Download size={15} strokeWidth={1.6} /> PNG
+                  </a>
+                  <a href={`${import.meta.env.BASE_URL}qr-code.svg`} download="qr-code-vital-brazil.svg" className="inline-flex h-11 items-center gap-2 rounded-full px-5 text-[0.78rem] font-semibold text-papel ring-1 ring-papel/20 transition-colors hover:bg-papel hover:text-noite">
+                    <Download size={15} strokeWidth={1.6} /> SVG (impressão)
+                  </a>
+                </div>
+              </div>
+            </div>
             <div className="mt-10 border-t border-ouro/20 pt-8">
               <p className="text-papel/75">Prefere mandar texto? Escolha uma frase da campanha e o link do site vai junto.</p>
               <Button onClick={abrirNuvem} variant="outline" icon={<WhatsappIcon size={16} />} className="mt-5">

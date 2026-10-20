@@ -16,7 +16,7 @@ Regenerar: `node marketing/whatsapp/diretoria/gerar.mjs` (gera o PNG e as duas v
 
 🟢 *Gestão Dr. Vital Brazil* · CA Medicina FAPI
 
-Do 1º ao último período, uma só chapa. 23 estudantes em 13 frentes, com um compromisso: uma formação médica mais humana, justa, forte e participativa.
+Do 1º ao último período, uma só chapa. 22 estudantes em 13 frentes, com um compromisso: uma formação médica mais humana, justa, forte e participativa.
 
 Conhece a nossa diretoria 👆 e segue a gente no Instagram: @chapavitalbrazil
 

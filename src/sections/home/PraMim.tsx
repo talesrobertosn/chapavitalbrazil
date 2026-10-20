@@ -28,7 +28,7 @@ export function PraMim() {
     <section className="surface-papel section-y relative overflow-hidden" aria-labelledby="pramim-titulo">
       <div className="grain" />
       <div className="container-x relative">
-        <SectionHead numero="04" rotulo="Feito para você" titulo="O que muda pra mim?" tom="claro" align="center">
+        <SectionHead numero="05" rotulo="Feito para você" titulo="O que muda pra mim?" tom="claro" align="center">
           Escolha onde você está no curso e veja as propostas pensadas para esse momento.
         </SectionHead>
 

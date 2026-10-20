@@ -9,6 +9,8 @@ import { INTRO_ATIVA_NA_CARGA } from '../../components/layout/Intro';
 import { site } from '../../config/site';
 import { InstagramIcon, WhatsappIcon } from '../../components/brand/Brand';
 import { FRASES } from '../../data/frases';
+import { MEMBROS } from '../../data/diretoria';
+import { Portrait } from '../../components/ui/Portrait';
 import { useNuvem } from '../../components/layout/NuvemFrases';
 import { diaISO } from '../../lib/datas';
 import { DATA_ELEICAO, useFase, type Fase } from '../../lib/fase';
@@ -199,7 +201,14 @@ export function Hero() {
                 <ButtonLink to="/programa">Ver o programa</ButtonLink>
               )}
               <ButtonLink to="/diretoria" variant="outline" icon={false}>
-                Conheça a diretoria
+                <span className="flex items-center gap-3">
+                  <span className="flex -space-x-2.5" aria-hidden="true">
+                    {MEMBROS.slice(0, 4).map((m) => (
+                      <Portrait key={m.slug} membro={m} tamanho="sm" anel={false} className="w-7 ring-2 ring-noite" />
+                    ))}
+                  </span>
+                  Conheça a diretoria
+                </span>
               </ButtonLink>
             </motion.div>
             <motion.a
