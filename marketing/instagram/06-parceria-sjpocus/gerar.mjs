@@ -24,6 +24,7 @@ const HANDLE_CHAPA = '@chapavitalbrazil';
 const SITE_CHAPA = 'chapavitalbrazil.com.br';
 const HANDLE_SJ = '@sjpocus';
 const SITE_SJ = 'sjpocus.com.br';
+const LOGO_CHAPA = pathToFileURL(resolve(AQUI, 'logo-chapa.png')).href; // logo oficial da chapa (PNG)
 const LOGO_SJ = pathToFileURL(resolve(AQUI, 'logo-sjpocus.png')).href; // logo oficial (troque por versão em alta quando chegar)
 const TOTAL = 6;
 
@@ -85,7 +86,7 @@ const rotulo = (t) => `<div class="rotulo">${t}</div>`;
 const rodape = (n) => `<div class="rodape"><span>${HANDLE_CHAPA}</span><span class="rc">CA Medicina FAPI</span><span>${String(n).padStart(2, '0')} / ${String(TOTAL).padStart(2, '0')}</span></div>`;
 const duo = (d) => `
   <div class="duo" style="--d:${d}px">
-    <div class="marca"><div class="circulo">${logoChapa}</div><div class="nome">Chapa Vital Brazil</div></div>
+    <div class="marca"><div class="circulo circulo-chapa"><img src="${LOGO_CHAPA}" alt="Chapa Vital Brazil"></div><div class="nome">Chapa Vital Brazil</div></div>
     <div class="mais">+</div>
     <div class="marca"><div class="circulo circulo-sj"><img src="${LOGO_SJ}" alt="SJPOCUS"></div><div class="nome">SJPOCUS</div></div>
   </div>`;
@@ -230,6 +231,9 @@ h2.h2 em{font-style:italic;color:${C.ouro}}
 .circulo{width:var(--d);height:var(--d);border-radius:50%;background:${C.verde};border:7px solid ${C.ouro};overflow:hidden;display:flex;align-items:center;justify-content:center;
   box-shadow:0 0 0 14px rgba(201,161,90,.12), 0 40px 80px rgba(0,0,0,.45)}
 .circulo svg,.circulo img{width:100%;height:100%;display:block;object-fit:cover}
+.circulo-chapa{background:none;border:none;overflow:visible;box-shadow:none;position:relative}
+.circulo-chapa::before{content:'';position:absolute;inset:3%;border-radius:50%;box-shadow:0 0 0 14px rgba(201,161,90,.12), 0 40px 80px rgba(0,0,0,.45)}
+.circulo-chapa img{position:relative;width:110%;height:110%;object-fit:contain;transform:translateY(-2%)}
 .circulo-sj{background:#fff}
 .circulo-sj img{transform:scale(1.22)}
 .nome{font-family:'DM Serif Display',serif;font-size:40px;line-height:1.1;white-space:nowrap}
