@@ -4,10 +4,16 @@ Este repositório é o site **e** a base de marca da chapa *Gestão Dr. Vital Br
 Ele será usado também para criar **posts, stories, carrosséis e outras artes** para o Instagram.
 
 ## Leia antes de qualquer tarefa
-1. [`docs/DIRECAO-DE-ARTE.md`](docs/DIRECAO-DE-ARTE.md): paleta, tipografia, ornamentos, imagem, movimento, formatos e templates do Instagram.
-2. [`docs/MARKETING.md`](docs/MARKETING.md): voz, mensagens, fatos verificados, frases aprovadas, calendário e cuidados.
-3. `src/data/*.ts`: **fonte oficial de conteúdo** (programa, diretoria, diário, frases, Vital Brazil). Copie daqui, não da memória.
-4. `src/config/site.ts`: data da eleição, links, e-mail e configurações.
+1. [`docs/SOCIAL-MEDIA.md`](docs/SOCIAL-MEDIA.md): **configuração permanente da Diretoria de Marketing**: como atuar (agência + direção de arte), uso obrigatório das skills, padrão de produção, identidade visual das peças de marketing e parcerias, entregáveis, mídia kits, fatos, parcerias e cuidados.
+2. [`docs/DIRECAO-DE-ARTE.md`](docs/DIRECAO-DE-ARTE.md): paleta, tipografia, ornamentos, imagem, movimento, formatos e templates do **site** (linha "Gravura Viva").
+3. [`docs/MARKETING.md`](docs/MARKETING.md): voz, mensagens, fatos verificados, frases aprovadas, calendário e cuidados.
+4. `src/data/*.ts`: **fonte oficial de conteúdo** (programa, diretoria, diário, frases, Vital Brazil). Copie daqui, não da memória.
+5. `src/config/site.ts`: data da eleição, links, e-mail e configurações.
+
+## Regra principal para design e social media
+Toda solicitação de design (Instagram, posts, carrosséis, stories, reels, identidade, branding, infográficos, campanhas, materiais institucionais) começa com a **identificação e leitura das skills relevantes em `.claude/skills/`** (tabela em `docs/SOCIAL-MEDIA.md` § 8), seguida da **execução prática**: produza a arte (PNG em alta + fonte editável), não só o roteiro. Entregue junto a legenda e/ou a mensagem de WhatsApp.
+
+> Duas identidades convivem no repositório e **não se misturam**: o **site** usa "Gravura Viva" (abaixo); **peças de marketing, parcerias e mídia kits** usam a identidade de `docs/SOCIAL-MEDIA.md` § 4 (DM Serif Display + Manrope + Anton, verde `#0D3B2A`, dourado `#C9A15A`, off-white `#F3EEE2`).
 
 ## Regras inegociáveis
 - **Conceito "Gravura Viva"**: gravura científica do séc. XIX + composição editorial contemporânea. Épico, sóbrio, prestigioso.
